@@ -34,6 +34,23 @@ class ScrollWatcher {
 			this.scrollWatcherLogging(`Прокинувся, стежу за об'єктами (${items.length})...`);
 			// Унікалізуємо параметри
 			let uniqParams = uniqArray(Array.from(items).map(function (item) {
+				// Обчислення автоматичного Threshold
+				if (item.dataset.watch === 'navigator' && !item.dataset.watchThreshold) {
+					let valueOfThreshold;
+					if (item.clientHeight > 2) {
+						valueOfThreshold =
+							window.innerHeight / 2 / (item.clientHeight - 1);
+						if (valueOfThreshold > 1) {
+							valueOfThreshold = 1;
+						}
+					} else {
+						valueOfThreshold = 1;
+					}
+					item.setAttribute(
+						'data-watch-threshold',
+						valueOfThreshold.toFixed(2)
+					);
+				}
 				return `${item.dataset.watchRoot ? item.dataset.watchRoot : null}|${item.dataset.watchMargin ? item.dataset.watchMargin : '0px'}|${item.dataset.watchThreshold ? item.dataset.watchThreshold : 0}`;
 			}));
 			// Отримуємо групи об'єктів з однаковими параметрами,
@@ -99,6 +116,7 @@ class ScrollWatcher {
 	}
 	// Функція створення нового спостерігача зі своїми налаштуваннями
 	scrollWatcherCreate(configWatcher) {
+		console.log(configWatcher);
 		this.observer = new IntersectionObserver((entries, observer) => {
 			entries.forEach(entry => {
 				this.scrollWatcherCallback(entry, observer);

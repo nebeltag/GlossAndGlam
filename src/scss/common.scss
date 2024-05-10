@@ -1,1 +1,37 @@
 // Заголовки, загальні БЕМ блоки та інше...
+
+//Шапка блока
+
+.block-header {
+  background-color: $bgDark;
+  display: grid;
+  gap: toRem(12);
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+  // .block-header__title
+
+  &__title {
+    font-family: "Cormorant Garamond";
+    font-size: toRem(64);
+    line-height: 125%;
+    /* 80/64 */
+    color: #fff;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  // .block-header__text
+
+  &__text {
+    line-height: 150%;
+
+    /* 24/16 */
+    p {
+      &:not(:last-child) {
+        margin-bottom: toRem(15);
+      }
+    }
+  }
+}

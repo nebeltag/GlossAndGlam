@@ -12,6 +12,7 @@ const rootFolder = path.basename(path.resolve());
 let pugPages = fs.readdirSync(srcFolder).filter(fileName => fileName.endsWith('.pug'))
 let htmlPages = []
 
+
 if (!pugPages.length) {
 	htmlPages = [new FileIncludeWebpackPlugin({
 		source: srcFolder,
@@ -27,7 +28,6 @@ if (!pugPages.length) {
 		],
 	})];
 }
-
 const paths = {
 	src: path.resolve(srcFolder),
 	build: path.resolve(builFolder)
@@ -54,15 +54,11 @@ const config = {
 		port: 'auto',
 		hot: true,
 		host: 'local-ip', // localhost
-
-		// Розкоментувати на слабкому ПК
-		// (в режимі розробника папка результатом (dist) буде створюватися на диску)
-		/*
-		devMiddleware: {
-			writeToDisk: true,
-		},
-		*/
-
+		//В режимі розробника папка 
+		// результатом (dist) буде створюватися на диску)
+		//devMiddleware: {
+		//	writeToDisk: true,
+		//},
 		watchFiles: [
 			`${paths.src}/**/*.html`,
 			`${paths.src}/**/*.pug`,
@@ -100,12 +96,14 @@ const config = {
 								},
 							},
 						},
-					}, {
+					},
+					'postcss-loader',
+					{
 						loader: 'sass-loader',
 						options: {
 							sourceMap: true,
 						}
-					}
+					},
 				],
 			}, {
 				test: /\.pug$/,
@@ -171,7 +169,7 @@ const config = {
 					noErrorOnMissing: true
 				}
 			],
-		}),
+		})
 	],
 	resolve: {
 		alias: {

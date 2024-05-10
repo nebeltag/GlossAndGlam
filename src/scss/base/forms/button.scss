@@ -2,13 +2,34 @@
 // Сніппет (HTML): btn
 
 .button {
+	background-color: $goldColor;
 	display: inline-flex;
-	padding: 0px 0px;
-	@media (any-hover: hover) {
-		&:hover {
-		}
-	}
+	font-weight: 500;
+	line-height: 150%;
+	/* 24/16 */
+	color: $bgMainColor;
+	padding: toRem(18) toRem(36);
+	border-radius: 12px;
+	transition: all .3s;
+	border: toRem(1) solid transparent;
+
 	&--fw {
 		width: 100%;
+	}
+
+	&--small {
+		@include adaptiveValue("padding-top", 15, 10, 0, $containerWidth, 767.98);
+		@include adaptiveValue("padding-bottom", 15, 10, 0, $containerWidth, 767.98);
+		@include adaptiveValue("padding-left", 32, 14, 0, $containerWidth, 767.98);
+		@include adaptiveValue("padding-right", 32, 14, 0, $containerWidth, 767.98);
+	}
+
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: transparent;
+			border: toRem(1) solid $goldColor;
+			color: $mainColor;
+			transition: all .3s;
+		}
 	}
 }

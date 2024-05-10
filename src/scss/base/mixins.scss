@@ -33,6 +33,26 @@
 	}
 }
 
+// Трикутник
+@mixin triangle($direction, $color, $size, $size2: $size) {
+	@if $direction == left {
+		border: toRem($size2) solid transparent;
+		border-right: toRem($size) solid $color;
+	}
+	@if $direction == right {
+		border: toRem($size2) solid transparent;
+		border-left: toRem($size) solid $color;
+	}
+	@if $direction == top {
+		border: toRem($size2) solid transparent;
+		border-bottom: toRem($size) solid $color;
+	}
+	@if $direction == bottom {
+		border: toRem($size2) solid transparent;
+		border-top: toRem($size) solid $color;
+	}
+}
+
 // Grids
 @mixin gridCards($type: fit, $min: 280px, $max: 1fr, $gap: 30px) {
 	display: grid;

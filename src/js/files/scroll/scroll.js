@@ -61,12 +61,17 @@ export function pageNavigation() {
 					// Бачимо об'єкт
 					// navigatorActiveItem ? navigatorActiveItem.classList.remove('_navigator-active') : null;
 					navigatorCurrentItem ? navigatorCurrentItem.classList.add('_navigator-active') : null;
+					//const activeItems = document.querySelectorAll('._navigator-active');
+					//activeItems.length > 1 ? chooseOne(activeItems) : null
 				} else {
 					// Не бачимо об'єкт
 					navigatorCurrentItem ? navigatorCurrentItem.classList.remove('_navigator-active') : null;
 				}
 			}
 		}
+	}
+	function chooseOne(activeItems) {
+
 	}
 	// Прокручування по хешу
 	if (getHash()) {
@@ -122,6 +127,8 @@ export function digitsCounter() {
 		if (digitsCounters.length) {
 			digitsCounters.forEach(digitsCounter => {
 				// Обнулення
+				if (digitsCounter.hasAttribute('data-go')) return;
+				digitsCounter.setAttribute('data-go', '');
 				digitsCounter.dataset.digitsCounter = digitsCounter.innerHTML;
 				digitsCounter.innerHTML = `0`;
 				// Анімація
@@ -143,6 +150,8 @@ export function digitsCounter() {
 			digitsCounter.innerHTML = typeof digitsCounter.dataset.digitsCounterFormat !== 'undefined' ? getDigFormat(value, format) : value;
 			if (progress < 1) {
 				window.requestAnimationFrame(step);
+			} else {
+				digitsCounter.removeAttribute('data-go');
 			}
 		};
 		window.requestAnimationFrame(step);

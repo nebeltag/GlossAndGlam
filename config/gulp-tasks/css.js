@@ -26,6 +26,7 @@ export const css = () => {
 				})
 			)
 		)
+		/*
 		.pipe(
 			app.plugins.if(
 				app.isWebP,
@@ -40,6 +41,7 @@ export const css = () => {
 				)
 			)
 		)
+		*/
 		.pipe(
 			app.plugins.if(
 				app.isBuild,
