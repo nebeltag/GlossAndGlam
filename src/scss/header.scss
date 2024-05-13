@@ -54,14 +54,16 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    @include adaptiveValue("column-gap", 32, 14, 0, $containerWidth, 767.98);
+    @include adaptiveValue("column-gap", 32, 11, 0, $containerWidth, 767.98);
     row-gap: toRem(5);
     @include adaptiveValue("font-size", 16, 11);
   }
 
   // .menu__item
 
-  &__item {}
+  &__item {
+    position: relative;
+  }
 
   // .menu__link
 
@@ -69,8 +71,124 @@
     display: inline-block;
     line-height: 150%;
     font-weight: 400;
+    background-image: linear-gradient($goldColor, $goldColor);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .25s ease-out;
+
+    @media(any-hover:hover) {
+      &:hover {
+        background-size: 100% 2px;
+        background-position: bottom left;
+        color: $goldColor;
+      }
+    }
+
+    &:focus {
+      background-size: 100% 2px;
+      background-position: bottom left;
+      color: $goldColor;
+
+      .services-menu::after {
+        transform: rotate(180deg);
+      }
+    }
+
+
+    // &-arrow {
+    //   float: inline-end;
+    //   width: 0;
+    //   height: 0;
+    //   margin: toRem(5) toRem(0) toRem(0) toRem(5);
+    //   border-left: 5px solid transparent;
+    //   border-right: 5px solid transparent;
+    //   border-top: 10px solid $mainColor;
+    // }
   }
 }
+
+
+.services-menu {
+  &::after {
+    position: relative;
+    @extend %ic;
+    content: "\e901";
+    line-height: 11px;
+    margin-left: toRem(4);
+    @include adaptiveValue("font-size", 12, 8);
+  }
+
+  &:focus {
+    &::after {
+      transform: rotate(180deg);
+      top: toRem(-2);
+
+    }
+  }
+
+  &__list {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    top: -150%;
+    right: 0;
+    min-width: toEm(150);
+    border: 1px solid $goldColor;
+    border-radius: toRem(12);
+    padding: toRem(10) toRem(2);
+    transform: rotateX(-270deg);
+    transition: all .3s ease;
+  }
+
+  &__list._show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, 40%) rotateX(0deg);
+    z-index: 5;
+    transition: all .3s ease;
+    pointer-events: all;
+  }
+
+  &__item {
+    position: relative;
+    text-align: center;
+    border-radius: toRem(5);
+
+
+    &:not(:last-child) {
+      margin-bottom: toRem(10);
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: linear-gradient(rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
+        color: $goldColor;
+        box-shadow:
+          0 1px rgba(255, 255, 255, .2) inset,
+          0 2px 3px rgba(0, 1, 6, .5),
+          0 0 1px 1px rgba(0, 1, 6, .2);
+        transition: background-color .2s ease-in-out;
+        transform: scale(1.03);
+      }
+    }
+
+    &:active {
+      top: 1px;
+      background: linear-gradient(rgb(76, 77, 82), rgb(56, 57, 62)) rgb(76, 77, 82);
+      box-shadow:
+        0 0 1px rgba(0, 0, 0, .5) inset,
+        0 2px 3px rgba(0, 0, 0, .5) inset,
+        0 1px 1px rgba(255, 255, 255, .1);
+    }
+  }
+
+  &__link {
+    line-height: 150%;
+    letter-spacing: 1px;
+  }
+}
+
 
 .action-header {
   justify-self: end;
@@ -92,6 +210,7 @@
     // height: 32px;
     background-color: $goldColor;
     border-radius: 50%;
+    transition: all .5s;
 
     &::before {
       position: relative;
@@ -100,6 +219,19 @@
       transform: translate(-50%, -50%);
       color: $bgMainColor;
       font-weight: 600;
+      border: toRem(1) solid transparent;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: transparent;
+        border: toRem(1) solid $goldColor;
+        transition: all .3s;
+
+        &::before {
+          color: $mainColor;
+        }
+      }
     }
 
   }
