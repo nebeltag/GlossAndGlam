@@ -11,7 +11,7 @@
 	padding: toRem(18) toRem(36);
 	border-radius: 12px;
 	transition: all .3s;
-	border: toRem(1) solid transparent;
+	border: toRem(2) solid transparent;
 
 	&--fw {
 		width: 100%;
@@ -27,9 +27,16 @@
 	@media (any-hover: hover) {
 		&:hover {
 			background-color: transparent;
-			border: toRem(1) solid $goldColor;
-			color: $mainColor;
-			transition: all .3s;
+			border: toRem(2) solid $goldColor;
+			color: $goldColor;
+			transition: all .5s;
 		}
+	}
+
+	&:active {
+		border: toRem(2) solid $mainColor;
+		color: $mainColor;
+		transform: scale(.95);
+		transition: all .3s;
 	}
 }

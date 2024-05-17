@@ -24,7 +24,6 @@
     @media (any-hover: hover) {
       &:hover {
         transform: scale(1.01);
-        transition: all .2s;
       }
     }
   }
@@ -85,26 +84,13 @@
       }
     }
 
-    &:focus {
-      background-size: 100% 2px;
-      background-position: bottom left;
-      color: $goldColor;
-
-      .services-menu::after {
-        transform: rotate(180deg);
-      }
+    &:active {
+      color: $mainColor;
+      background-image: linear-gradient($mainColor, $mainColor);
+      transition: all .1s linear;
     }
 
 
-    // &-arrow {
-    //   float: inline-end;
-    //   width: 0;
-    //   height: 0;
-    //   margin: toRem(5) toRem(0) toRem(0) toRem(5);
-    //   border-left: 5px solid transparent;
-    //   border-right: 5px solid transparent;
-    //   border-top: 10px solid $mainColor;
-    // }
   }
 }
 
@@ -119,35 +105,27 @@
     @include adaptiveValue("font-size", 12, 8);
   }
 
-  &:focus {
-    &::after {
-      transform: rotate(180deg);
-      top: toRem(-2);
-
-    }
-  }
-
   &__list {
     position: absolute;
     opacity: 0;
     visibility: hidden;
-    top: -150%;
+    top: -850%;
     right: 0;
     min-width: toEm(150);
     border: 1px solid $goldColor;
     border-radius: toRem(12);
     padding: toRem(10) toRem(2);
-    transform: rotateX(-270deg);
-    transition: all .3s ease;
+    transform: rotateZ(-90deg);
+    //transition: transform .5s;
   }
 
-  &__list._show {
+  &__list._show-services {
     opacity: 1;
     visibility: visible;
-    transform: translate(0, 40%) rotateX(0deg);
+    transform: translate(0, 130%);
     z-index: 5;
-    transition: all .3s ease;
-    pointer-events: all;
+    transition: transform .5s cubic-bezier(0.165, 0.84, 0.44, 1);
+
   }
 
   &__item {
@@ -189,8 +167,19 @@
   }
 }
 
+.services-menu._show-services {
+
+  &::after {
+    transform: rotate(180deg);
+    top: toRem(-2);
+
+  }
+}
+
+
 
 .action-header {
+  position: relative;
   justify-self: end;
   display: flex;
   justify-content: flex-end;
@@ -225,21 +214,117 @@
     @media (any-hover: hover) {
       &:hover {
         background-color: transparent;
-        border: toRem(1) solid $goldColor;
-        transition: all .3s;
+        border: toRem(2) solid $goldColor;
+        transition: color .5s;
 
         &::before {
-          color: $mainColor;
+          color: $goldColor;
+          transition: color .5s;
         }
       }
     }
 
+    &:active {
+      border: toRem(2) solid $mainColor;
+      transform: scale(.95);
+      transition: all .3s;
+
+      &::before {
+        color: $mainColor;
+        transition: all .3s;
+      }
+    }
+  }
+}
+
+.action-header {
+
+  // .action-header__form
+
+  &__search {
+    position: absolute;
+    left: 0;
+    bottom: -80%;
+  }
+}
+
+.header-search {
+
+  //outline: toRem(1) solid $goldColor;
+  border-radius: 5px;
+
+
+  // .header-search__form
+
+  &__form {
+    display: flex;
+    height: toRem(30);
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s;
+    animation: slidein 5s reverse ease;
+
+
+    @media (min-width:$mobile) {
+      max-width: toRem(350);
+    }
+
+
+    input {
+      outline: toRem(1) solid $mainColor;
+      border-radius: 5px 0 0 5px;
+      flex: 1 1 auto;
+      padding: toRem(4);
+
+      &:focus {
+        outline: toRem(2) solid $goldColor;
+      }
+    }
+
+    button {
+      margin-left: toRem(8);
+      padding: toRem(0) toRem(5);
+      border-radius: 5px;
+      font-weight: 500;
+      color: $bgMainColor;
+      background-color: $goldColor;
+      border: 1px solid $goldColor;
+      appearance: none;
+      transition: all 150ms ease-in-out;
+
+      @media (any-hover: hover) {
+        &:hover {
+          color: $goldColor;
+          background-color: transparent;
+          box-shadow: 0 0 5px 0 $goldColor inset, 0 0 5px 2px $goldColor;
+        }
+      }
+
+      &:active {
+        color: $mainColor;
+        box-shadow: 0 0 5px 0 $mainColor inset, 0 0 5px 2px $mainColor;
+      }
+    }
+
+    @keyframes slidein {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
   }
 
-  // .action-header__button
+  &__form._show-action-search-form {
+    opacity: 1;
+    visibility: visible;
+  }
 
-  &__button {}
+
 }
+
 
 //=====================================================
 //burger
