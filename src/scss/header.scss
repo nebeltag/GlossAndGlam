@@ -125,6 +125,11 @@
 
   &__item {
     position: relative;
+
+    @media (max-width:$mobile) {
+      width: 100%;
+      text-align: center;
+    }
   }
 
   // .menu__link
@@ -190,9 +195,26 @@
     padding: toRem(10) toRem(2);
     transform: rotateY(-180deg);
 
+    @media (max-width:$mobile) {
+      display: none;
+      opacity: 1;
+      visibility: visible;
+      position: relative;
+      width: 100%;
+      top: 0;
+      left: 0;
+      transform: rotateY(0);
+      border: none;
+      font-size: toRem(22);
+      background-color: rgb(43, 43, 43, .4);
+    }
   }
 
   &__list._show-services {
+    display: block;
+
+
+
     @media(min-width:$mobile) {
       opacity: 1;
       visibility: visible;
@@ -208,6 +230,45 @@
     text-align: center;
     border-radius: toRem(5);
 
+    @media (max-width:$mobile) {
+      width: 100%;
+      text-align: center;
+      overflow: hidden;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        line-height: 40px;
+        border-radius: 50%;
+        background: #BFC0C0;
+        transition: all .5s ease-Out;
+      }
+
+      &:active {
+        &::before {
+          width: 200%;
+          height: 500%;
+          opacity: 1;
+        }
+      }
+    }
+
+    @media (min-width:$mobile) {
+      &:active {
+        top: 1px;
+        background: linear-gradient(rgb(76, 77, 82), rgb(56, 57, 62)) rgb(76, 77, 82);
+        box-shadow:
+          0 0 1px rgba(0, 0, 0, .5) inset,
+          0 2px 3px rgba(0, 0, 0, .5) inset,
+          0 1px 1px rgba(255, 255, 255, .1);
+      }
+    }
 
     &:not(:last-child) {
       margin-bottom: toRem(10);
@@ -225,20 +286,15 @@
         transform: scale(1.03);
       }
     }
-
-    &:active {
-      top: 1px;
-      background: linear-gradient(rgb(76, 77, 82), rgb(56, 57, 62)) rgb(76, 77, 82);
-      box-shadow:
-        0 0 1px rgba(0, 0, 0, .5) inset,
-        0 2px 3px rgba(0, 0, 0, .5) inset,
-        0 1px 1px rgba(255, 255, 255, .1);
-    }
   }
 
   &__link {
     line-height: 150%;
     letter-spacing: 1px;
+
+    @media (max-width:$mobile) {
+      transition: all .45s ease-Out;
+    }
 
   }
 }
@@ -476,7 +532,6 @@
     z-index: 6;
   }
 
-
   // @media (max-width: $mobile) {
   //   display: block;
   //   position: relative;
@@ -549,8 +604,9 @@
 }
 
 .icon-menu .line {
-  transition: 1s;
+  transition: .7s ease;
   stroke-dasharray: 60 31 60 300;
+
 }
 
 .icon-menu[aria-expanded="true"] .line {

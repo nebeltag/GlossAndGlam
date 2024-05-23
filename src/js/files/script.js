@@ -37,8 +37,9 @@ const showActionSearch = (e) => {
       : actionSearchForm.classList.remove('_show-action-search-form')
 }
 
-document.addEventListener("click", showActionSearch);
+document.documentElement.addEventListener("click", showActionSearch);
 
+//======Кнопка-гамбургер=================
 
 const buttons = document.querySelectorAll(".icon-menu");
 
@@ -55,3 +56,5 @@ buttons.forEach((button) => {
     }
   });
 });
+
+//==============================================================
