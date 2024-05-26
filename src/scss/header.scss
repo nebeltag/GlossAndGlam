@@ -11,22 +11,41 @@
     padding-top: toRem(10);
     padding-bottom: toRem(10);
     gap: toRem(15);
+
+    @media (max-width:$mobile) {
+      grid-template-columns: auto 1fr auto auto;
+    }
   }
 
   // .header__logo
 
   &__logo {
 
-    &-image {
-      @include adaptiveValue("width", 204, 100);
+    position: relative;
+    z-index: 5;
+
+    @media (max-width:$mobile) {
+      width: 85%;
     }
+
+    &-image {
+      @include adaptiveValue("width", 204, 90, 0, $containerWidth, 767.98);
+
+      //@include adaptiveValue("width", 204, 130, 0, $containerWidth, 320);
+      @media (max-width:$mobile) {
+        width: 85%;
+      }
+    }
+
+
 
     @media (any-hover: hover) {
       &:hover {
         transform: scale(1.01);
-        transition: all .2s;
       }
     }
+
+
   }
 
   // .header__menu
@@ -46,7 +65,43 @@
 
   // .menu__body
 
-  &__body {}
+  &__body {
+    @media (max-width:$mobile) {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      gap: toRem(120);
+      position: fixed;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      left: -100%;
+      top: 0;
+      overflow: auto;
+      background-color: $bgDark;
+      padding: toRem(80) toRem(15) toRem(20) toRem(15);
+      transition: left .3s;
+
+      &::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        z-index: 2;
+        background-color: $bgDark;
+        @include adaptiveValue("height", 136, 60);
+        transition: left .3s;
+      }
+
+      .menu-open & {
+        left: 0;
+
+        &::before {
+          left: 0;
+        }
+      }
+    }
+  }
 
   // .menu__list
 
@@ -54,15 +109,27 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    @include adaptiveValue("column-gap", 32, 11, 0, $containerWidth, 767.98);
+    align-items: center;
+    @include adaptiveValue("column-gap", 32, 14, 0, $containerWidth, 767.98);
     row-gap: toRem(5);
     @include adaptiveValue("font-size", 16, 11);
+
+    @media (max-width:$mobile) {
+      flex-direction: column;
+      justify-content: start;
+      row-gap: toRem(20);
+    }
   }
 
   // .menu__item
 
   &__item {
     position: relative;
+
+    @media (max-width:$mobile) {
+      width: 100%;
+      text-align: center;
+    }
   }
 
   // .menu__link
@@ -85,27 +152,19 @@
       }
     }
 
-    &:focus {
-      background-size: 100% 2px;
-      background-position: bottom left;
-      color: $goldColor;
-
-      .services-menu::after {
-        transform: rotate(180deg);
-      }
+    &:active {
+      color: $mainColor;
+      background-image: linear-gradient($mainColor, $mainColor);
+      transition: all .1s linear;
     }
 
-
-    // &-arrow {
-    //   float: inline-end;
-    //   width: 0;
-    //   height: 0;
-    //   margin: toRem(5) toRem(0) toRem(0) toRem(5);
-    //   border-left: 5px solid transparent;
-    //   border-right: 5px solid transparent;
-    //   border-top: 10px solid $mainColor;
-    // }
+    @media (max-width:$mobile) {
+      color: $goldColor;
+      font-size: toRem(28);
+    }
   }
+
+
 }
 
 
@@ -117,13 +176,10 @@
     line-height: 11px;
     margin-left: toRem(4);
     @include adaptiveValue("font-size", 12, 8);
-  }
 
-  &:focus {
-    &::after {
-      transform: rotate(180deg);
-      top: toRem(-2);
-
+    @media (max-width:$mobile) {
+      font-size: toRem(18);
+      margin-left: toRem(6);
     }
   }
 
@@ -131,23 +187,42 @@
     position: absolute;
     opacity: 0;
     visibility: hidden;
-    top: -150%;
+    top: 0;
     right: 0;
-    min-width: toEm(150);
+    @include adaptiveValue("min-width", 150, 100, 0, $containerWidth, 767.98);
     border: 1px solid $goldColor;
     border-radius: toRem(12);
     padding: toRem(10) toRem(2);
-    transform: rotateX(-270deg);
-    transition: all .3s ease;
+    transform: rotateY(-180deg);
+
+    @media (max-width:$mobile) {
+      display: none;
+      opacity: 1;
+      visibility: visible;
+      position: relative;
+      width: 100%;
+      top: 0;
+      left: 0;
+      transform: rotateY(0);
+      border: none;
+      font-size: toRem(22);
+      background-color: rgb(43, 43, 43, .4);
+    }
   }
 
-  &__list._show {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(0, 40%) rotateX(0deg);
-    z-index: 5;
-    transition: all .3s ease;
-    pointer-events: all;
+  &__list._show-services {
+    display: block;
+
+
+
+    @media(min-width:$mobile) {
+      opacity: 1;
+      visibility: visible;
+      top: 130%;
+      transform: rotateY(0deg);
+      z-index: 5;
+      transition: all .6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
   }
 
   &__item {
@@ -155,6 +230,45 @@
     text-align: center;
     border-radius: toRem(5);
 
+    @media (max-width:$mobile) {
+      width: 100%;
+      text-align: center;
+      overflow: hidden;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        line-height: 40px;
+        border-radius: 50%;
+        background: #BFC0C0;
+        transition: all .5s ease-Out;
+      }
+
+      &:active {
+        &::before {
+          width: 200%;
+          height: 500%;
+          opacity: 1;
+        }
+      }
+    }
+
+    @media (min-width:$mobile) {
+      &:active {
+        top: 1px;
+        background: linear-gradient(rgb(76, 77, 82), rgb(56, 57, 62)) rgb(76, 77, 82);
+        box-shadow:
+          0 0 1px rgba(0, 0, 0, .5) inset,
+          0 2px 3px rgba(0, 0, 0, .5) inset,
+          0 1px 1px rgba(255, 255, 255, .1);
+      }
+    }
 
     &:not(:last-child) {
       margin-bottom: toRem(10);
@@ -166,38 +280,64 @@
         color: $goldColor;
         box-shadow:
           0 1px rgba(255, 255, 255, .2) inset,
-          0 2px 3px rgba(0, 1, 6, .5),
+          0 2px 3px rgba(10, 12, 22, 0.5),
           0 0 1px 1px rgba(0, 1, 6, .2);
         transition: background-color .2s ease-in-out;
         transform: scale(1.03);
       }
-    }
-
-    &:active {
-      top: 1px;
-      background: linear-gradient(rgb(76, 77, 82), rgb(56, 57, 62)) rgb(76, 77, 82);
-      box-shadow:
-        0 0 1px rgba(0, 0, 0, .5) inset,
-        0 2px 3px rgba(0, 0, 0, .5) inset,
-        0 1px 1px rgba(255, 255, 255, .1);
     }
   }
 
   &__link {
     line-height: 150%;
     letter-spacing: 1px;
+
+    @media (max-width:$mobile) {
+      transition: all .45s ease-Out;
+    }
+
+  }
+}
+
+.services-menu._show-services {
+
+  &::after {
+    transform: rotate(180deg);
+    top: toRem(-2);
+
   }
 }
 
 
+
 .action-header {
+  position: relative;
   justify-self: end;
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  align-items: center;
   @include adaptiveValue("column-gap", 24, 12, 0, $containerWidth, 767.98);
   row-gap: toRem(3);
+
+  @media (max-width:$mobile) {
+    justify-self: center;
+    align-items: center;
+  }
+
+  &__body {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    @include adaptiveValue("column-gap", 24, 12, 0, $containerWidth, 767.98);
+    row-gap: toRem(3);
+
+    @media (max-width:$mobile) {
+      justify-content: center;
+      column-gap: toRem(35);
+    }
+  }
+
+
 
 
   // .action-header__link
@@ -206,11 +346,15 @@
     display: inline-block;
     @include adaptiveValue("width", 32, 30, 0, $containerWidth, 767.98);
     @include adaptiveValue("height", 32, 30, 0, $containerWidth, 767.98);
-    // width: 32px;
-    // height: 32px;
     background-color: $goldColor;
+    border: toRem(2) solid transparent;
     border-radius: 50%;
     transition: all .5s;
+
+    @media (max-width:$mobile) {
+      width: 40px;
+      height: 40px;
+    }
 
     &::before {
       position: relative;
@@ -218,86 +362,254 @@
       left: 50%;
       transform: translate(-50%, -50%);
       color: $bgMainColor;
+      @include adaptiveValue("font-size", 16, 11);
       font-weight: 600;
-      border: toRem(1) solid transparent;
+      transition: color .5s;
+
+      @media (max-width:$mobile) {
+        font-size: toRem(20);
+      }
     }
 
     @media (any-hover: hover) {
       &:hover {
         background-color: transparent;
-        border: toRem(1) solid $goldColor;
-        transition: all .3s;
+        border: toRem(2) solid $goldColor;
+        transition: all .5s;
 
         &::before {
-          color: $mainColor;
+          color: $goldColor;
+          transition: color .5s;
         }
       }
     }
 
+    &:active {
+      border: toRem(2) solid $mainColor;
+      transform: scale(.95);
+      transition: all .3s;
+
+      &::before {
+        color: $mainColor;
+        transition: all .3s;
+      }
+    }
+
+
+  }
+}
+
+.action-header {
+
+  // .action-header__form
+
+  &__search {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: -90%;
   }
 
-  // .action-header__button
+  @media (max-width:$mobile) {
+    &__search {
+      position: relative;
+      bottom: toRem(170);
+      @include adaptiveValue("width", 350, 290);
+      width: 100%;
 
-  &__button {}
+    }
+  }
 }
+
+.header-search {
+
+  //outline: toRem(1) solid $goldColor;
+  border-radius: 5px;
+
+
+
+  // .header-search__form
+
+  &__form {
+    display: flex;
+    height: toEm(30);
+    @include adaptiveValue("font-size", 16, 11);
+    opacity: 0;
+    visibility: hidden;
+
+    @media (max-width:$mobile) {
+      height: toEm(50);
+    }
+
+    input {
+      outline: toRem(1) solid $mainColor;
+      border-radius: 5px 0 0 5px;
+      flex: 1 1 auto;
+      padding: toRem(4);
+
+
+      @media (max-width:$mobile) {
+        font-size: toRem(20);
+      }
+
+      &:focus {
+        outline: toRem(2) solid $goldColor;
+      }
+    }
+
+    button {
+      margin-left: toRem(8);
+      padding: toRem(0) toRem(5);
+      border-radius: 5px;
+      font-weight: 500;
+      color: $bgMainColor;
+      background-color: $goldColor;
+      border: 1px solid $goldColor;
+      appearance: none;
+      transition: all 150ms ease-in-out;
+
+      @media (any-hover: hover) {
+        &:hover {
+          color: $goldColor;
+          background-color: transparent;
+          box-shadow: 0 0 5px 0 $goldColor inset, 0 0 5px 2px $goldColor;
+        }
+      }
+
+      &:active {
+        color: $mainColor;
+        box-shadow: 0 0 5px 0 $mainColor inset, 0 0 5px 2px $mainColor;
+        border: 1px solid $mainColor;
+      }
+
+      @media (max-width:$mobile) {
+        font-size: toRem(20);
+      }
+
+      // @media(max-width: 991.98px) {
+      //   &:active {
+      //     border: 1px solid $mainColor;
+      //     box-shadow: none;
+      //     color: $mainColor;
+      //     background-color: transparent;
+      //   }
+      // }
+    }
+  }
+
+  &__form._show-action-search-form {
+    opacity: 1;
+    visibility: visible;
+    animation: search 1s reverse ease-out;
+    animation-delay: -.5s;
+  }
+
+  @keyframes search {
+    from {
+      width: 100%;
+    }
+
+    to {
+      width: 0%;
+    }
+  }
+
+
+}
+
 
 //=====================================================
 //burger
 .icon-menu {
   display: none;
 
+  --button-color: #CEA561;
+  overflow: hidden;
+
   @media (max-width: $mobile) {
     display: block;
     position: relative;
-    width: toRem(30);
-    height: toRem(18);
-    z-index: 5;
-
-    @media (any-hover: none) {
-      cursor: default;
-    }
-
-    span,
-    &::before,
-    &::after {
-      content: "";
-      transition: all 0.3s ease 0s;
-      right: 0;
-      position: absolute;
-      width: 100%;
-      height: toRem(2);
-      background-color: #000;
-    }
-
-    &::before {
-      top: 0;
-    }
-
-    &::after {
-      bottom: 0;
-    }
-
-    span {
-      top: calc(50% - toRem(1));
-    }
-
-    .menu-open & {
-      span {
-        width: 0;
-      }
-
-      &::before,
-      &::after {}
-
-      &::before {
-        top: calc(50% - toRem(1));
-        transform: rotate(-45deg);
-      }
-
-      &::after {
-        bottom: calc(50% - toRem(1));
-        transform: rotate(45deg);
-      }
-    }
+    z-index: 6;
   }
+
+  // @media (max-width: $mobile) {
+  //   display: block;
+  //   position: relative;
+  //   width: toRem(30);
+  //   height: toRem(18);
+  //   z-index: 6;
+
+  //   @media (any-hover: none) {
+  //     cursor: default;
+  //   }
+
+  //   span,
+  //   &::before,
+  //   &::after {
+  //     content: "";
+  //     transition: all 0.3s ease 0s;
+  //     right: 0;
+  //     position: absolute;
+  //     width: 100%;
+  //     height: toRem(2);
+  //     background-color: $goldColor;
+  //   }
+
+  //   &::before {
+  //     top: 0;
+  //   }
+
+  //   &::after {
+  //     bottom: 0;
+  //   }
+
+  //   span {
+  //     top: calc(50% - toRem(1));
+  //   }
+
+  //   .menu-open & {
+  //     span {
+  //       width: 0;
+  //     }
+
+  //     &::before,
+  //     &::after {}
+
+  //     &::before {
+  //       top: calc(50% - toRem(1));
+  //       transform: rotate(-45deg);
+  //     }
+
+  //     &::after {
+  //       bottom: calc(50% - toRem(1));
+  //       transform: rotate(45deg);
+  //     }
+  //   }
+  // }
+}
+
+.hamburger {
+  @media (max-width:$mobile) {
+    @include adaptiveValue("width", 66, 40);
+  }
+}
+
+.icon-menu .hamburger {
+  transition: translate 1s, rotate 1s;
+}
+
+.icon-menu[aria-expanded="true"] .hamburger {
+  translate: 3px -3px;
+  rotate: 0.125turn;
+}
+
+.icon-menu .line {
+  transition: .7s ease;
+  stroke-dasharray: 60 31 60 300;
+
+}
+
+.icon-menu[aria-expanded="true"] .line {
+  stroke-dasharray: 60 105 60 300;
+  stroke-dashoffset: -90;
 }

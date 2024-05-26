@@ -22,7 +22,6 @@
 			</svg>
 		</a>
 		<div class="header__menu menu">
-			<button type="button" class="menu__icon icon-menu"><span></span></button>
 			<nav class="menu__body">
 				<ul class="menu__list">
 					<li class="menu__item"><a href="#" class="menu__link">Home</a></li>
@@ -48,10 +47,26 @@
 				</ul>
 			</nav>
 		</div>
-		<div class="header__action action-header">
-			<a href="#" class="action-header__link _icon-cart"></a>
-			<a href="#" class="action-header__link _icon-search"></a>
-			<button class="action-header__button button button--small"><span>Sign Up</span></button>
+		<div data-da=".menu__body, 767.98" class="header__action action-header">
+			<div class="action-header__body">
+				<a href="#" class="action-header__link _icon-cart"></a>
+				<a href="#" class="action-header__link action-search _icon-search"></a>
+				<button class="action-header__button button button--small"><span>Sign Up</span></button>
+			</div>
+			<div class="action-header__search header-search">
+				<form action="#" method="get" class="header-search__form">
+					<input id="action-search-input" autocomplete="off" type="text" name="form[]" placeholder="Search...">
+					<button type="button">Go</button>
+				</form>
+			</div>
 		</div>
+		<!-- <button type="button" class="menu__icon icon-menu"><span></span></button> -->
+		<button class="menu__icon icon-menu" aria-controls="primary-navigation" aria-expanded="false">
+			<svg stroke="var(--button-color)" fill="none" class="hamburger" viewBox="-10 -10 120 120">
+				<path class="line" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"
+					d="m 20 40 h 60 a 1 1 0 0 1 0 20 h -60 a 1 1 0 0 1 0 -40 h 30 v 70">
+				</path>
+			</svg>
+		</button>
 	</div>
 </header>
