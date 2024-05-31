@@ -58,3 +58,11 @@ buttons.forEach((button) => {
 });
 
 //==============================================================
+
+//============Текущий год в копирайт футера======================
+const currentYearSpan = document.getElementById("copy");
+const currentYear = new Date().getFullYear();
+
+currentYearSpan.innerText = currentYear;
+
+//==============================================================

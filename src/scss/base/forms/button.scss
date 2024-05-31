@@ -11,8 +11,8 @@
 	color: $bgMainColor;
 	padding: toRem(18) toRem(36);
 	border-radius: 12px;
-	transition: all .5s;
-	border: toRem(2) solid transparent;
+	//transition: all .3s;
+	border: toRem(2) solid $goldColor;
 
 	&--fw {
 		width: 100%;
@@ -23,26 +23,30 @@
 		@include adaptiveValue("padding-bottom", 15, 8, 0, $containerWidth, 767.98);
 		@include adaptiveValue("padding-left", 32, 12, 0, $containerWidth, 767.98);
 		@include adaptiveValue("padding-right", 32, 12, 0, $containerWidth, 767.98);
+		border: toRem(2) solid $goldColor;
+		transition: all .5s, transform 0s;
 
 		@media (max-width:$mobile) {
 			padding: toRem(15) toRem(32);
 			font-size: toRem(20);
 		}
-	}
 
-	@media (any-hover: hover) {
-		&:hover {
-			background-color: transparent;
-			border: toRem(2) solid $goldColor;
-			color: $goldColor;
-			transition: all .5s;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: transparent;
+				border: toRem(2) solid $goldColor;
+				color: $goldColor;
+				transition: all .5s, transform 0s;
+			}
+		}
+
+		&:active {
+			border: toRem(2) solid $mainColor;
+			color: $mainColor;
+			transform: scale(.95);
+			transition: all .5s, transform 0s;
 		}
 	}
 
-	&:active {
-		border: toRem(2) solid $mainColor;
-		color: $mainColor;
-		transform: scale(.95);
-		transition: all .3s;
-	}
+
 }

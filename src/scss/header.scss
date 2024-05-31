@@ -12,8 +12,13 @@
     padding-bottom: toRem(10);
     gap: toRem(15);
 
+
     @media (max-width:$mobile) {
       grid-template-columns: auto 1fr auto auto;
+
+      &:last-child {
+        column-gap: 0;
+      }
     }
   }
 
@@ -38,14 +43,11 @@
     }
 
 
-
     @media (any-hover: hover) {
       &:hover {
         transform: scale(1.01);
       }
     }
-
-
   }
 
   // .header__menu
@@ -176,6 +178,7 @@
     line-height: 11px;
     margin-left: toRem(4);
     @include adaptiveValue("font-size", 12, 8);
+
 
     @media (max-width:$mobile) {
       font-size: toRem(18);
@@ -308,6 +311,9 @@
     transform: rotate(180deg);
     top: toRem(-2);
 
+    @media (max-width:$mobile) {
+      transition: transform .3s ease;
+    }
   }
 }
 
@@ -350,9 +356,9 @@
     @include adaptiveValue("width", 32, 30, 0, $containerWidth, 767.98);
     @include adaptiveValue("height", 32, 30, 0, $containerWidth, 767.98);
     background-color: $goldColor;
-    border: toRem(2) solid transparent;
+    border: toRem(2) solid $goldColor;
     border-radius: 50%;
-    transition: all .5s;
+    transition: all .6s, transform 0s;
 
     @media (max-width:$mobile) {
       width: 40px;
@@ -367,7 +373,7 @@
       color: $bgMainColor;
       @include adaptiveValue("font-size", 16, 11);
       font-weight: 600;
-      transition: color .5s;
+      transition: all .5s, transform 0s;
 
       @media (max-width:$mobile) {
         font-size: toRem(20);
@@ -378,11 +384,11 @@
       &:hover {
         background-color: transparent;
         border: toRem(2) solid $goldColor;
-        transition: all .5s;
+
 
         &::before {
           color: $goldColor;
-          transition: color .5s;
+
         }
       }
     }
@@ -390,11 +396,10 @@
     &:active {
       border: toRem(2) solid $mainColor;
       transform: scale(.95);
-      transition: all .3s;
 
       &::before {
         color: $mainColor;
-        transition: all .3s;
+
       }
     }
 
@@ -488,15 +493,6 @@
       @media (max-width:$mobile) {
         font-size: toRem(20);
       }
-
-      // @media(max-width: 991.98px) {
-      //   &:active {
-      //     border: 1px solid $mainColor;
-      //     box-shadow: none;
-      //     color: $mainColor;
-      //     background-color: transparent;
-      //   }
-      // }
     }
   }
 
@@ -533,6 +529,7 @@
     display: block;
     position: relative;
     z-index: 6;
+
   }
 
   // @media (max-width: $mobile) {
