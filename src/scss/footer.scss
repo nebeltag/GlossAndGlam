@@ -221,30 +221,34 @@
   @media (max-width:$mobileSmall) {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: $bgDarkLight;
+    border-radius: toRem(5);
+    padding: toRem(14) toRem(4);
 
-    &::before {
-      position: absolute;
-      content: "";
-      top: toRem(-20);
-      left: 50%;
-      width: toRem(200);
-      height: toRem(1);
-      border-radius: 50%;
-      transform: translate(-50%, 0);
-      background-color: $mainColor;
-    }
+    // &::before {
+    //   position: absolute;
+    //   content: "";
+    //   top: toRem(-20);
+    //   left: 50%;
+    //   width: toRem(200);
+    //   height: toRem(1);
+    //   border-radius: 50%;
+    //   transform: translate(-50%, 0);
+    //   background-color: $mainColor;
+    // }
 
-    &::after {
-      position: absolute;
-      content: "";
-      bottom: toRem(-25);
-      left: 50%;
-      width: toRem(200);
-      height: toRem(1);
-      border-radius: 50%;
-      transform: translate(-50%, 0);
-      background-color: $mainColor;
-    }
+    // &::after {
+    //   position: absolute;
+    //   content: "";
+    //   bottom: toRem(-25);
+    //   left: 50%;
+    //   width: toRem(200);
+    //   height: toRem(1);
+    //   border-radius: 50%;
+    //   transform: translate(-50%, 0);
+    //   background-color: $mainColor;
+    // }
   }
 
 
@@ -256,9 +260,13 @@
 
   &__details {
     @media (max-width:$mobileSmall) {
-      &:not(:last-child) {
-        margin-bottom: toRem(15);
-      }
+      // &:not(:last-child) {
+      //   margin-bottom: toRem(15);
+      // }
+
+      width: 100%;
+      padding-bottom: toRem(15);
+      border-bottom: 2px solid $bgDark;
     }
   }
 
@@ -286,7 +294,7 @@
 
     ._spoller-init & {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
 
       &::after {

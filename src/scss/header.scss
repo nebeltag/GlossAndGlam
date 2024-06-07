@@ -4,17 +4,17 @@
   left: 0;
   width: 100%;
   z-index: 5;
-  background-color: transparent;
+  background-color: $bgDarkLight;
 
   // .header__container
 
   &__container {
     display: grid;
     grid-template-columns: auto 1fr auto;
-    @include adaptiveValue("min-height", 136, 60);
+    @include adaptiveValue("min-height", 106, 60);
     align-items: center;
-    padding-top: toRem(10);
-    padding-bottom: toRem(10);
+    @include adaptiveValue("padding-top", 40, 15);
+    padding-bottom: toRem(5);
     gap: toRem(15);
 
 
@@ -39,7 +39,7 @@
     }
 
     &-image {
-      @include adaptiveValue("width", 204, 90, 0, $containerWidth, 767.98);
+      @include adaptiveValue("width", 204, 120, 0, $containerWidth, 767.98);
 
       //@include adaptiveValue("width", 204, 130, 0, $containerWidth, 320);
       @media (max-width:$mobile) {
