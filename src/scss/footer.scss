@@ -1,7 +1,7 @@
 .footer {
-  background-color: $bgMainColor;
   color: rgba(255, 255, 255, 0.5);
-  ;
+
+
   // .footer__container
 
   &__container {}
@@ -53,6 +53,7 @@
     @media (max-width:$mobileSmall) {
       display: flex;
       flex-direction: column;
+
     }
   }
 
@@ -222,21 +223,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: $bgDarkLight;
+    //background-color: $bgDarkLight;
     border-radius: toRem(5);
     padding: toRem(14) toRem(4);
 
-    // &::before {
-    //   position: absolute;
-    //   content: "";
-    //   top: toRem(-20);
-    //   left: 50%;
-    //   width: toRem(200);
-    //   height: toRem(1);
-    //   border-radius: 50%;
-    //   transform: translate(-50%, 0);
-    //   background-color: $mainColor;
-    // }
+
+
+    &::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 100%;
+      // border-radius: 50%;
+      // transform: translate(-50%, 0);
+      background-color: $bgDarkLight;
+      z-index: -1;
+    }
+
+    ._spoller-init & {
+      z-index: 5;
+    }
 
     // &::after {
     //   position: absolute;
@@ -290,6 +298,7 @@
       font-size: toRem(16);
       letter-spacing: toRem(2);
       text-align: center;
+      color: $goldColor;
     }
 
     ._spoller-init & {
@@ -339,7 +348,7 @@
     }
 
     @media (max-width:$mobileSmall) {
-      text-align: center;
+      padding-left: toRem(20);
     }
   }
 
@@ -353,7 +362,8 @@
     }
 
     @media (max-width:$mobileSmall) {
-      font-size: toRem(16);
+      font-size: toRem(14);
+      letter-spacing: toRem(1);
     }
   }
 }
@@ -372,7 +382,7 @@
   // .contact-footer__title
 
   &__title {
-    @include adaptiveValue("font-size", 20, 14);
+    @include adaptiveValue("font-size", 20, 16);
     line-height: 140%;
     /* 28/20 */
     font-weight: 500;
@@ -413,7 +423,6 @@
     h3 {
       font-family: "Cormorant Garamond";
       @include adaptiveValue("font-size", 18, 14);
-      //font-size: toRem(18);
       font-weight: 500;
       line-height: 133.333333%;
       /* 24/18 */

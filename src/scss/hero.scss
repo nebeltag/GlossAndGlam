@@ -5,7 +5,7 @@
 
 .hero__container {
   max-height: toRem(516);
-  @include adaptiveValue("padding-top", 105, 86);
+  @include adaptiveValue("padding-top", 105, 66);
   //padding-top: toRem(125);
   //position: relative;
   display: grid;
@@ -50,21 +50,24 @@
 }
 
 .hero-bg__image {
-  max-width: fit-content;
-  max-height: fit-content;
+  // max-width: fit-content;
+  // max-height: fit-content;
 
   // position: absolute;
 }
 
 .bg__image1 {
+  //max-width: 110px;
   grid-column: 2;
   grid-row: 1 / span 2;
-  transform: rotate(-30deg) translate(40%, -7%);
+  transform: translate(0, -21%);
   // justify-self: center;
-  // align-self: flex-start;
+  // align-self: flex-start;  
   aspect-ratio: 108 / 228;
 
   img {
+    display: block;
+    //max-width: 110px;
     //aspect-ratio: 108 / 228;
   }
 
@@ -78,6 +81,7 @@
 }
 
 .bg__image2 {
+  //max-width: 180px;
   grid-column: 1;
   grid-row: 2 / span 2;
   align-self: flex-end;
@@ -86,7 +90,9 @@
 
 
   img {
-    //aspect-ratio: 160 / 204;
+    display: block;
+
+    //aspect-ratio: 180 / 188;
   }
 
   // left: 5%;
@@ -96,6 +102,7 @@
 }
 
 .bg__image3 {
+  max-width: 70px;
   grid-column: 3;
   grid-row: 3;
   justify-self: center;
@@ -113,6 +120,7 @@
 }
 
 .bg__image4 {
+  max-width: 236px;
   grid-column: 5;
   grid-row: 2 / span 2;
   justify-self: flex-end;
@@ -127,4 +135,23 @@
   // bottom: 7%;
   // aspect-ratio: 235 / 280;
   // transform: rotate(-60deg);
+}
+
+.hero2 {
+  max-width: 110px;
+  margin: 0 auto;
+  //display: block;
+  padding-top: toRem(100);
+  aspect-ratio: 109 / 229;
+  // grid-column: 2;
+  // grid-row: 1 / span 2;
+  transform: translate(40%, -7%);
+  //transform: rotate(-30deg);
+  // justify-self: center;
+  // align-self: flex-start;
+  //aspect-ratio: 108 / 228;
+
+  img {
+    //display: block;
+  }
 }
