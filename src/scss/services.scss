@@ -1,0 +1,43 @@
+.services {
+
+  // .services__container
+
+  &__container {
+    padding-top: toRem(120);
+    padding-bottom: toRem(60);
+  }
+
+  // .services__block-header
+
+  &__block-header {}
+
+  // .services__list
+
+  &__list {}
+
+  // .services__item
+
+  &__item {}
+}
+
+.block-header {
+
+  // .block-header__title
+
+  &__title {}
+
+  // .block-header__text
+
+  &__text {}
+}
+
+.item-services {
+
+  // .item-services__link
+
+  &__link {}
+
+  // .item-services__title
+
+  &__title {}
+}
