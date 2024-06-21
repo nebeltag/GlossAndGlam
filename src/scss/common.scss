@@ -14,7 +14,7 @@
 
   &__title {
     font-family: "Cormorant Garamond";
-    @include adaptiveValue("font-size", 64, 30);
+    @include adaptiveValue("font-size", 64, 40);
     line-height: 125%;
     /* 80/64 */
     color: #fff;

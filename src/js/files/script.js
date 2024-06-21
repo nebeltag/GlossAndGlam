@@ -66,3 +66,22 @@ const currentYear = new Date().getFullYear();
 currentYearSpan.innerText = currentYear;
 
 //==============================================================
+
+
+const servicesLinks = document.querySelectorAll('.item-services__link');
+console.log(servicesLinks);
+const linksHeight = [];
+for (let block of servicesLinks) {
+  console.log(getComputedStyle(block).width);
+  linksHeight.push(block.clientHeight);
+}
+
+const biggestHeight = Math.max(...linksHeight);
+
+console.log(getComputedStyle(servicesLinks[7]).height);
+console.log(biggestHeight);
+
+
+
+
+

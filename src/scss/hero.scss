@@ -43,7 +43,7 @@
 
 .hero__title {
   font-family: "Cormorant Garamond";
-  @include adaptiveValue("font-size", 80, 30);
+  @include adaptiveValue("font-size", 80, 32);
   line-height: 120%;
   /* 96/80 */
   font-weight: 600;
