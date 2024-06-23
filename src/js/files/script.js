@@ -68,18 +68,27 @@ currentYearSpan.innerText = currentYear;
 //==============================================================
 
 
-const servicesLinks = document.querySelectorAll('.item-services__link');
-console.log(servicesLinks);
-const linksHeight = [];
-for (let block of servicesLinks) {
-  console.log(getComputedStyle(block).width);
-  linksHeight.push(block.clientHeight);
-}
+// const servicesLinks = document.querySelectorAll('.item-services__link');
+// const linkPaddingTop = getComputedStyle(servicesLinks[7]).paddingTop;
+// const linkPaddingBottom = getComputedStyle(servicesLinks[7]).paddingBottom;
 
-const biggestHeight = Math.max(...linksHeight);
+// console.log(servicesLinks);
+// const linksHeight = [];
+// for (let block of servicesLinks) {
+//   console.log(getComputedStyle(block).width);
+//   linksHeight.push(parseInt(block.offsetHeight));
+// }
+// console.log(linksHeight);
+// const biggestHeight = Math.max(...linksHeight);
 
-console.log(getComputedStyle(servicesLinks[7]).height);
-console.log(biggestHeight);
+// for (let block of servicesLinks) {
+//   block.style.height = biggestHeight + "px";
+//   block.style.paddingTop = linkPaddingTop + "px";
+//   block.style.paddingBottom = linkPaddingBottom + "px";
+// }
+
+// console.log(getComputedStyle(servicesLinks[7]).height);
+// console.log(biggestHeight);
 
 
 
