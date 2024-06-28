@@ -1,0 +1,138 @@
+.packages {
+
+  // .packages__container
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include adaptiveValue("padding-top", 60, 32);
+  }
+
+  // .packages__block-header
+
+  &__block-header {}
+
+  // .packages__list
+
+  &__list {
+    width: 100%;
+    display: flex;
+    padding-top: toRem(80);
+  }
+
+  // .packages__item
+
+  &__item {
+    padding: toRem(0) toRem(10);
+  }
+}
+
+.item-packages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: toRem(424);
+  width: 100%;
+  background-color: $bgDarkLight;
+  border-radius: toRem(10);
+  border: toRem(1) solid $goldColor;
+
+
+  // .item-packages__body
+
+  &__body {
+    max-width: toRem(290);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: toRem(48);
+    padding-bottom: toRem(48);
+  }
+
+  // .item-packages__title
+
+  &__title {
+    font-size: toRem(32);
+    line-height: 150%;
+    /* 48/32 */
+    font-weight: 500;
+    color: $cardTitle;
+    text-align: center;
+    margin-bottom: toRem(12);
+  }
+
+  // .item-packages__price
+
+  &__price {}
+
+  // .item-packages__list
+
+  &__list {}
+
+  // .item-packages__button
+
+  &__button {
+    display: inline-block;
+    line-height: 150%;
+    /* 24/16 */
+    color: $cardTitle;
+    background-color: transparent;
+    border: toRem(1) solid $goldColor;
+    color: $cardTitle;
+  }
+}
+
+.packages-price {
+
+  color: #fff;
+  font-weight: 600;
+  line-height: 150%;
+  /* 60/40 */
+  margin-bottom: toRem(32);
+  text-align: center;
+
+  &__currency {
+    font-size: toRem(32);
+    color: $cardTitle;
+  }
+
+  &__value {
+    font-size: toRem(40);
+  }
+}
+
+.packages-sublist {
+
+  margin-bottom: toRem(56);
+  // .packages-sublist__item
+
+  &__item {
+    position: relative;
+    line-height: 150%;
+    /* 24/16 */
+    color: rgba(255, 255, 255, 0.7);
+    padding-left: toRem(30);
+
+
+    &::before {
+      position: absolute;
+      top: toRem(2);
+      left: 0;
+      height: toRem(21);
+      width: toRem(21);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: toRem(10.5);
+      border-radius: 50%;
+      background-color: $goldColor;
+      color: $bgDarkLight;
+
+    }
+
+    &:not(:last-child) {
+      margin-bottom: toRem(16);
+    }
+  }
+}
