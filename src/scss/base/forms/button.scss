@@ -9,10 +9,21 @@
 	line-height: 150%;
 	/* 24/16 */
 	color: $bgMainColor;
-	padding: toRem(18) toRem(36);
+	text-transform: capitalize;
+	@include adaptiveValue("padding-top", 15, 8);
+	@include adaptiveValue("padding-bottom", 15, 8);
+	@include adaptiveValue("padding-left", 32, 12);
+	@include adaptiveValue("padding-right", 32, 12);
 	border-radius: 12px;
-	//transition: all .3s;
+	transition: all .3s;
 	border: toRem(2) solid $goldColor;
+
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: $goldColor;
+			color: $bgDark;
+		}
+	}
 
 	&--fw {
 		width: 100%;

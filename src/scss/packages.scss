@@ -6,7 +6,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    @include adaptiveValue("padding-top", 60, 32);
+    @include adaptiveValue("row-gap", 24, 16);
+    @include adaptiveValue("padding-top", 60, 40);
   }
 
   // .packages__block-header
@@ -18,7 +19,17 @@
   &__list {
     width: 100%;
     display: flex;
-    padding-top: toRem(80);
+    flex-wrap: wrap;
+    justify-content: center;
+    //row-gap: toRem(28);
+    @include adaptiveValue("column-gap", 24, 16);
+    @include adaptiveValue("row-gap", 28, 22);
+    @include adaptiveValue("padding-top", 80, 16);
+
+    @media (max-width:$mobile) {
+      // flex-wrap: wrap;
+      // justify-content: center;
+    }
   }
 
   // .packages__item
@@ -29,11 +40,11 @@
 }
 
 .item-packages {
+  flex: 1 1 auto;
   display: flex;
   justify-content: center;
-  align-items: center;
   max-width: toRem(424);
-  width: 100%;
+  //width: 100%;
   background-color: $bgDarkLight;
   border-radius: toRem(10);
   border: toRem(1) solid $goldColor;
@@ -46,20 +57,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: toRem(48);
-    padding-bottom: toRem(48);
+    //padding-top: toRem(48);    
+    //padding-bottom: toRem(48);
+    @include adaptiveValue("padding-top", 48, 12);
+    @include adaptiveValue("padding-bottom", 48, 22);
   }
 
   // .item-packages__title
 
   &__title {
-    font-size: toRem(32);
+    //font-size: toRem(32);
+    @include adaptiveValue("font-size", 32, 24);
     line-height: 150%;
     /* 48/32 */
     font-weight: 500;
     color: $cardTitle;
     text-align: center;
-    margin-bottom: toRem(12);
+    text-transform: capitalize;
+    //margin-bottom: toRem(12);
+    @include adaptiveValue("margin-bottom", 12, 8);
   }
 
   // .item-packages__price
@@ -74,37 +90,90 @@
 
   &__button {
     display: inline-block;
-    line-height: 150%;
-    /* 24/16 */
     color: $cardTitle;
     background-color: transparent;
     border: toRem(1) solid $goldColor;
     color: $cardTitle;
+    @include adaptiveValue("font-size", 16, 14);
+
+    position: relative;
+    z-index: 2;
+    transition: all 300ms cubic-bezier(0.77, 0, 0.175, 1);
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+
+
+    &::after {
+      content: '';
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 0;
+      width: 0;
+      position: absolute;
+      transition: inherit;
+      z-index: -1;
+      background: $goldColor;
+      border: none;
+      border-radius: 50%;
+      transition: all .4s;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: $bgDark;
+        background-color: $goldColor;
+      }
+    }
+
+    @media (max-width:$mobile) {
+      display: block;
+      width: 100%;
+    }
+
+    &:active {
+      background-color: transparent;
+      color: $cardTitle;
+    }
+
   }
+}
+
+.item-packages__button:active::after {
+  height: 600%;
+  width: 300%;
+  background-color: $bgDarkLight;
+  //transition: all 1.5s;
 }
 
 .packages-price {
 
-  color: #fff;
-  font-weight: 600;
-  line-height: 150%;
-  /* 60/40 */
-  margin-bottom: toRem(32);
+  //margin-bottom: toRem(32);
+  @include adaptiveValue("margin-bottom", 32, 10);
   text-align: center;
 
   &__currency {
-    font-size: toRem(32);
+    //font-size: toRem(32);
+    @include adaptiveValue("font-size", 32, 24);
     color: $cardTitle;
   }
 
   &__value {
     font-size: toRem(40);
+    @include adaptiveValue("font-size", 40, 30);
+    color: #fff;
+    font-weight: 600;
+    line-height: 150%;
+    /* 60/40 */
   }
 }
 
 .packages-sublist {
+  flex: 1 1 auto;
+  //margin-bottom: toRem(56);
+  @include adaptiveValue("margin-bottom", 56, 20);
 
-  margin-bottom: toRem(56);
   // .packages-sublist__item
 
   &__item {
@@ -112,19 +181,24 @@
     line-height: 150%;
     /* 24/16 */
     color: rgba(255, 255, 255, 0.7);
-    padding-left: toRem(30);
+    //padding-left: toRem(30);
+    @include adaptiveValue("padding-left", 30, 22);
+    @include adaptiveValue("font-size", 16, 12);
 
 
     &::before {
       position: absolute;
       top: toRem(2);
       left: 0;
-      height: toRem(21);
-      width: toRem(21);
+      // height: toRem(21);      
+      // width: toRem(21);
+      @include adaptiveValue("height", 21, 14);
+      @include adaptiveValue("width", 21, 14);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: toRem(10.5);
+      //font-size: toRem(11);
+      @include adaptiveValue("font-size", 11, 9);
       border-radius: 50%;
       background-color: $goldColor;
       color: $bgDarkLight;
@@ -132,7 +206,8 @@
     }
 
     &:not(:last-child) {
-      margin-bottom: toRem(16);
+      //margin-bottom: toRem(16);
+      @include adaptiveValue("margin-bottom", 16, 8);
     }
   }
 }
