@@ -66,3 +66,16 @@ const currentYear = new Date().getFullYear();
 currentYearSpan.innerText = currentYear;
 
 //==============================================================
+
+//===Поворот стрелки при фокусировке на month-input в календаре======
+
+const calendarMonthInput = document.querySelector(".month-input");
+const calendarMonthIputWrp = document.querySelector(".month-input__wrapper");
+
+calendarMonthInput.onclick = function () {
+  calendarMonthIputWrp.classList.toggle('_arrowUp');
+}
+
+calendarMonthInput.onblur = function () {
+  calendarMonthIputWrp.classList.remove('_arrowUp');
+}

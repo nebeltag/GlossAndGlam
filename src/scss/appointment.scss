@@ -1,0 +1,196 @@
+.form-appointment {
+
+  // .form-appointment__date
+
+  &__date {}
+}
+
+.datepicker {
+  max-width: toRem(650);
+  margin: 0 auto;
+  border: toRem(1) solid $goldColor;
+  border-radius: toRem(13);
+  background: $bgDarkLight;
+  font-family: "SFProText";
+  padding: toRem(27) toRem(18);
+
+  // .datepicker__input
+
+  &__input {}
+
+  // .datepicker__body
+
+  &__body {}
+}
+
+.datepicker-header {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: toRem(15);
+}
+
+.month-input,
+.year-input {
+  font-family: "SFProText";
+  font-size: toRem(17);
+  line-height: 129.411765%;
+  /* 22/17 */
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: capitalize;
+  outline: none;
+  border: none;
+  background-color: transparent;
+
+}
+
+.month-input__wrapper {
+  position: relative;
+
+  &::after {
+    content: "\e902";
+    @extend %ic;
+    position: absolute;
+    top: 25%;
+    right: 0;
+    padding: toRem(3);
+    color: $goldColor;
+    font-size: toRem(12);
+    pointer-events: none;
+    transition: all .4s ease;
+  }
+
+  &._arrowUp::after {
+    transform-origin: center;
+    transform: rotateZ(180deg);
+  }
+
+}
+
+// .month-input__wrapper._arrowUp::after {
+//   color: red;
+// }
+
+.month-input {
+  max-width: toRem(135);
+  padding: toRem(5) toRem(21) toRem(5) toRem(5);
+  appearance: none;
+  border: toRem(1) solid transparent;
+  border-radius: 5px;
+  background-color: rgba(235, 235, 245, 0.3);
+
+  &:focus {
+    box-shadow: 0 0 2px 0 #8f8e8c inset, 0 0 2px 1px #8f8e8c;
+    border: 1.5px solid #8f8e8c;
+  }
+}
+
+.year-input {
+  max-width: toRem(70);
+  margin-left: toRem(20);
+
+}
+
+.date-toggle {
+  max-width: toRem(50);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+
+}
+
+.prev {
+  position: relative;
+  width: toRem(10);
+  height: toRem(17);
+  //height: 100%;
+
+  &::before {
+    left: toRem(-4);
+    transform: rotateZ(90deg);
+  }
+}
+
+.next {
+  position: relative;
+  width: toRem(10);
+  height: toRem(17);
+  //height: 100%;
+
+  &::before {
+    right: toRem(-4);
+    transform: rotateZ(-90deg);
+  }
+}
+
+.prev::before,
+.next::before {
+  position: absolute;
+  top: toRem(4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: toRem(10);
+  font-size: toRem(17);
+  color: $goldColor;
+  z-index: 5;
+}
+
+
+.days,
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  column-gap: toRem(55);
+}
+
+.days {
+  font-size: toRem(13);
+  line-height: 138.461538%;
+  /* 18/13 */
+  color: rgb(235, 235, 245, .3);
+  text-transform: uppercase;
+  padding-bottom: toRem(15);
+  text-align: center;
+}
+
+.dates {
+  position: relative;
+  row-gap: toRem(6);
+
+  button {
+    max-width: toRem(40);
+    width: 100%;
+    font-family: "SFProDisplay";
+    font-size: toRem(20);
+    line-height: 150%;
+    /* 30/20 */
+    color: #ffffff;
+    border-radius: 50%;
+    padding: toRem(5);
+    box-sizing: border-box;
+
+    &.selected {
+      background: $goldColor;
+      color: #151515;
+    }
+
+    &.today {
+      background: rgb(235, 235, 245, .3);
+
+    }
+
+    &:disabled {
+      //visibility: hidden;
+      color: rgb(235, 235, 245, .3);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    &.hidden {
+      visibility: hidden;
+    }
+  }
+}
