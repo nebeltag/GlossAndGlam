@@ -70,12 +70,19 @@ currentYearSpan.innerText = currentYear;
 //===Поворот стрелки при фокусировке на month-input в календаре======
 
 const calendarMonthInput = document.querySelector(".month-input");
-const calendarMonthIputWrp = document.querySelector(".month-input__wrapper");
+const calendarMonthInputWrp = document.querySelector(".month-input__wrapper");
 
 calendarMonthInput.onclick = function () {
-  calendarMonthIputWrp.classList.toggle('_arrowUp');
+  calendarMonthInputWrp.classList.toggle('_arrowUp');
 }
 
 calendarMonthInput.onblur = function () {
   calendarMonthIputWrp.classList.remove('_arrowUp');
+}
+
+//===Поворот стрелки при нажатии на dropdown-button в календаре======
+
+const dropDownButton = document.querySelector('.dropdown-button');
+dropDownButton.onclick = function () {
+  this.classList.toggle('_arrowUp');
 }

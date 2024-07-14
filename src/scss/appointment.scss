@@ -30,7 +30,8 @@
 }
 
 .month-input,
-.year-input {
+.year-input,
+.dropdown-button {
   font-family: "SFProText";
   font-size: toRem(17);
   line-height: 129.411765%;
@@ -44,16 +45,23 @@
 
 }
 
-.month-input__wrapper {
+//month-input with custom dropdown
+.dropdown-button {
   position: relative;
+  max-width: toRem(135);
+  padding: toRem(5) toRem(21) toRem(5) toRem(5);
+  appearance: none;
+  border: toRem(1) solid transparent;
+  border-radius: 5px;
+  background-color: rgba(235, 235, 245, 0.3);
 
   &::after {
     content: "\e902";
     @extend %ic;
     position: absolute;
-    top: 25%;
+    top: 18%;
     right: 0;
-    padding: toRem(3);
+    padding: toRem(5) toRem(3) toRem(3);
     color: $goldColor;
     font-size: toRem(12);
     pointer-events: none;
@@ -64,26 +72,45 @@
     transform-origin: center;
     transform: rotateZ(180deg);
   }
-
 }
 
-// .month-input__wrapper._arrowUp::after {
-//   color: red;
+//month-input without custom dropdown
+// .month-input__wrapper {
+//   position: relative;
+
+//   &::after {
+//     content: "\e902";
+//     @extend %ic;
+//     position: absolute;
+//     top: 25%;
+//     right: 0;
+//     padding: toRem(3);
+//     color: $goldColor;
+//     font-size: toRem(12);
+//     pointer-events: none;
+//     transition: all .4s ease;
+//   }
+
+//   &._arrowUp::after {
+//     transform-origin: center;
+//     transform: rotateZ(180deg);
+//   }
+
 // }
 
-.month-input {
-  max-width: toRem(135);
-  padding: toRem(5) toRem(21) toRem(5) toRem(5);
-  appearance: none;
-  border: toRem(1) solid transparent;
-  border-radius: 5px;
-  background-color: rgba(235, 235, 245, 0.3);
+// .month-input {
+//   max-width: toRem(135);
+//   padding: toRem(5) toRem(21) toRem(5) toRem(5);
+//   appearance: none;
+//   border: toRem(1) solid transparent;
+//   border-radius: 5px;
+//   background-color: rgba(235, 235, 245, 0.3);
 
-  &:focus {
-    box-shadow: 0 0 2px 0 #8f8e8c inset, 0 0 2px 1px #8f8e8c;
-    border: 1.5px solid #8f8e8c;
-  }
-}
+//   &:focus {
+//     box-shadow: 0 0 2px 0 #8f8e8c inset, 0 0 2px 1px #8f8e8c;
+//     border: 1.5px solid #8f8e8c;
+//   }
+// }
 
 .year-input {
   max-width: toRem(70);
