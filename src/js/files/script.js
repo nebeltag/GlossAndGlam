@@ -77,12 +77,17 @@ calendarMonthInput.onclick = function () {
 }
 
 calendarMonthInput.onblur = function () {
-  calendarMonthIputWrp.classList.remove('_arrowUp');
+  calendarMonthInputWrp.classList.remove('_arrowUp');
 }
 
 //===Поворот стрелки при нажатии на dropdown-button в календаре======
 
 const dropDownButton = document.querySelector('.dropdown-button');
+
 dropDownButton.onclick = function () {
   this.classList.toggle('_arrowUp');
+}
+
+dropDownButton.onblur = function () {
+  this.classList.remove('_arrowUp');
 }

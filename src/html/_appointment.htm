@@ -15,7 +15,25 @@
           <!-- .datepicker-header -->
           <div class="datepicker-header">
             <!-- Month-input with custom dropdown -->
-            <button type="button" class="dropdown-button">July</button>
+            <div class="dropdown-month">
+              <button type="button" class="dropdown-button">September</button>
+              <ul class="dropdown-list">
+                <li class="dropdown-list__item" data-value="0">January</li>
+                <li class="dropdown-list__item" data-value="1">February</li>
+                <li class="dropdown-list__item" data-value="2">March</li>
+                <li class="dropdown-list__item" data-value="3">April</li>
+                <li class="dropdown-list__item" data-value="4">May</li>
+                <li class="dropdown-list__item" data-value="5">June</li>
+                <li class="dropdown-list__item" data-value="6">July</li>
+                <li class="dropdown-list__item" data-value="7">August</li>
+                <li class="dropdown-list__item" data-value="8">September</li>
+                <li class="dropdown-list__item" data-value="9">October</li>
+                <li class="dropdown-list__item" data-value="10">November</li>
+                <li class="dropdown-list__item" data-value="11">December</li>
+              </ul>
+              <input type="text" class="dropdown-input__hidden" value="">
+            </div>
+
             <!-- Month-input without custom dropdown -->
             <div class="month-input__wrapper">
               <select type="text" class="month-input">
@@ -34,6 +52,11 @@
               </select>
             </div>
             <input type="number" class="year-input">
+            <div class="year-counter">
+              <span class="year-counter__minus _icon-drop-arrow"></span>
+              <input type="number" value="" class="year-counter__num">
+              <span class="year-counter__plus _icon-drop-arrow"></span>
+            </div>
             <div class="date-toggle">
               <button type="button" class="prev _icon-drop-arrow"></button>
               <button type="button" class="next _icon-drop-arrow"></button>

@@ -46,14 +46,43 @@
 }
 
 //month-input with custom dropdown
+.dropdown-month {
+  position: relative;
+  max-width: toRem(150);
+  width: 100%;
+}
+
+.dropdown-input__hidden {
+  display: none;
+}
+
 .dropdown-button {
   position: relative;
-  max-width: toRem(135);
+  width: 100%;
   padding: toRem(5) toRem(21) toRem(5) toRem(5);
   appearance: none;
   border: toRem(1) solid transparent;
   border-radius: 5px;
   background-color: rgba(235, 235, 245, 0.3);
+  transition: all .4s ease;
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: $goldColor;
+      border: toRem(1) solid $goldColor;
+    }
+  }
+
+  &:active,
+  &.onFocus {
+    color: $mainColor;
+    border: toRem(1) solid $goldColor;
+    transform: translateY(1px);
+
+    &::after {
+      color: $mainColor;
+    }
+  }
 
   &::after {
     content: "\e902";
@@ -61,7 +90,7 @@
     position: absolute;
     top: 18%;
     right: 0;
-    padding: toRem(5) toRem(3) toRem(3);
+    padding: toRem(5) toRem(4) toRem(4);
     color: $goldColor;
     font-size: toRem(12);
     pointer-events: none;
@@ -69,10 +98,161 @@
   }
 
   &._arrowUp::after {
-    transform-origin: center;
     transform: rotateZ(180deg);
   }
 }
+
+.dropdown-list {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  padding: toRem(5) toRem(5);
+  background-color: $bgDarkLight;
+  border-radius: 5px;
+  border: toRem(1) solid $goldColor;
+  transition: all .4s ease;
+
+  &__visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  // .dropdown-list__item
+
+  &__item {
+    font-size: toRem(14);
+    padding: toRem(5);
+    color: $cardTitle;
+    border-radius: toRem(5);
+    cursor: pointer;
+    transition: all .3s;
+
+    &:not(:last-child) {
+      margin-bottom: toRem(3);
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: $goldColor;
+        background-color: rgba(235, 235, 245, 0.3);
+        transform: scale(1.04);
+      }
+    }
+
+    &:active {
+      transform: scale(1);
+      opacity: .6;
+    }
+  }
+}
+
+//year-input with custom counter 
+
+.year-counter {
+  max-width: toRem(120);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  span {
+    display: block;
+    cursor: pointer;
+  }
+
+  // .year-counter__minus
+
+  &__minus,
+  &__plus {
+
+    position: relative;
+    max-width: toRem(10);
+    width: 100%;
+    height: 100%;
+  }
+
+  &__minus::before,
+  &__plus::before {
+    position: absolute;
+    //width: 100%;
+    top: toRem(12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: toRem(10);
+    max-width: toRem(17);
+    font-size: toRem(17);
+    color: #CEA561;
+    z-index: 5;
+  }
+
+  &__minus {
+    // position: relative;
+    // width: toRem(10);
+    // height: toRem(17);
+
+    &::before {
+      // position: absolute;
+      // top: 0.25rem;
+      // display: flex;
+      // align-items: center;
+      // justify-content: center;
+      // max-height: 0.625rem;
+      // font-size: 1.0625rem;
+      // color: #CEA561;
+      // z-index: 5;
+      left: toRem(-4);
+      transform: rotateZ(90deg);
+    }
+  }
+
+  // .year-counter__num
+
+  &__num {
+    //max-width: toRem(120);
+    font-family: "SFProText";
+    font-size: toRem(17);
+    line-height: 129.411765%;
+    font-weight: 600;
+    color: #ffffff;
+    text-transform: capitalize;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  // .year-counter__plus
+
+  &__plus {
+
+    &::before {
+      right: toRem(-4);
+      transform: rotateZ(-90deg);
+    }
+  }
+}
+
+
+// .dropdown-list--visible {
+//   visibility: visible;
+//   opacity: 1;
+// }
 
 //month-input without custom dropdown
 // .month-input__wrapper {
@@ -132,7 +312,7 @@
   position: relative;
   width: toRem(10);
   height: toRem(17);
-  //height: 100%;
+
 
   &::before {
     left: toRem(-4);
