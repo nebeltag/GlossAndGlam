@@ -16,6 +16,8 @@ const yearUp = document.querySelector(".year-counter__plus");
 const yearDown = document.querySelector(".year-counter__minus");
 const yearNum = document.querySelector(".year-counter__num");
 
+const currentYear = new Date().getFullYear();
+
 let selectedDate = new Date();
 let year = selectedDate.getFullYear();
 let month = selectedDate.getMonth();
@@ -47,16 +49,51 @@ yearInput.addEventListener("change", () => {
   displayDates();
 });
 
+//handle month input change event
+dropDownListItems.forEach(function (item) {
+  item.addEventListener("click", () => {
+    month = item.dataset.value;
+    console.log(month);
+    displayDates();
+  });
+});
+
+//Custom year-input
+//handle year input change event
+//yearNum.value = year;
+
+yearUp.addEventListener("click", function () {
+  yearNum.value++;
+  year = yearNum.value;
+  displayDates();
+});
+
+yearDown.addEventListener("click", function () {
+  if (yearNum.value > currentYear) {
+    yearNum.value--;
+    year = yearNum.value;
+    displayDates();
+  };
+});
+
+
+
+
+
 const updateYearMonth = () => {
   monthInput.selectedIndex = month;
   yearInput.value = year;
 
-  dropDownListItems.forEach(function (item) {
-    if (item.dataset.value == month) {
-      dropDownBtn.innerText = item.innerText;
-      dropDownHidden.value = item.dataset.value;
+  dropDownHidden.value = month;
+  yearNum.value = year;
 
-    }
+  dropDownListItems.forEach(function (item) {
+    console.log(item.dataset.value);
+    console.log(month);
+    // if (item.dataset.value == month) {
+    //   dropDownBtn.innerText = item.innerText;
+    //   dropDownHidden.value = item.dataset.value;
+    // }
   });
 };
 
@@ -218,18 +255,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-//Custom year-input
 
-yearNum.value = year;
-// yearNum.setAttribute('min', year);
-
-yearUp.addEventListener("click", function () {
-  yearNum.value++;
-});
-
-yearDown.addEventListener("click", function () {
-  if (yearNum.value > year) yearNum.value--;
-});
 
 
 
