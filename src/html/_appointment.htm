@@ -16,7 +16,7 @@
           <div class="datepicker-header">
             <!-- Month-input with custom dropdown -->
             <div class="dropdown-month">
-              <button type="button" class="dropdown-button">September</button>
+              <button type="button" class="dropdown-button"></button>
               <ul class="dropdown-list">
                 <li class="dropdown-list__item" data-value="0">January</li>
                 <li class="dropdown-list__item" data-value="1">February</li>
@@ -31,11 +31,11 @@
                 <li class="dropdown-list__item" data-value="10">November</li>
                 <li class="dropdown-list__item" data-value="11">December</li>
               </ul>
-              <input type="text" class="dropdown-input__hidden" value="">
+              <input type="text" class="month-input" value="">
             </div>
 
             <!-- Month-input without custom dropdown -->
-            <div class="month-input__wrapper">
+            <!-- <div class="month-input__wrapper">
               <select type="text" class="month-input">
                 <option>January</option>
                 <option>February</option>
@@ -50,11 +50,11 @@
                 <option>November</option>
                 <option>December</option>
               </select>
-            </div>
-            <input type="number" class="year-input">
+            </div> -->
+            <!-- <input type="number" class="year-input"> -->
             <div class="year-counter">
               <span class="year-counter__minus _icon-drop-arrow"></span>
-              <input type="number" value="" class="year-counter__num">
+              <input type="text" value="" class="year-input">
               <span class="year-counter__plus _icon-drop-arrow"></span>
             </div>
             <div class="date-toggle">

@@ -1,5 +1,29 @@
-.form-appointment {
+.appointment {
 
+  // .appointment__container
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: toRem(120);
+  }
+
+  // .appointment__block-header
+
+  &__block-header {
+    max-width: toRem(754);
+    width: 100%;
+    margin-bottom: toRem(80);
+  }
+}
+
+
+
+.form-appointment {
+  width: 100%;
+  padding-top: toRem(77);
+  //--------------------------Datepicker--------------------------
   // .form-appointment__date
 
   &__date {}
@@ -16,7 +40,9 @@
 
   // .datepicker__input
 
-  &__input {}
+  &__input {
+    display: none;
+  }
 
   // .datepicker__body
 
@@ -29,7 +55,6 @@
   padding-bottom: toRem(15);
 }
 
-.month-input,
 .year-input,
 .dropdown-button {
   font-family: "SFProText";
@@ -42,7 +67,6 @@
   outline: none;
   border: none;
   background-color: transparent;
-
 }
 
 //month-input with custom dropdown
@@ -52,8 +76,8 @@
   width: 100%;
 }
 
-.dropdown-input__hidden {
-  //display: none;
+.month-input {
+  display: none;
 }
 
 .dropdown-button {
@@ -132,7 +156,7 @@
     transition: all .3s;
 
     &:not(:last-child) {
-      margin-bottom: toRem(3);
+      margin-bottom: toRem(2);
     }
 
     @media (any-hover: hover) {
@@ -157,16 +181,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
+  margin-left: toRem(80);
 
   span {
     display: block;
@@ -182,6 +197,16 @@
     max-width: toRem(10);
     width: 100%;
     height: 100%;
+
+    @media (any-hover: hover) {
+      &:hover {
+        &.year-input {
+          border: toRem(1) solid $goldColor;
+        }
+
+
+      }
+    }
   }
 
   &__minus::before,
@@ -197,44 +222,16 @@
     font-size: toRem(17);
     color: #CEA561;
     z-index: 5;
+
+
   }
 
   &__minus {
-    // position: relative;
-    // width: toRem(10);
-    // height: toRem(17);
 
     &::before {
-      // position: absolute;
-      // top: 0.25rem;
-      // display: flex;
-      // align-items: center;
-      // justify-content: center;
-      // max-height: 0.625rem;
-      // font-size: 1.0625rem;
-      // color: #CEA561;
-      // z-index: 5;
       left: toRem(-4);
       transform: rotateZ(90deg);
     }
-  }
-
-  // .year-counter__num
-
-  &__num {
-    //max-width: toRem(120);
-    font-family: "SFProText";
-    font-size: toRem(17);
-    line-height: 129.411765%;
-    font-weight: 600;
-    color: #ffffff;
-    text-transform: capitalize;
-    outline: none;
-    border: none;
-    background-color: transparent;
-    height: 100%;
-    text-align: center;
-    pointer-events: none;
   }
 
   // .year-counter__plus
@@ -248,54 +245,30 @@
   }
 }
 
+.year-counter__minus:hover .year-input {
 
-// .dropdown-list--visible {
-//   visibility: visible;
-//   opacity: 1;
-// }
 
-//month-input without custom dropdown
-// .month-input__wrapper {
-//   position: relative;
+  border: toRem(1) solid $goldColor;
 
-//   &::after {
-//     content: "\e902";
-//     @extend %ic;
-//     position: absolute;
-//     top: 25%;
-//     right: 0;
-//     padding: toRem(3);
-//     color: $goldColor;
-//     font-size: toRem(12);
-//     pointer-events: none;
-//     transition: all .4s ease;
-//   }
 
-//   &._arrowUp::after {
-//     transform-origin: center;
-//     transform: rotateZ(180deg);
-//   }
 
-// }
 
-// .month-input {
-//   max-width: toRem(135);
-//   padding: toRem(5) toRem(21) toRem(5) toRem(5);
-//   appearance: none;
-//   border: toRem(1) solid transparent;
-//   border-radius: 5px;
-//   background-color: rgba(235, 235, 245, 0.3);
 
-//   &:focus {
-//     box-shadow: 0 0 2px 0 #8f8e8c inset, 0 0 2px 1px #8f8e8c;
-//     border: 1.5px solid #8f8e8c;
-//   }
-// }
+}
 
 .year-input {
-  max-width: toRem(70);
-  margin-left: toRem(20);
+  height: 100%;
+  text-align: center;
+  pointer-events: none;
+  border-radius: toRem(5);
+  border: toRem(1) solid transparent;
+  padding: toRem(3);
 
+  @media (any-hover: hover) {
+    &:hover {
+      border: 1px solid $goldColor;
+    }
+  }
 }
 
 .date-toggle {

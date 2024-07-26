@@ -1,4 +1,3 @@
-//import { createElement } from "react";
 
 const dateInput = document.querySelector(".datepicker__input");
 const yearInput = document.querySelector(".year-input");
@@ -9,12 +8,10 @@ const dates = document.querySelector(".dates");
 
 const dropDownBtn = document.querySelector(".dropdown-button");
 const dropDownList = document.querySelector(".dropdown-list");
-const dropDownListItems = dropDownList.querySelectorAll('.dropdown-list__item');
-const dropDownHidden = document.querySelector(".dropdown-input__hidden");
+const dropDownListItems = document.querySelectorAll(".dropdown-list__item");
 
 const yearUp = document.querySelector(".year-counter__plus");
 const yearDown = document.querySelector(".year-counter__minus");
-const yearNum = document.querySelector(".year-counter__num");
 
 const currentYear = new Date().getFullYear();
 
@@ -39,7 +36,7 @@ prevBtn.addEventListener("click", () => {
 
 //handle month input change event
 monthInput.addEventListener("change", () => {
-  month = monthInput.selectedIndex;
+  month = monthInput.value;
   displayDates();
 });
 
@@ -49,51 +46,30 @@ yearInput.addEventListener("change", () => {
   displayDates();
 });
 
-//handle month input change event
-dropDownListItems.forEach(function (item) {
-  item.addEventListener("click", () => {
-    month = item.dataset.value;
-    console.log(month);
-    displayDates();
-  });
-});
-
-//Custom year-input
-//handle year input change event
-//yearNum.value = year;
-
 yearUp.addEventListener("click", function () {
-  yearNum.value++;
-  year = yearNum.value;
+  yearInput.value++;
+  year = yearInput.value;
   displayDates();
 });
 
 yearDown.addEventListener("click", function () {
-  if (yearNum.value > currentYear) {
-    yearNum.value--;
-    year = yearNum.value;
+  if (yearInput.value > currentYear) {
+    yearInput.value--;
+    year = yearInput.value;
     displayDates();
   };
 });
 
-
-
-
-
 const updateYearMonth = () => {
-  monthInput.selectedIndex = month;
+  monthInput.value = month;
   yearInput.value = year;
 
-  dropDownHidden.value = month;
-  yearNum.value = year;
+  dropDownListItems.forEach((item) => {
 
-  dropDownListItems.forEach(function (item) {
-    console.log(item.dataset.value);
-    console.log(month);
-    // if (item.dataset.value == month) {
-    //   dropDownBtn.innerText = item.innerText;
-    //   dropDownHidden.value = item.dataset.value;
-    // }
+    if (month == item.dataset.value) {
+      dropDownBtn.innerText = item.textContent;
+      monthInput.value = item.dataset.value;
+    };
   });
 };
 
@@ -207,13 +183,6 @@ displayDates();
 //---------------------------------------------------------------------------
 
 //Custom month-input
-
-// const dropDownBtn = document.querySelector(".dropdown-button");
-// const dropDownList = document.querySelector(".dropdown-list");
-// const dropDownListItems = dropDownList.querySelectorAll('.dropdown-list__item');
-// const dropDownHidden = document.querySelector(".dropdown-input__hidden");
-
-
 // Click on the button. Open/close select
 
 dropDownBtn.addEventListener('click', function () {
@@ -229,9 +198,12 @@ dropDownListItems.forEach(function (listItem) {
   listItem.addEventListener('click', function (e) {
     e.stopPropagation();
     dropDownBtn.innerText = this.innerText;
+    month = parseInt(listItem.dataset.value);
     dropDownList.classList.remove("dropdown-list__visible");
     dropDownBtn.classList.remove("onFocus");
-    dropDownHidden.value = this.dataset.value;
+    monthInput.value = this.dataset.value;
+
+    displayDates();
   });
 });
 
