@@ -36,6 +36,10 @@
   border-radius: toRem(13);
   background: $bgDarkLight;
   font-family: "SFProText";
+  @include adaptiveValue("padding-top", 27, 10);
+  @include adaptiveValue("padding-bottom", 27, 10);
+  @include adaptiveValue("padding-left", 18, 8);
+  @include adaptiveValue("padding-right", 18, 8);
   padding: toRem(27) toRem(18);
 
   // .datepicker__input
@@ -67,6 +71,10 @@
   outline: none;
   border: none;
   background-color: transparent;
+
+  @media (max-width:$mobile) {
+    @include adaptiveValue("font-size", 17, 13);
+  }
 }
 
 //month-input with custom dropdown
@@ -74,6 +82,10 @@
   position: relative;
   max-width: toRem(150);
   width: 100%;
+
+  @media (max-width:$mobile) {
+    @include adaptiveValue("max-width", 150, 100);
+  }
 }
 
 .month-input {
@@ -89,6 +101,11 @@
   border-radius: 5px;
   background-color: rgba(235, 235, 245, 0.3);
   transition: all .4s ease;
+
+  @media (max-width:$mobile) {
+    @include adaptiveValue("padding-right", 21, 13);
+  }
+
 
   @media (any-hover: hover) {
     &:hover {
@@ -119,6 +136,11 @@
     font-size: toRem(12);
     pointer-events: none;
     transition: all .4s ease;
+
+    @media (max-width:$mobile) {
+      @include adaptiveValue("font-size", 12, 9);
+    }
+
   }
 
   &._arrowUp::after {
@@ -159,6 +181,14 @@
       margin-bottom: toRem(2);
     }
 
+    @media (max-width:$mobile) {
+      @include adaptiveValue("font-size", 14, 11);
+
+      &:not(:last-child) {
+        margin-bottom: toRem(4);
+      }
+    }
+
     @media (any-hover: hover) {
       &:hover {
         color: $goldColor;
@@ -183,6 +213,11 @@
   justify-content: space-between;
   margin-left: toRem(80);
 
+  @media (max-width:$mobile) {
+    @include adaptiveValue("margin-left", 80, 14);
+    @include adaptiveValue("max-width", 120, 80);
+  }
+
   span {
     display: block;
     cursor: pointer;
@@ -203,9 +238,12 @@
         &.year-input {
           border: toRem(1) solid $goldColor;
         }
-
-
       }
+    }
+
+    &:active {
+      transform: scale(.95);
+      opacity: .9;
     }
   }
 
@@ -213,7 +251,7 @@
   &__plus::before {
     position: absolute;
     //width: 100%;
-    top: toRem(12);
+    top: 32%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -223,6 +261,9 @@
     color: #CEA561;
     z-index: 5;
 
+    @media (max-width:$mobile) {
+      @include adaptiveValue("font-size", 17, 13);
+    }
 
   }
 
@@ -245,16 +286,6 @@
   }
 }
 
-.year-counter__minus:hover .year-input {
-
-
-  border: toRem(1) solid $goldColor;
-
-
-
-
-
-}
 
 .year-input {
   height: 100%;
@@ -263,12 +294,14 @@
   border-radius: toRem(5);
   border: toRem(1) solid transparent;
   padding: toRem(3);
+  margin: toRem(0) toRem(10);
+  transition: all .4s ease;
 
-  @media (any-hover: hover) {
-    &:hover {
-      border: 1px solid $goldColor;
-    }
-  }
+}
+
+.year-input_outline {
+  pointer-events: auto;
+  outline: toRem(1) solid $goldColor;
 }
 
 .date-toggle {
@@ -278,15 +311,28 @@
   justify-content: space-between;
   align-items: center;
   margin-left: auto;
-
 }
 
-.prev {
+.prev,
+.next {
   position: relative;
   width: toRem(10);
   height: toRem(17);
+  transition: all .2s ease;
 
+  @media (any-hover: hover) {
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
 
+  &:active {
+    transform: scale(0.95);
+    opacity: .8;
+  }
+}
+
+.prev {
   &::before {
     left: toRem(-4);
     transform: rotateZ(90deg);
@@ -294,11 +340,6 @@
 }
 
 .next {
-  position: relative;
-  width: toRem(10);
-  height: toRem(17);
-  //height: 100%;
-
   &::before {
     right: toRem(-4);
     transform: rotateZ(-90deg);
@@ -316,6 +357,16 @@
   font-size: toRem(17);
   color: $goldColor;
   z-index: 5;
+
+  @media (max-width:$mobile) {
+    @include adaptiveValue("font-size", 17, 13);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
 
 
@@ -324,6 +375,10 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   column-gap: toRem(55);
+
+  @media (max-width:$mobile) {
+    @include adaptiveValue("column-gap", 55, 10);
+  }
 }
 
 .days {
@@ -334,6 +389,10 @@
   text-transform: uppercase;
   padding-bottom: toRem(15);
   text-align: center;
+
+  @media (max-width:$mobile) {
+    @include adaptiveValue("padding-bottom", 15, 7);
+  }
 }
 
 .dates {
@@ -344,6 +403,7 @@
     max-width: toRem(40);
     width: 100%;
     font-family: "SFProDisplay";
+    //@include adaptiveValue("font-size", 20, 16);
     font-size: toRem(20);
     line-height: 150%;
     /* 30/20 */
@@ -351,6 +411,11 @@
     border-radius: 50%;
     padding: toRem(5);
     box-sizing: border-box;
+    justify-self: center;
+
+    @media (max-width:$mobile) {
+      @include adaptiveValue("font-size", 20, 14);
+    }
 
     &.selected {
       background: $goldColor;

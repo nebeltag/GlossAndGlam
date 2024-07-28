@@ -91,3 +91,19 @@ dropDownButton.onclick = function () {
 dropDownButton.onblur = function () {
   this.classList.remove('_arrowUp');
 }
+
+//===Outline для year-input при наведении на стрелки переключения года======
+
+const changeYearArrows = document.querySelectorAll(".year-counter__plus, .year-counter__minus");
+const yearInputBlock = document.querySelector(".year-input");
+console.log(yearInputBlock)
+
+changeYearArrows.forEach((el) => {
+  el.addEventListener("mouseover", function () {
+    yearInputBlock.classList.add("year-input_outline");
+  });
+
+  el.addEventListener("mouseout", function () {
+    yearInputBlock.classList.remove("year-input_outline");
+  });
+});
