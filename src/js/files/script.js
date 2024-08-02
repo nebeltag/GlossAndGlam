@@ -67,43 +67,5 @@ currentYearSpan.innerText = currentYear;
 
 //==============================================================
 
-//===Поворот стрелки при фокусировке на month-input в календаре======
 
-const calendarMonthInput = document.querySelector(".month-input");
-const calendarMonthInputWrp = document.querySelector(".month-input__wrapper");
 
-calendarMonthInput.onclick = function () {
-  calendarMonthInputWrp.classList.toggle('_arrowUp');
-}
-
-calendarMonthInput.onblur = function () {
-  calendarMonthInputWrp.classList.remove('_arrowUp');
-}
-
-//===Поворот стрелки при нажатии на dropdown-button в календаре======
-
-const dropDownButton = document.querySelector('.dropdown-button');
-
-dropDownButton.onclick = function () {
-  this.classList.toggle('_arrowUp');
-}
-
-dropDownButton.onblur = function () {
-  this.classList.remove('_arrowUp');
-}
-
-//===Outline для year-input при наведении на стрелки переключения года======
-
-const changeYearArrows = document.querySelectorAll(".year-counter__plus, .year-counter__minus");
-const yearInputBlock = document.querySelector(".year-input");
-console.log(yearInputBlock)
-
-changeYearArrows.forEach((el) => {
-  el.addEventListener("mouseover", function () {
-    yearInputBlock.classList.add("year-input_outline");
-  });
-
-  el.addEventListener("mouseout", function () {
-    yearInputBlock.classList.remove("year-input_outline");
-  });
-});

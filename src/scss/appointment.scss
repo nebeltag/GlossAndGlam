@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: toRem(120);
+    @include adaptiveValue("padding-top", 120, 40);
   }
 
   // .appointment__block-header
@@ -14,7 +14,7 @@
   &__block-header {
     max-width: toRem(754);
     width: 100%;
-    margin-bottom: toRem(80);
+    @include adaptiveValue("margin-bottom", 80, 20);
   }
 }
 
@@ -22,7 +22,21 @@
 
 .form-appointment {
   width: 100%;
-  padding-top: toRem(77);
+  @include adaptiveValue("padding-top", 77, 25);
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: toRem(9);
+    height: toRem(5);
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: #D9D9D9;
+    z-index: 5;
+  }
+
   //--------------------------Datepicker--------------------------
   // .form-appointment__date
 
@@ -215,7 +229,7 @@
 
   @media (max-width:$mobile) {
     @include adaptiveValue("margin-left", 80, 14);
-    @include adaptiveValue("max-width", 120, 80);
+    @include adaptiveValue("max-width", 120, 90);
   }
 
   span {
@@ -251,7 +265,7 @@
   &__plus::before {
     position: absolute;
     //width: 100%;
-    top: 32%;
+    top: 35%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -305,7 +319,7 @@
 }
 
 .date-toggle {
-  max-width: toRem(50);
+  @include adaptiveValue("max-width", 50, 40);
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -436,6 +450,113 @@
 
     &.hidden {
       visibility: hidden;
+    }
+  }
+}
+
+//=======Time select====================
+
+.form-appointment {
+
+  // .form-appointment__time
+
+  &__time {
+    max-width: toRem(872);
+    padding-top: toRem(72);
+    margin: 0 auto;
+  }
+}
+
+.time-select {
+
+  // .time-select__title
+
+  &__title {
+    font-size: toRem(32);
+
+    line-height: 150%;
+    /* 48/32 */
+    text-align: center;
+    color: #ffffff;
+  }
+
+
+  .time-select {
+
+    // .time-select__block
+
+    &__block {
+      padding-top: toRem(48);
+    }
+  }
+
+  .select-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: toRem(10);
+    // @include adaptiveValue("column-gap", 24, 5);
+    justify-content: space-between;
+
+    @media (max-width:$mobileSmall) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: toRem(15);
+      column-gap: toRem(15);
+    }
+
+    input {
+      width: 0;
+      height: 0;
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
+    }
+
+    input:checked+.select-buttons__item {
+      color: $bgDarkLight;
+      font-weight: 600;
+      background-color: $goldColor;
+    }
+
+    // .select-buttons__item
+
+    &__item {
+      max-width: toRem(200);
+      @include adaptiveValue("max-width", 200, 105, 0, 870, 479.98);
+      width: 100%;
+      line-height: 150%;
+      /* 24/16 */
+      color: #ffffff;
+      @include adaptiveValue("font-size", 16, 10, 0, 860, 479.98);
+      @include adaptiveValue("padding-top", 20, 10, 0, 860, 479.98);
+      @include adaptiveValue("padding-bottom", 20, 10, 0, 860, 479.98);
+      padding-left: toRem(5);
+      padding-right: toRem(5);
+      border-radius: toRem(12);
+      border: toRem(1) solid $goldColor;
+      cursor: pointer;
+      transition: all .2s ease-in;
+
+      // &:not(:last-child) {
+      //   margin-right: toRem(5);
+      // }
+
+      span {
+        display: block;
+        text-align: center;
+      }
+
+      @media (any-hover: hover) {
+        &:hover {
+          color: $goldColor;
+        }
+      }
+
+      @media (max-width:$mobileSmall) {
+        justify-self: center;
+        max-width: toRem(190);
+        font-size: toRem(12);
+      }
     }
   }
 }

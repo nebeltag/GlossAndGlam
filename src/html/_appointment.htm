@@ -7,14 +7,13 @@
           consectetur lacus consectetur.</p>
       </div>
     </div>
-    <form action="#" class="appointment__form form-appointment">
-      <!-- Datepicker -->
-      <div class="form-appointment__date datepicker">
+    <form action="#" name="appointment" class="appointment__form form-appointment">
+      <!-- .Datepicker -->
+      <fieldset form="appointment" class="form-appointment__date datepicker">
         <input type="text" class="datepicker__input">
         <div class="datepicker__body">
           <!-- .datepicker-header -->
           <div class="datepicker-header">
-            <!-- Month-input with custom dropdown -->
             <div class="dropdown-month">
               <button type="button" class="dropdown-button"></button>
               <ul class="dropdown-list">
@@ -33,25 +32,6 @@
               </ul>
               <input type="text" class="month-input" value="">
             </div>
-
-            <!-- Month-input without custom dropdown -->
-            <!-- <div class="month-input__wrapper">
-              <select type="text" class="month-input">
-                <option>January</option>
-                <option>February</option>
-                <option>March</option>
-                <option>April</option>
-                <option>May</option>
-                <option>June</option>
-                <option>July</option>
-                <option>August</option>
-                <option>September</option>
-                <option>October</option>
-                <option>November</option>
-                <option>December</option>
-              </select>
-            </div> -->
-            <!-- <input type="number" class="year-input"> -->
             <div class="year-counter">
               <span class="year-counter__minus _icon-drop-arrow"></span>
               <input type="text" value="" class="year-input" readonly>
@@ -79,45 +59,35 @@
 
         <!-- .dates -->
         <div class="dates">
-          <!-- <button disabled>1</button>
-          <button disabled>2</button>
-          <button disabled>3</button>
-          <button disabled>4</button>
-          <button disabled>5</button>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>10</button>
-          <button>11</button>
-          <button>12</button>
-          <button class="today">13</button>
-          <button>14</button>
-          <button>15</button>
-          <button>16</button>
-          <button>17</button>
-          <button>18</button>
-          <button>19</button>
-          <button>20</button>
-          <button>21</button>
-          <button>22</button>
-          <button class="selected">23</button>
-          <button>24</button>
-          <button>25</button>
-          <button>26</button>
-          <button>27</button>
-          <button>28</button>
-          <button>29</button>
-          <button>30</button> -->
         </div>
         <!-- /.dates -->
-      </div>
+      </fieldset>
+      <!-- /.Datepicker -->
 
-      <div class="form-appointment__time time-select">
+      <!-- .time-select -->
+      <fieldset form="appointment" class="form-appointment__time time-select">
         <h3 class="time-select__title">Select A Time</h3>
-        <div class="time-select__block">
+        <div class="time-select__block select-buttons">
+          <input type="radio" id="firstTime" name="selectedTime" value="1">
+          <label for="firstTime" class="select-buttons__item">
+            <span>8.30 am - 9.30 am</span>
+          </label>
+          <input type="radio" id="secondTime" name="selectedTime" value="2">
+          <label for="secondTime" class="select-buttons__item">
+            <span>9.30 am - 10.30 am</span>
+          </label>
+          <input type="radio" id="thirdTime" name="selectedTime" value="3">
+          <label for="thirdTime" class="select-buttons__item">
+            <span>10.30 am - 11.30 am</span>
+          </label>
+          <input type="radio" id="fourthTime" name="selectedTime" value="4">
+          <label for="fourthTime" class="select-buttons__item">
+            <span> 11.30 am - 12.30 am</span>
+          </label>
         </div>
-      </div>
+      </fieldset>
+      <!-- /.time-select -->
+
       <div class="form-appointment__contacts contacts-input">
       </div>
       <button type="submit" class="button form-appointment__btn">Book Appointment</button>

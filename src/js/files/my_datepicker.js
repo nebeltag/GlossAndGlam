@@ -122,16 +122,10 @@ const displayDates = () => {
   const lastOfMOnth = new Date(year, month + 1, 0);
 
   for (let i = 1; i <= lastOfMOnth.getDate(); i++) {
-    // const isToday = selectedDate.getDate() === i &&
-    //   selectedDate.getFullYear() === year &&
-    //   selectedDate.getMonth() === month;    
-
     const todayDate = new Date();
     const button = (todayDate < new Date(year, month, i)) ?
       createButton(i, false) :
       createButton(i, true);
-
-    //const button = createButton(i, false);
 
     button.addEventListener("click", handleDateClick);
 
@@ -223,8 +217,47 @@ document.addEventListener('keydown', function (e) {
     dropDownBtn.classList.remove("onFocus");
     dropDownBtn.classList.remove('_arrowUp');
     dropDownList.classList.remove("dropdown-list__visible");
-
   }
+});
+
+//===Rotate arrow when focusing on month-input in calendar======
+
+const calendarMonthInput = document.querySelector(".month-input");
+const calendarMonthInputWrp = document.querySelector(".month-input__wrapper");
+
+calendarMonthInput.onclick = function () {
+  calendarMonthInputWrp.classList.toggle('_arrowUp');
+}
+
+calendarMonthInput.onblur = function () {
+  calendarMonthInputWrp.classList.remove('_arrowUp');
+}
+
+//===Rotate arrow when clicking on dropdown-button in calendar======
+
+const dropDownButton = document.querySelector('.dropdown-button');
+
+dropDownButton.onclick = function () {
+  this.classList.toggle('_arrowUp');
+}
+
+dropDownButton.onblur = function () {
+  this.classList.remove('_arrowUp');
+}
+
+//===Outline for year-input when hovering over the year switching arrows======
+
+const changeYearArrows = document.querySelectorAll(".year-counter__plus, .year-counter__minus");
+const yearInputBlock = document.querySelector(".year-input");
+
+changeYearArrows.forEach((el) => {
+  el.addEventListener("mouseover", function () {
+    yearInputBlock.classList.add("year-input_outline");
+  });
+
+  el.addEventListener("mouseout", function () {
+    yearInputBlock.classList.remove("year-input_outline");
+  });
 });
 
 
