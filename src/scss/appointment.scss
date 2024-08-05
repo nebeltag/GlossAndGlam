@@ -491,11 +491,14 @@
   }
 
   .select-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: toRem(10);
-    // @include adaptiveValue("column-gap", 24, 5);
-    justify-content: space-between;
+    // display: flex;
+    // flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 200px));
+    justify-items: space-between;
+    column-gap: toRem(24);
+    //@include adaptiveValue("column-gap", 24, 5);
+    //justify-content: space-between;
 
     @media (max-width:$mobileSmall) {
       display: grid;
@@ -522,7 +525,7 @@
 
     &__item {
       max-width: toRem(200);
-      @include adaptiveValue("max-width", 200, 105, 0, 870, 479.98);
+      //@include adaptiveValue("max-width", 200, 105, 0, 870, 479.98);
       width: 100%;
       line-height: 150%;
       /* 24/16 */
