@@ -429,6 +429,7 @@
 
     @media (max-width:$mobile) {
       @include adaptiveValue("font-size", 20, 14);
+      @include adaptiveValue("max-width", 40, 31);
     }
 
     &.selected {
@@ -462,7 +463,7 @@
 
   &__time {
     max-width: toRem(872);
-    padding-top: toRem(72);
+    @include adaptiveValue("padding-top", 72, 36);
     margin: 0 auto;
   }
 }
@@ -472,8 +473,7 @@
   // .time-select__title
 
   &__title {
-    font-size: toRem(32);
-
+    @include adaptiveValue("font-size", 32, 28);
     line-height: 150%;
     /* 48/32 */
     text-align: center;
@@ -486,24 +486,22 @@
     // .time-select__block
 
     &__block {
-      padding-top: toRem(48);
+      @include adaptiveValue("padding-top", 48, 26);
     }
   }
 
   .select-buttons {
-    // display: flex;
-    // flex-wrap: wrap;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 200px));
-    justify-items: space-between;
-    column-gap: toRem(24);
-    //@include adaptiveValue("column-gap", 24, 5);
-    //justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    @include adaptiveValue("column-gap", 24, 16);
+    row-gap: toRem(15);
+    justify-content: center;
 
     @media (max-width:$mobileSmall) {
       display: grid;
+      width: 100%;
       grid-template-columns: repeat(2, 1fr);
-      row-gap: toRem(15);
+      row-gap: toRem(18);
       column-gap: toRem(15);
     }
 
@@ -524,13 +522,14 @@
     // .select-buttons__item
 
     &__item {
+      flex: 1 1 150px;
       max-width: toRem(200);
-      //@include adaptiveValue("max-width", 200, 105, 0, 870, 479.98);
+      min-width: toRem(100);
       width: 100%;
       line-height: 150%;
       /* 24/16 */
       color: #ffffff;
-      @include adaptiveValue("font-size", 16, 10, 0, 860, 479.98);
+      @include adaptiveValue("font-size", 16, 12, 0, 860, 479.98);
       @include adaptiveValue("padding-top", 20, 10, 0, 860, 479.98);
       @include adaptiveValue("padding-bottom", 20, 10, 0, 860, 479.98);
       padding-left: toRem(5);
@@ -539,10 +538,6 @@
       border: toRem(1) solid $goldColor;
       cursor: pointer;
       transition: all .2s ease-in;
-
-      // &:not(:last-child) {
-      //   margin-right: toRem(5);
-      // }
 
       span {
         display: block;
@@ -554,12 +549,98 @@
           color: $goldColor;
         }
       }
-
-      @media (max-width:$mobileSmall) {
-        justify-self: center;
-        max-width: toRem(190);
-        font-size: toRem(12);
-      }
     }
   }
+}
+
+//=======Submit block====================
+
+.form-appointment {
+
+  // .form-appointment__submit
+
+  &__submit {}
+}
+
+.submit-inputs {
+
+  // .submit-inputs__item
+
+  &__item {
+    max-width: toRem(648);
+    width: 100%;
+  }
+}
+
+.submit-name,
+.submit-phone,
+.submit-email {
+
+  position: relative;
+
+  input {
+    //max-width: toRem(648);
+    width: 100%;
+    padding: toRem(18) toRem(32);
+    font-size: toRem(22);
+    line-height: 150%;
+    /* 27/18 */
+    color: $goldColor;
+    z-index: 5;
+    border: toRem(1) solid rgb(255, 255, 255, 0.3);
+    border-radius: toRem(12);
+    outline: none;
+    cursor: pointer;
+    transition: all .4s ease-in;
+  }
+
+  // .submit-name__placeholder
+
+  &__placeholder {
+    position: absolute;
+    top: 50%;
+    left: toRem(27);
+    padding: toRem(0) toRem(5);
+    transform: translateY(-50%);
+    color: rgb(255, 255, 255, 0.5);
+    transition: all .4s ease;
+    pointer-events: none;
+    text-transform: capitalize;
+  }
+
+  input::placeholder {
+    opacity: 0;
+  }
+
+  input:not(:placeholder-shown)+&__placeholder {
+    top: -2%;
+    left: 3%;
+    font-size: toRem(14);
+    background-color: $bgMainColor;
+  }
+
+  input:focus {
+    border-color: $goldColor;
+  }
+
+  input:focus+&__placeholder {
+    top: -2%;
+    left: 3%;
+    font-size: toRem(14);
+    background-color: $bgMainColor;
+    color: $goldColor;
+  }
+
+  input:-webkit-autofill {
+    border-color: rgb(255, 255, 255, 0.3);
+    -webkit-text-fill-color: $goldColor;
+    caret-color: $goldColor;
+    box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  input:-webkit-autofill:focus {
+    border-color: $goldColor;
+  }
+
 }

@@ -88,8 +88,35 @@
       </fieldset>
       <!-- /.time-select -->
 
-      <div class="form-appointment__contacts contacts-input">
-      </div>
+      <!-- .submit -->
+      <fieldset form="appointment" class="form-appointment__submit submit-inputs">
+        <div class="submit-inputs__item submit-name">
+          <input type="text" name="name" placeholder="" title="Field is required">
+          <label class="submit-name__placeholder">Enter Your Name *</label>
+        </div>
+        <div class="submit-inputs__item submit-phone">
+          <input type="tel" name="phone" placeholder="" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" title="Field is required">
+          <label class="submit-phone__placeholder">Enter Phone Number *</label>
+        </div>
+        <div class="submit-inputs__item submit-email">
+          <input type="email" name="email" placeholder="" title="Field is required">
+          <label class="submit-email__placeholder">Enter Your Email *</label>
+        </div>
+        <!-- <div class="submit-inputs__item submit-services">
+          <input type="text">
+          <ul class="submit-services__list services-list">
+            <li class="services-list__item">Hair Cut</li>
+            <li class="services-list__item">Shaving</li>
+            <li class="services-list__item">Hair Dye</li>
+            <li class="services-list__item">Facial</li>
+            <li class="services-list__item">Keratin Treatment</li>
+            <li class="services-list__item">Hair Removal</li>
+            <li class="services-list__item">Hair Treatment</li>
+            <li class="services-list__item">Wedding Package</li>
+          </ul>
+        </div> -->
+      </fieldset>
+      <!-- /.submit -->
       <button type="submit" class="button form-appointment__btn">Book Appointment</button>
     </form>
   </div>
