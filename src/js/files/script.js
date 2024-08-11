@@ -3,7 +3,7 @@ import { isMobile } from "./functions.js";
 // Підключення списку активних модулів
 import { flsModules } from "./modules.js";
 
-//======Вкл/Выкл субменю Services в header-nav=================
+//======In/Out Services submenu in header-nav=================
 
 const servicesMenuLink = document.querySelectorAll('.services-menu')[0];
 const servicesMenuSublist = document.querySelectorAll('.services-menu__list')[0];
@@ -24,7 +24,7 @@ document.addEventListener("click", showServicesMenu);
 
 //==============================================================
 
-//======Вкл/Выкл search-form в header-action=================
+//======In/Out search-form in header-action=================
 
 const actionSearch = document.querySelectorAll('.action-search')[0];
 const actionSearchForm = document.querySelectorAll('.header-search__form')[0];
@@ -39,7 +39,7 @@ const showActionSearch = (e) => {
 
 document.documentElement.addEventListener("click", showActionSearch);
 
-//======Кнопка-гамбургер=================
+//======Hamburger button=================
 
 const buttons = document.querySelectorAll(".icon-menu");
 
@@ -59,7 +59,7 @@ buttons.forEach((button) => {
 
 //==============================================================
 
-//============Текущий год в копирайт футера======================
+//============Current year in footer copyright======================
 const currentYearSpan = document.getElementById("copy");
 const currentYear = new Date().getFullYear();
 
@@ -67,6 +67,22 @@ currentYearSpan.innerText = currentYear;
 
 //==============================================================
 
+//============Appointment form validation======================
+
+const submitNameInput = document.querySelector('[name="submit-name"]');
+
+submitNameInput.addEventListener('input', (e) => {
+  const regexp = /^[a-zA-Z]{1,}\s?([a-zA-Z]{1,}\s?){2,4}$/gi;
+  const str = e.target.value;
+
+  const result = regexp.test(str);
+  console.log(result);
+
+  (!result) ?
+    submitNameInput.classList.add("input-invalid")
+    : submitNameInput.classList.remove("input-invalid");
+});
 
 
 
+//==============================================================
