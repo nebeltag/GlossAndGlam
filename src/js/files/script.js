@@ -70,19 +70,82 @@ currentYearSpan.innerText = currentYear;
 //============Appointment form validation======================
 
 const submitNameInput = document.querySelector('[name="submit-name"]');
+const submitPhoneInput = document.querySelector('[name="submit-phone"]');
+const submitEmailInput = document.querySelector('[name="submit-email"]');
 
+//name input validation --------------
 submitNameInput.addEventListener('input', (e) => {
-  const regexp = /^[a-zA-Z]{1,}\s?([a-zA-Z]{1,}\s?){2,4}$/gi;
+  const regexp = /^\w+\s(\w+\s?){1,4}$/gi;
+  const str = e.target.value;
+
+  const result = regexp.test(str);
+  (!result) ?
+    submitNameInput.classList.add("input-invalid")
+    : submitNameInput.classList.remove("input-invalid");
+});
+
+//phone input validation --------------
+submitPhoneInput.addEventListener('input', (e) => {
+
+  const regexp = /^\+\d{1,4}\(\d{1,5}\)\d{1,10}$/g;
+  const str = e.target.value;
+
+  const result = regexp.test(str);
+
+  (!result) ?
+    submitPhoneInput.classList.add("input-invalid")
+    : submitPhoneInput.classList.remove("input-invalid");
+});
+
+
+//email input validation --------------
+submitEmailInput.addEventListener('input', (e) => {
+
+  const regexp = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
   const str = e.target.value;
 
   const result = regexp.test(str);
   console.log(result);
 
   (!result) ?
-    submitNameInput.classList.add("input-invalid")
-    : submitNameInput.classList.remove("input-invalid");
+    submitEmailInput.classList.add("input-invalid")
+    : submitEmailInput.classList.remove("input-invalid");
+});
+//==============================================================
+
+
+//============Submit services list controls======================
+
+//submit services list in/out --------------
+
+const submitServicesInput = document.querySelector('[name="submit-services"]');
+const submitServicesList = document.querySelector(".submit-services__list");
+
+submitServicesInput.addEventListener('click', () => {
+  submitServicesList.classList.toggle('services-list__visible');
 });
 
+submitServicesInput.addEventListener('blur', () => {
+  submitServicesList.classList.remove('services-list__visible');
+  submitServices.classList.remove('services-arrow__down');
+});
 
+//Add value of services-list-item to input-value --------------
 
+const submitServicesItems = document.querySelectorAll(".services-list__item");
+const submitServicesPlaceholder = document.querySelector(".submit-services__placeholder");
+console.log(submitServicesPlaceholder);
+submitServicesItems.forEach(el => {
+  el.addEventListener('click', function () {
+    submitServicesInput.value = this.innerText;
+  });
+});
+
+//Services-input down-arrow up & down --------------
+const submitServices = document.querySelector(".submit-services");
+console.log(submitServices);
+
+submitServices.addEventListener('click', () => {
+  submitServices.classList.toggle('services-arrow__down');
+})
 //==============================================================

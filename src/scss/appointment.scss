@@ -163,6 +163,8 @@
 }
 
 .dropdown-list {
+  max-height: toRem(260);
+  overflow-y: scroll;
   visibility: hidden;
   opacity: 0;
   position: absolute;
@@ -176,9 +178,22 @@
   border: toRem(1) solid $goldColor;
   transition: all .4s ease;
 
+  //scrollbar-width: thin;
+  // scrollbar-color: $goldColor transparent;
+
   &__visible {
     visibility: visible;
     opacity: 1;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid $goldColor;
   }
 
   // .dropdown-list__item
@@ -670,6 +685,15 @@
     color: rgb(193, 12, 12);
   }
 
+  input.input-invalid+.submit-phone__placeholder {
+    color: rgb(193, 12, 12);
+  }
+
+  input.input-invalid+.submit-email__placeholder {
+    color: rgb(193, 12, 12);
+  }
+
+
   // input::placeholder {
   //   opacity: 0;
   // }
@@ -718,5 +742,158 @@
     pointer-events: none;
     text-transform: capitalize;
   }
+}
 
+.submit-phone__placeholder {
+  span {
+    padding-left: toRem(10);
+    text-transform: none;
+  }
+
+}
+
+//============Submit Services==============
+
+.submit-services {
+
+  position: relative;
+  transition: all .2s ease;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: toRem(24);
+    height: toRem(24);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    font-size: toRem(18);
+    line-height: 133.333333%;
+    /* 24/18 */
+    margin-right: toRem(24);
+    z-index: 5;
+    pointer-events: none;
+    transition: all .2s ease;
+  }
+
+  input {
+    //max-width: toRem(648);   
+    display: block;
+    width: 100%;
+    padding: toRem(18);
+    padding-left: toRem(32);
+    padding-right: toRem(50);
+    font-size: toRem(22);
+    line-height: 150%;
+    /* 27/18 */
+    color: $goldColor;
+    text-align: start;
+    z-index: 5;
+    border: toRem(1) solid rgb(255, 255, 255, 0.3);
+    border-radius: toRem(12);
+    outline: none;
+    cursor: pointer;
+    transition: all .4s ease-in;
+
+    &:focus {
+      border-color: $goldColor;
+    }
+  }
+
+  input:focus+&__placeholder {
+    top: -2%;
+    left: 3%;
+    font-size: toRem(14);
+    background-color: $bgMainColor;
+    color: $goldColor;
+  }
+
+  input[value]+&__placeholder {
+    top: -2%;
+    left: 3%;
+    font-size: toRem(14);
+    background-color: $bgMainColor;
+  }
+
+  // .submit-services__placeholder
+
+  &__placeholder {
+    position: absolute;
+    top: 50%;
+    left: toRem(27);
+    padding: toRem(0) toRem(5);
+    transform: translateY(-50%);
+    color: rgb(255, 255, 255, 0.5);
+    transition: all .4s ease;
+    pointer-events: none;
+    text-transform: capitalize;
+  }
+
+  // .submit-services__list
+
+  &__list {}
+
+  &__selected {
+    top: -2%;
+    left: 3%;
+    font-size: toRem(14);
+    background-color: $bgMainColor;
+  }
+}
+
+.submit-services.services-arrow__down::before {
+  top: 60%;
+  color: $goldColor;
+}
+
+
+
+.services-list {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  padding: toRem(5) toRem(5);
+  background-color: $bgMainColor;
+  border-radius: 5px;
+  border: toRem(1) solid $goldColor;
+  transition: all .4s ease;
+
+  &__visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  // .services-list__item
+
+  &__item {
+    font-size: toRem(16);
+    padding: toRem(5);
+    color: $cardTitle;
+    border-radius: toRem(5);
+    cursor: pointer;
+    transition: all .3s;
+
+    &:not(:last-child) {
+      margin-bottom: toRem(2);
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: $goldColor;
+        background-color: rgba(115, 115, 133, 0.3);
+        transform: scale(1.01);
+      }
+    }
+
+    &:active {
+      transform: scale(1);
+      opacity: .6;
+    }
+  }
 }
