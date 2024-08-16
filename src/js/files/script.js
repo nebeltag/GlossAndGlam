@@ -125,7 +125,8 @@ submitServicesInput.addEventListener('click', () => {
   submitServicesList.classList.toggle('services-list__visible');
 });
 
-submitServicesInput.addEventListener('blur', () => {
+submitServicesInput.addEventListener('blur', (e) => {
+
   submitServicesList.classList.remove('services-list__visible');
   submitServices.classList.remove('services-arrow__down');
 });
@@ -134,16 +135,15 @@ submitServicesInput.addEventListener('blur', () => {
 
 const submitServicesItems = document.querySelectorAll(".services-list__item");
 const submitServicesPlaceholder = document.querySelector(".submit-services__placeholder");
-console.log(submitServicesPlaceholder);
 submitServicesItems.forEach(el => {
-  el.addEventListener('click', function () {
+  el.addEventListener('click', function (e) {
     submitServicesInput.value = this.innerText;
+    e.stopPropagation();
   });
 });
 
 //Services-input down-arrow up & down --------------
 const submitServices = document.querySelector(".submit-services");
-console.log(submitServices);
 
 submitServices.addEventListener('click', () => {
   submitServices.classList.toggle('services-arrow__down');

@@ -758,6 +758,9 @@
 
   position: relative;
   transition: all .2s ease;
+  background-color: $bgMainColor;
+
+
 
   &::before {
     position: absolute;
@@ -841,6 +844,17 @@
     font-size: toRem(14);
     background-color: $bgMainColor;
   }
+
+  // &:not(.services-arrow__down) input {
+  //   border: toRem(1) solid rgb(255, 255, 255, 0.3);
+  // }
+
+  // &:not(.services-arrow__down input[value]) .submit-services__placeholder {
+  //   top: 50%;
+  //   transform: translateY(-50%);
+  //   color: rgb(255, 255, 255, 0.5);
+  //   font-size: toRem(16);
+  // }
 }
 
 .submit-services.services-arrow__down::before {
