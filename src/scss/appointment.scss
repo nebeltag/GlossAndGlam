@@ -578,6 +578,8 @@
 }
 
 .submit-inputs {
+  position: relative;
+  z-index: 5;
 
   // .submit-inputs__item
 
@@ -758,9 +760,6 @@
 
   position: relative;
   transition: all .2s ease;
-  background-color: $bgMainColor;
-
-
 
   &::before {
     position: absolute;
@@ -778,7 +777,7 @@
     margin-right: toRem(24);
     z-index: 5;
     pointer-events: none;
-    transition: all .2s ease;
+    transition: all .25s ease;
   }
 
   input {
@@ -844,17 +843,10 @@
     font-size: toRem(14);
     background-color: $bgMainColor;
   }
+}
 
-  // &:not(.services-arrow__down) input {
-  //   border: toRem(1) solid rgb(255, 255, 255, 0.3);
-  // }
-
-  // &:not(.services-arrow__down input[value]) .submit-services__placeholder {
-  //   top: 50%;
-  //   transform: translateY(-50%);
-  //   color: rgb(255, 255, 255, 0.5);
-  //   font-size: toRem(16);
-  // }
+.submit-services.services-input__active::before {
+  color: $goldColor
 }
 
 .submit-services.services-arrow__down::before {
@@ -862,21 +854,27 @@
   color: $goldColor;
 }
 
-
+// #selected-service {
+//   visibility: hidden;
+//   opacity: 0;
+// }
 
 .services-list {
   visibility: hidden;
   opacity: 0;
   position: absolute;
+  max-height: toRem(120);
+  width: 100%;
+  overflow-y: scroll;
   top: 110%;
   left: 0;
-  z-index: 3;
-  width: 100%;
   padding: toRem(5) toRem(5);
   background-color: $bgMainColor;
   border-radius: 5px;
   border: toRem(1) solid $goldColor;
+  z-index: 3;
   transition: all .4s ease;
+
 
   &__visible {
     visibility: visible;
@@ -909,5 +907,15 @@
       transform: scale(1);
       opacity: .6;
     }
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid $goldColor;
   }
 }

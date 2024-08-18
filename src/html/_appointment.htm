@@ -10,7 +10,7 @@
     <form action="#" name="appointment" class="appointment__form form-appointment">
       <!-- .Datepicker -->
       <fieldset form="appointment" class="form-appointment__date datepicker">
-        <input type="text" class="datepicker__input">
+        <input type="text" name="appointment-date" class="datepicker__input">
         <div class="datepicker__body">
           <!-- .datepicker-header -->
           <div class="datepicker-header">
@@ -106,6 +106,7 @@
         </div>
         <div class="submit-inputs__item submit-services _icon-drop-arrow">
           <input type="button" name="submit-services">
+          <!-- <input type="text" name="selected-service" id="selected-service"> -->
           <label class="submit-services__placeholder">Select Services</label>
           <ul class="submit-services__list services-list">
             <li class="services-list__item">Hair Cut</li>
@@ -120,7 +121,7 @@
         </div>
       </fieldset>
       <!-- /.submit -->
-      <!-- <button type="submit" class="button form-appointment__btn">Book Appointment</button> -->
+      <button type="submit" class="button form-appointment__btn">Book Appointment</button>
     </form>
   </div>
 </section>

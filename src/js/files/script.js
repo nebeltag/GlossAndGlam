@@ -105,7 +105,6 @@ submitEmailInput.addEventListener('input', (e) => {
   const str = e.target.value;
 
   const result = regexp.test(str);
-  console.log(result);
 
   (!result) ?
     submitEmailInput.classList.add("input-invalid")
@@ -120,32 +119,50 @@ submitEmailInput.addEventListener('input', (e) => {
 
 const submitServicesInput = document.querySelector('[name="submit-services"]');
 const submitServicesList = document.querySelector(".submit-services__list");
+const submitServices = document.querySelector(".submit-services");
 
 submitServicesInput.addEventListener('click', () => {
   submitServicesList.classList.toggle('services-list__visible');
 });
 
-submitServicesInput.addEventListener('blur', (e) => {
+submitServicesInput.addEventListener('focus', () => {
+  submitServices.classList.add('services-input__active');
+});
 
+submitServicesInput.addEventListener('blur', () => {
   submitServicesList.classList.remove('services-list__visible');
   submitServices.classList.remove('services-arrow__down');
+  submitServices.classList.remove('services-input__active');
 });
 
 //Add value of services-list-item to input-value --------------
 
 const submitServicesItems = document.querySelectorAll(".services-list__item");
-const submitServicesPlaceholder = document.querySelector(".submit-services__placeholder");
+const selectedServiceInput = document.querySelector('[name="selected-service"]');
 submitServicesItems.forEach(el => {
   el.addEventListener('click', function (e) {
     submitServicesInput.value = this.innerText;
+    selectedServiceInput.value = this.innerText;
+
     e.stopPropagation();
   });
 });
 
 //Services-input down-arrow up & down --------------
-const submitServices = document.querySelector(".submit-services");
+// const submitServices = document.querySelector(".submit-services");
 
 submitServices.addEventListener('click', () => {
   submitServices.classList.toggle('services-arrow__down');
 })
 //==============================================================
+
+const appointmentForm = document.forms["appointment"];
+
+console.log(appointmentForm);
+
+appointmentForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const formData = new FormData(appointmentForm);
+  const values = Object.fromEntries(formData.entries());
+  console.log('>>', values);
+})
