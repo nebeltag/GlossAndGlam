@@ -91,22 +91,25 @@
       <!-- .submit -->
       <fieldset form="appointment" class="form-appointment__submit submit-inputs">
         <div class="submit-inputs__item submit-name">
-          <input type="text" name="submit-name" placeholder="" title="Field is required" maxlength="50" required>
+          <input type="text" name="submit-name" placeholder="" title="Field is required" maxlength="50"
+            data-input="required" class="empty">
           <label class="submit-name__placeholder">Enter Your Name *</label>
         </div>
         <div class="submit-inputs__item submit-phone">
-          <input type="tel" name="submit-phone" placeholder="" title="Field is required">
+          <input type="tel" name="submit-phone" placeholder="" title="Field is required" data-input="required"
+            class="empty">
           <label class="submit-phone__placeholder">Enter Phone Number *
             <span>[+x(x)xxxxxxx]</span>
           </label>
         </div>
         <div class="submit-inputs__item submit-email">
-          <input type="email" name="submit-email" placeholder="" title="Field is required">
+          <input type="email" name="submit-email" placeholder="" title="Field is required" data-input="required"
+            class="empty">
           <label class="submit-email__placeholder">Enter Your Email *</label>
         </div>
         <div class="submit-inputs__item submit-services _icon-drop-arrow">
-          <input type="button" name="submit-services">
-          <!-- <input type="text" name="selected-service" id="selected-service"> -->
+          <input type="text" name="selected-service" id="selected-service">
+          <input type="button" name="submit-services" class="submit-services__input_btn">
           <label class="submit-services__placeholder">Select Services</label>
           <ul class="submit-services__list services-list">
             <li class="services-list__item">Hair Cut</li>
@@ -121,7 +124,8 @@
         </div>
       </fieldset>
       <!-- /.submit -->
-      <button type="submit" class="button form-appointment__btn">Book Appointment</button>
+      <button type="submit" class="button form-appointment__btn" disabled>
+        Book Appointment</button>
     </form>
   </div>
 </section>

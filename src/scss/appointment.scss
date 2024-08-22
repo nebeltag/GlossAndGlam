@@ -780,7 +780,7 @@
     transition: all .25s ease;
   }
 
-  input {
+  &__input_btn {
     //max-width: toRem(648);   
     display: block;
     width: 100%;
@@ -804,7 +804,7 @@
     }
   }
 
-  input:focus+&__placeholder {
+  &__input_btn:focus+&__placeholder {
     top: -2%;
     left: 3%;
     font-size: toRem(14);
@@ -812,7 +812,7 @@
     color: $goldColor;
   }
 
-  input[value]+&__placeholder {
+  &__input_btn[value]+&__placeholder {
     top: -2%;
     left: 3%;
     font-size: toRem(14);
@@ -854,10 +854,11 @@
   color: $goldColor;
 }
 
-// #selected-service {
-//   visibility: hidden;
-//   opacity: 0;
-// }
+#selected-service {
+  display: none;
+  // visibility: hidden;
+  // opacity: 0;
+}
 
 .services-list {
   visibility: hidden;
@@ -917,5 +918,27 @@
     background-color: transparent;
     border-radius: 10px;
     border: 1px solid $goldColor;
+  }
+}
+
+.form-appointment__btn {}
+
+.appointment-btn__disabled {
+  position: relative;
+  border: none;
+  overflow: hidden;
+  pointer-events: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -27%;
+    left: -5%;
+    width: 110%;
+    height: 160%;
+    border-radius: toRem(12);
+    // border: toRem(2) solid rgb(233, 228, 219, 0.3);
+    background-color: rgb(233, 228, 219, 0.3);
+    z-index: 5;
   }
 }

@@ -3,7 +3,7 @@ import { isMobile } from "./functions.js";
 // Підключення списку активних модулів
 import { flsModules } from "./modules.js";
 
-//======In/Out Services submenu in header-nav=================
+//======On/Off Services submenu in header-nav=================
 
 const servicesMenuLink = document.querySelectorAll('.services-menu')[0];
 const servicesMenuSublist = document.querySelectorAll('.services-menu__list')[0];
@@ -24,7 +24,7 @@ document.addEventListener("click", showServicesMenu);
 
 //==============================================================
 
-//======In/Out search-form in header-action=================
+//======On/Off search-form in header-action=================
 
 const actionSearch = document.querySelectorAll('.action-search')[0];
 const actionSearchForm = document.querySelectorAll('.header-search__form')[0];
@@ -69,37 +69,49 @@ currentYearSpan.innerText = currentYear;
 
 //============Appointment form validation======================
 
+const appointmentForm = document.forms["appointment"];
 const submitNameInput = document.querySelector('[name="submit-name"]');
 const submitPhoneInput = document.querySelector('[name="submit-phone"]');
 const submitEmailInput = document.querySelector('[name="submit-email"]');
+const appointmentSubmitBtn = appointmentForm.querySelector(".form-appointment__btn");
+const submitInputs = appointmentForm.querySelectorAll('.submit-inputs__item input');
+console.log(submitInputs);
+const requiredInputs = document.querySelectorAll('[data-input="required"]');
 
 //name input validation --------------
-submitNameInput.addEventListener('input', (e) => {
+
+submitNameInput.addEventListener('input', nameInputValidation);
+
+function nameInputValidation(e) {
   const regexp = /^\w+\s(\w+\s?){1,4}$/gi;
   const str = e.target.value;
-
   const result = regexp.test(str);
   (!result) ?
     submitNameInput.classList.add("input-invalid")
-    : submitNameInput.classList.remove("input-invalid");
-});
+    : submitNameInput.classList.remove("input-invalid"),
+    submitNameInput.classList.remove("empty"),
+    checkRequiredInputs();
+};
 
 //phone input validation --------------
-submitPhoneInput.addEventListener('input', (e) => {
+submitPhoneInput.addEventListener('input', phoneInputValidation);
 
-  const regexp = /^\+\d{1,4}\(\d{1,5}\)\d{1,10}$/g;
+function phoneInputValidation(e) {
+  const regexp = /^\+\d{1,4}\(\d{1,5}\)\d{4,10}$/g;
   const str = e.target.value;
-
   const result = regexp.test(str);
 
   (!result) ?
     submitPhoneInput.classList.add("input-invalid")
-    : submitPhoneInput.classList.remove("input-invalid");
-});
-
+    : submitPhoneInput.classList.remove("input-invalid"),
+    submitPhoneInput.classList.remove("empty"),
+    checkRequiredInputs();
+};
 
 //email input validation --------------
-submitEmailInput.addEventListener('input', (e) => {
+submitEmailInput.addEventListener('input', emailInputValidation);
+
+function emailInputValidation(e) {
 
   const regexp = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
   const str = e.target.value;
@@ -108,14 +120,76 @@ submitEmailInput.addEventListener('input', (e) => {
 
   (!result) ?
     submitEmailInput.classList.add("input-invalid")
-    : submitEmailInput.classList.remove("input-invalid");
+    : submitEmailInput.classList.remove("input-invalid"),
+    submitEmailInput.classList.remove("empty"),
+    checkRequiredInputs();
+};
+
+//blocking the appointmentSubmitBtn if there are invalid inputs ---------------
+function checkRequiredInputs() {
+  const requiredInputsLength = requiredInputs.length;
+  console.log(requiredInputsLength);
+  let validInputsNumber = 0;
+  requiredInputs.forEach(el => {
+    (el.classList.contains('input-invalid') || el.classList.contains('empty')) ?
+      null : validInputsNumber++;
+  });
+  console.log(validInputsNumber);
+
+  requiredInputsLength == validInputsNumber ?
+    appointmentSubmitBtn.disabled = false & appointmentSubmitBtn.classList.remove('appointment-btn__disabled') :
+    appointmentSubmitBtn.disabled = true & appointmentSubmitBtn.classList.add('appointment-btn__disabled');
+}
+
+// if (appointmentSubmitBtn.disabled = true) { appointmentSubmitBtn.classList.add('appointment-btn__disabled') };
+// if (appointmentSubmitBtn.disabled = false) { appointmentSubmitBtn.classList.remove('appointment-btn__disabled') };
+
+
+//checking the submitted data in the form -----------------
+console.log(appointmentForm);
+
+appointmentForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const formData = new FormData(appointmentForm);
+  const values = Object.fromEntries(formData.entries());
+  console.log('>>', values);
 });
+
+
+// validation of required inputs by submit-button of form
+
+// appointmentSubmitBtn.addEventListener('click', () => {
+//   const regexpName = /^\w+\s(\w+\s?){1,4}$/gi;
+//   const strName = submitNameInput.value;
+//   const resultName = regexpName.test(strName);
+//   (!resultName) ?
+//     submitNameInput.classList.add("input-invalid")
+//     : submitNameInput.classList.remove("input-invalid");
+
+//   const regexpPhone = /^\+\d{1,4}\(\d{1,5}\)\d{1,10}$/g;
+//   const strPhone = submitPhoneInput.value;
+//   const resultPhone = regexpPhone.test(strPhone);
+
+//   (!resultPhone) ?
+//     submitPhoneInput.classList.add("input-invalid")
+//     : submitPhoneInput.classList.remove("input-invalid");
+
+//   const regexpEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+//   const strEmail = submitEmailInput.value;
+
+//   const resultEmail = regexpEmail.test(strEmail);
+
+//   (!resultEmail) ?
+//     submitEmailInput.classList.add("input-invalid")
+//     : submitEmailInput.classList.remove("input-invalid");
+// });
+
 //==============================================================
 
 
 //============Submit services list controls======================
 
-//submit services list in/out --------------
+//submit services list On/Off --------------
 
 const submitServicesInput = document.querySelector('[name="submit-services"]');
 const submitServicesList = document.querySelector(".submit-services__list");
@@ -156,13 +230,7 @@ submitServices.addEventListener('click', () => {
 })
 //==============================================================
 
-const appointmentForm = document.forms["appointment"];
 
-console.log(appointmentForm);
 
-appointmentForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const formData = new FormData(appointmentForm);
-  const values = Object.fromEntries(formData.entries());
-  console.log('>>', values);
-})
+
+
