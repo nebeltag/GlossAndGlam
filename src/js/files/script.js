@@ -78,6 +78,8 @@ const submitInputs = appointmentForm.querySelectorAll('.submit-inputs__item inpu
 console.log(submitInputs);
 const requiredInputs = document.querySelectorAll('[data-input="required"]');
 
+checkRequiredInputs();
+
 //name input validation --------------
 
 submitNameInput.addEventListener('input', nameInputValidation);

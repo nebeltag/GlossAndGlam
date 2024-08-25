@@ -574,7 +574,10 @@
 
   // .form-appointment__submit
 
-  &__submit {}
+  &__submit {
+    padding-top: toRem(72);
+    padding-bottom: toRem(30);
+  }
 }
 
 .submit-inputs {
@@ -921,11 +924,30 @@
   }
 }
 
-.form-appointment__btn {}
+.form-appointment__btn {
+  display: block;
+  margin: 0 auto;
+  transition: all .4s ease;
+
+  &.appointment-btn__disabled {
+    border-color: rgb(233, 228, 219, 0.4);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: $goldColor;
+      background-color: transparent;
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+    opacity: 0.6;
+  }
+}
 
 .appointment-btn__disabled {
   position: relative;
-  border: none;
   overflow: hidden;
   pointer-events: none;
 
@@ -937,8 +959,8 @@
     width: 110%;
     height: 160%;
     border-radius: toRem(12);
-    // border: toRem(2) solid rgb(233, 228, 219, 0.3);
-    background-color: rgb(233, 228, 219, 0.3);
-    z-index: 5;
+    border: toRem(2) solid rgb(233, 228, 219, 0.4);
+    background-color: rgb(233, 228, 219, 0.4);
+    z-index: 2;
   }
 }
