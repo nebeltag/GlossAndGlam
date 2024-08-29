@@ -23,6 +23,7 @@
 .form-appointment {
   width: 100%;
   @include adaptiveValue("padding-top", 77, 25);
+  @include adaptiveValue("padding-bottom", 43, 20);
   position: relative;
 
   &::before {
@@ -575,8 +576,23 @@
   // .form-appointment__submit
 
   &__submit {
-    padding-top: toRem(72);
-    padding-bottom: toRem(30);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    @include adaptiveValue("row-gap", 40, 26);
+    row-gap: toRem(40);
+    column-gap: toRem(24);
+    justify-content: space-between;
+    @include adaptiveValue("padding-top", 72, 36);
+    @include adaptiveValue("padding-bottom", 48, 30);
+
+    @media (max-width:$tablet) {
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    }
+
+    @media (max-width:$mobile) {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
   }
 }
 
@@ -589,6 +605,10 @@
   &__item {
     max-width: toRem(648);
     width: 100%;
+
+    @media (max-width:$mobile) {
+      max-width: 100%;
+    }
   }
 }
 
@@ -599,13 +619,16 @@
   position: relative;
 
   input {
-    //max-width: toRem(648);
     width: 100%;
-    padding: toRem(18) toRem(32);
-    font-size: toRem(22);
+    @include adaptiveValue("padding-top", 18, 10);
+    @include adaptiveValue("padding-bottom", 18, 10);
+    @include adaptiveValue("padding-left", 32, 16);
+    @include adaptiveValue("padding-right", 32, 5);
+    @include adaptiveValue("font-size", 22, 16);
     line-height: 150%;
     /* 27/18 */
     color: $goldColor;
+    background-color: $bgDarkLight;
     z-index: 5;
     border: toRem(1) solid rgb(255, 255, 255, 0.3);
     border-radius: toRem(12);
@@ -674,15 +697,17 @@
   input:focus+&__placeholder {
     top: -2%;
     left: 3%;
-    font-size: toRem(14);
+    @include adaptiveValue("font-size", 14, 10);
     background-color: $bgMainColor;
+    //background-image: linear-gradient(to bottom, transparent 63%, $bgDarkLight 37%);
     color: $goldColor;
   }
 
   input:not(:placeholder-shown)+&__placeholder {
     top: -2%;
     left: 3%;
-    font-size: toRem(14);
+    @include adaptiveValue("font-size", 14, 10);
+    //font-size: toRem(10);
     background-color: $bgMainColor;
   }
 
@@ -739,10 +764,12 @@
   &__placeholder {
     position: absolute;
     top: 50%;
-    left: toRem(27);
+    left: 5%;
+    @include adaptiveValue("font-size", 16, 12);
     padding: toRem(0) toRem(5);
     transform: translateY(-50%);
     color: rgb(255, 255, 255, 0.5);
+    border-radius: toRem(12);
     transition: all .4s ease;
     pointer-events: none;
     text-transform: capitalize;
@@ -774,9 +801,10 @@
     align-items: center;
     justify-content: center;
     transform: translateY(-50%);
-    font-size: toRem(18);
+    @include adaptiveValue("font-size", 18, 12);
     line-height: 133.333333%;
     /* 24/18 */
+    @include adaptiveValue("margin-right", 24, 8);
     margin-right: toRem(24);
     z-index: 5;
     pointer-events: none;
@@ -784,16 +812,17 @@
   }
 
   &__input_btn {
-    //max-width: toRem(648);   
     display: block;
     width: 100%;
-    padding: toRem(18);
-    padding-left: toRem(32);
-    padding-right: toRem(50);
-    font-size: toRem(22);
+    @include adaptiveValue("padding-top", 18, 10);
+    @include adaptiveValue("padding-bottom", 18, 10);
+    @include adaptiveValue("padding-left", 32, 16);
+    @include adaptiveValue("padding-right", 50, 35);
+    @include adaptiveValue("font-size", 22, 16);
     line-height: 150%;
     /* 27/18 */
     color: $goldColor;
+    background-color: $bgDarkLight;
     text-align: start;
     z-index: 5;
     border: toRem(1) solid rgb(255, 255, 255, 0.3);
@@ -810,7 +839,7 @@
   &__input_btn:focus+&__placeholder {
     top: -2%;
     left: 3%;
-    font-size: toRem(14);
+    @include adaptiveValue("font-size", 14, 10);
     background-color: $bgMainColor;
     color: $goldColor;
   }
@@ -818,7 +847,7 @@
   &__input_btn[value]+&__placeholder {
     top: -2%;
     left: 3%;
-    font-size: toRem(14);
+    @include adaptiveValue("font-size", 14, 10);
     background-color: $bgMainColor;
   }
 
@@ -827,13 +856,15 @@
   &__placeholder {
     position: absolute;
     top: 50%;
-    left: toRem(27);
+    left: 5%;
+    @include adaptiveValue("font-size", 16, 12);
     padding: toRem(0) toRem(5);
     transform: translateY(-50%);
     color: rgb(255, 255, 255, 0.5);
     transition: all .4s ease;
     pointer-events: none;
     text-transform: capitalize;
+    border-radius: toRem(12);
   }
 
   // .submit-services__list
@@ -843,7 +874,7 @@
   &__selected {
     top: -2%;
     left: 3%;
-    font-size: toRem(14);
+    @include adaptiveValue("font-size", 14, 10);
     background-color: $bgMainColor;
   }
 }
@@ -874,7 +905,7 @@
   left: 0;
   padding: toRem(5) toRem(5);
   background-color: $bgMainColor;
-  border-radius: 5px;
+  border-radius: toRem(12);
   border: toRem(1) solid $goldColor;
   z-index: 3;
   transition: all .4s ease;
@@ -888,7 +919,7 @@
   // .services-list__item
 
   &__item {
-    font-size: toRem(16);
+    @include adaptiveValue("font-size", 16, 13);
     padding: toRem(5);
     color: $cardTitle;
     border-radius: toRem(5);
@@ -911,6 +942,16 @@
       transform: scale(1);
       opacity: .6;
     }
+
+    @media (max-width:$mobile) {
+      &:active {
+        transform: scale(0.98) translateY(10%);
+        color: $goldColor;
+        background-color: $bgDarkLight;
+        opacity: 1;
+      }
+
+    }
   }
 
   &::-webkit-scrollbar {
@@ -926,8 +967,22 @@
 
 .form-appointment__btn {
   display: block;
+  position: relative;
+  overflow: hidden;
   margin: 0 auto;
   transition: all .4s ease;
+  //z-index: 5;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: scale(0);
+    border-radius: 50%;
+    border: 1px solid $bgDarkLight;
+    z-index: -1;
+  }
 
   &.appointment-btn__disabled {
     border-color: rgb(233, 228, 219, 0.4);
@@ -940,10 +995,34 @@
     }
   }
 
-  &:active {
-    transform: scale(0.95);
-    opacity: 0.6;
+  @media (min-width:$mobile) {
+    &:active {
+      &::after {
+        animation: appointment-btn .2s ease-out;
+      }
+    }
   }
+
+  @keyframes appointment-btn {
+    0% {
+      transform: scale(45);
+    }
+
+    50% {
+      transform: scale(80);
+    }
+
+    100% {
+      transform: scale(100);
+    }
+  }
+
+
+  &:active {
+    transform: scale(.95) translateY(7px);
+    opacity: .3;
+  }
+
 }
 
 .appointment-btn__disabled {
@@ -963,4 +1042,15 @@
     background-color: rgb(233, 228, 219, 0.4);
     z-index: 2;
   }
+}
+
+.submit-message__success {
+  position: fixed;
+  @include adaptiveValue("padding", 8, 4);
+  @include adaptiveValue("font-size", 16, 10);
+  // border: toRem(1) solid $goldColor;
+  // border-radius: toRem(12);
+  color: $goldColor;
+  text-transform: capitalize;
+  z-index: 20;
 }

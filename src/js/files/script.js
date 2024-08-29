@@ -68,14 +68,14 @@ currentYearSpan.innerText = currentYear;
 //==============================================================
 
 //============Appointment form validation======================
-
+const appointmentContainer = document.querySelector(".appointment__container");
 const appointmentForm = document.forms["appointment"];
 const submitNameInput = document.querySelector('[name="submit-name"]');
 const submitPhoneInput = document.querySelector('[name="submit-phone"]');
 const submitEmailInput = document.querySelector('[name="submit-email"]');
 const appointmentSubmitBtn = appointmentForm.querySelector(".form-appointment__btn");
 const submitInputs = appointmentForm.querySelectorAll('.submit-inputs__item input');
-console.log(submitInputs);
+//console.log(submitInputs);
 const requiredInputs = document.querySelectorAll('[data-input="required"]');
 
 checkRequiredInputs();
@@ -156,6 +156,30 @@ appointmentForm.addEventListener('submit', e => {
   const values = Object.fromEntries(formData.entries());
   console.log('>>', values);
 });
+
+
+//show successfuly message after appointment submit -----------------
+
+function createMessageUnder(elem, html) {
+
+  let message = document.createElement('div');
+  message.classList.add('submit-message__success');
+
+  let coords = elem.getBoundingClientRect();
+  console.log(coords);
+  message.style.left = coords.left + 'px';
+  message.style.top = coords.bottom + 'px';
+  message.innerHTML = html;
+
+  return message;
+}
+
+appointmentSubmitBtn.addEventListener('click', () => {
+  let appointmentUnderMessage = createMessageUnder(appointmentForm, 'Your Appointment Is Successfuly');
+  document.body.append(appointmentUnderMessage);
+  setTimeout(() => appointmentUnderMessage.remove(), 4000);
+});
+
 
 
 // validation of required inputs by submit-button of form
