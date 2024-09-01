@@ -65,11 +65,11 @@
     max-width: toRem(405);
     width: 100%;
     flex: 1 1 auto;
-    @include adaptiveValue("padding-top", 16, 10);
-    @include adaptiveValue("padding-bottom", 16, 10);
+    @include adaptiveValue("padding-top", 14, 10);
+    @include adaptiveValue("padding-bottom", 14, 10);
     @include adaptiveValue("padding-left", 31, 10);
     @include adaptiveValue("padding-right", 31, 5);
-    //@include adaptiveValue("font-size", 18, 16);
+    @include adaptiveValue("font-size", 20, 16);
     //@include adaptiveValue("width", 405, 240);
     line-height: 150%;
     /* 27/18 */
@@ -143,8 +143,8 @@
     // right: 1px;
     font-family: "Raleway";
     font-weight: 600;
-    @include adaptiveValue("padding-top", 16, 12);
-    @include adaptiveValue("padding-bottom", 16, 12);
+    @include adaptiveValue("padding-top", 14, 12);
+    @include adaptiveValue("padding-bottom", 14, 12);
     @include adaptiveValue("padding-left", 31, 5);
     @include adaptiveValue("padding-right", 31, 5);
     @include adaptiveValue("font-size", 16, 12);

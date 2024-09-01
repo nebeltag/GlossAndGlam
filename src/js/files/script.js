@@ -92,7 +92,7 @@ function nameInputValidation(e) {
     submitNameInput.classList.add("input-invalid")
     : submitNameInput.classList.remove("input-invalid"),
     submitNameInput.classList.remove("empty"),
-    checkRequiredInputs();
+    checkRequiredInputs('appointment-btn__disabled');
 };
 
 //phone input validation --------------
@@ -107,10 +107,10 @@ function phoneInputValidation(e) {
     submitPhoneInput.classList.add("input-invalid")
     : submitPhoneInput.classList.remove("input-invalid"),
     submitPhoneInput.classList.remove("empty"),
-    checkRequiredInputs();
+    checkRequiredInputs('appointment-btn__disabled');
 };
 
-//email input validation --------------
+//appointment email input validation --------------
 submitEmailInput.addEventListener('input', emailInputValidation);
 
 function emailInputValidation(e) {
@@ -124,11 +124,11 @@ function emailInputValidation(e) {
     submitEmailInput.classList.add("input-invalid")
     : submitEmailInput.classList.remove("input-invalid"),
     submitEmailInput.classList.remove("empty"),
-    checkRequiredInputs();
+    checkRequiredInputs('appointment-btn__disabled');
 };
 
 //blocking the appointmentSubmitBtn if there are invalid inputs ---------------
-function checkRequiredInputs() {
+function checkRequiredInputs(disabledClass) {
   const requiredInputsLength = requiredInputs.length;
   console.log(requiredInputsLength);
   let validInputsNumber = 0;
@@ -139,8 +139,8 @@ function checkRequiredInputs() {
   console.log(validInputsNumber);
 
   requiredInputsLength == validInputsNumber ?
-    appointmentSubmitBtn.disabled = false & appointmentSubmitBtn.classList.remove('appointment-btn__disabled') :
-    appointmentSubmitBtn.disabled = true & appointmentSubmitBtn.classList.add('appointment-btn__disabled');
+    appointmentSubmitBtn.disabled = false & appointmentSubmitBtn.classList.remove(disabledClass) :
+    appointmentSubmitBtn.disabled = true & appointmentSubmitBtn.classList.add(disabledClass);
 }
 
 // if (appointmentSubmitBtn.disabled = true) { appointmentSubmitBtn.classList.add('appointment-btn__disabled') };
@@ -256,6 +256,24 @@ submitServices.addEventListener('click', () => {
 })
 //==============================================================
 
+//subscribe email input validation --------------
+const subscribeForm = document.forms["subscribe"];
+const subscribeEmailInput = subscribeForm.querySelector(".subscribe-body__email");
+subscribeEmailInput.addEventListener('input', subscribeEmailValidation);
+
+function subscribeEmailValidation(e) {
+
+  const regexp = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+  const str = e.target.value;
+
+  const result = regexp.test(str);
+
+  (!result) ?
+    subscribeEmailInput.classList.add("input-invalid")
+    : subscribeEmailInput.classList.remove("input-invalid"),
+    subscribeEmailInput.classList.remove("empty"),
+    checkRequiredInputs('appointment-btn__disabled');
+};
 
 
 
