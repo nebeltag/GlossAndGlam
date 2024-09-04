@@ -1,19 +1,29 @@
 .header {
+  min-height: toRem(96);
+  @include adaptiveValue("min-height", 96, 60);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  display: flex;
+  align-items: flex-end;
   z-index: 20;
+  transition: all .6s ease-in-out;
   background-color: $bgDark;
+
+  &._header-scroll {
+    opacity: .98;
+    @include adaptiveValue("min-height", 70, 60);
+  }
 
   // .header__container
 
   &__container {
+    width: 100%;
     display: grid;
     grid-template-columns: auto 1fr auto;
-    @include adaptiveValue("min-height", 106, 60);
     align-items: center;
-    @include adaptiveValue("padding-top", 40, 5);
+    padding-top: toRem(5);
     padding-bottom: toRem(5);
     gap: toRem(15);
 
@@ -39,11 +49,16 @@
     }
 
     &-image {
-      @include adaptiveValue("width", 204, 120, 0, $containerWidth, 767.98);
+      transition: all .8s;
 
-      //@include adaptiveValue("width", 204, 130, 0, $containerWidth, 320);
+      @include adaptiveValue("width", 204, 110, 0, $containerWidth, 767.98);
+
       @media (max-width:$mobile) {
         width: 85%;
+      }
+
+      ._header-scroll & {
+        @include adaptiveValue("width", 190, 110, 0, $containerWidth, 767.98);
       }
     }
 
@@ -53,6 +68,8 @@
         transform: scale(1.01);
       }
     }
+
+
   }
 
   // .header__menu
@@ -358,6 +375,7 @@
     height: 100%;
     @include adaptiveValue("column-gap", 24, 12, 0, $containerWidth, 767.98);
     row-gap: toRem(3);
+    transition: all .8s;
 
     @media (max-width:$mobile) {
       justify-content: center;

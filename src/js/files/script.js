@@ -75,92 +75,77 @@ const submitPhoneInput = document.querySelector('[name="submit-phone"]');
 const submitEmailInput = document.querySelector('[name="submit-email"]');
 const appointmentSubmitBtn = appointmentForm.querySelector(".form-appointment__btn");
 const submitInputs = appointmentForm.querySelectorAll('.submit-inputs__item input');
-//console.log(submitInputs);
-const requiredInputs = document.querySelectorAll('[data-input="required"]');
 
-checkRequiredInputs();
+const appointmentValidatedInputs = appointmentForm.querySelectorAll('[data-input="validated__input"]');
 
-//name input validation --------------
+//inputs regexps ----------------------
+const emailRegexp = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+const nameRegexp = /^\w+\s(\w+\s?){1,4}$/gi;
+const phoneRegexp = /^\+\d{1,4}\(\d{1,5}\)\d{4,10}$/g;
 
-submitNameInput.addEventListener('input', nameInputValidation);
+// inputs validation function---------
+function inputsValidation(e, formInput, inputRegexp, validatedInputs, submitButton, disabledClass) {
 
-function nameInputValidation(e) {
-  const regexp = /^\w+\s(\w+\s?){1,4}$/gi;
   const str = e.target.value;
-  const result = regexp.test(str);
-  (!result) ?
-    submitNameInput.classList.add("input-invalid")
-    : submitNameInput.classList.remove("input-invalid"),
-    submitNameInput.classList.remove("empty"),
-    checkRequiredInputs('appointment-btn__disabled');
-};
-
-//phone input validation --------------
-submitPhoneInput.addEventListener('input', phoneInputValidation);
-
-function phoneInputValidation(e) {
-  const regexp = /^\+\d{1,4}\(\d{1,5}\)\d{4,10}$/g;
-  const str = e.target.value;
-  const result = regexp.test(str);
+  const result = inputRegexp.test(str);
 
   (!result) ?
-    submitPhoneInput.classList.add("input-invalid")
-    : submitPhoneInput.classList.remove("input-invalid"),
-    submitPhoneInput.classList.remove("empty"),
-    checkRequiredInputs('appointment-btn__disabled');
-};
-
-//appointment email input validation --------------
-submitEmailInput.addEventListener('input', emailInputValidation);
-
-function emailInputValidation(e) {
-
-  const regexp = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-  const str = e.target.value;
-
-  const result = regexp.test(str);
-
-  (!result) ?
-    submitEmailInput.classList.add("input-invalid")
-    : submitEmailInput.classList.remove("input-invalid"),
-    submitEmailInput.classList.remove("empty"),
-    checkRequiredInputs('appointment-btn__disabled');
+    formInput.classList.add("input-invalid")
+    : formInput.classList.remove("input-invalid"),
+    formInput.classList.remove("empty");
+  checkValidatedInputs(disabledClass, submitButton, validatedInputs);
 };
 
 //blocking the appointmentSubmitBtn if there are invalid inputs ---------------
-function checkRequiredInputs(disabledClass) {
-  const requiredInputsLength = requiredInputs.length;
-  console.log(requiredInputsLength);
+
+function checkValidatedInputs(disabledClass, submitButton, validatedInputs) {
+  const validatedInputsLength = validatedInputs.length;
+  console.log(validatedInputsLength);
   let validInputsNumber = 0;
-  requiredInputs.forEach(el => {
+  validatedInputs.forEach(el => {
     (el.classList.contains('input-invalid') || el.classList.contains('empty')) ?
       null : validInputsNumber++;
   });
   console.log(validInputsNumber);
 
-  requiredInputsLength == validInputsNumber ?
-    appointmentSubmitBtn.disabled = false & appointmentSubmitBtn.classList.remove(disabledClass) :
-    appointmentSubmitBtn.disabled = true & appointmentSubmitBtn.classList.add(disabledClass);
-}
+  validatedInputsLength == validInputsNumber ?
+    submitButton.disabled = false & submitButton.classList.remove(disabledClass) :
+    submitButton.disabled = true & submitButton.classList.add(disabledClass);
+};
 
-// if (appointmentSubmitBtn.disabled = true) { appointmentSubmitBtn.classList.add('appointment-btn__disabled') };
-// if (appointmentSubmitBtn.disabled = false) { appointmentSubmitBtn.classList.remove('appointment-btn__disabled') };
+checkValidatedInputs('appointment-btn__disabled', appointmentSubmitBtn, appointmentValidatedInputs);
+
+//name input validation --------------
+
+submitNameInput.addEventListener('input',
+  (e) => inputsValidation(e, submitNameInput, nameRegexp, appointmentValidatedInputs, appointmentSubmitBtn, 'appointment-btn__disabled'));
+
+//phone input validation --------------
+
+submitPhoneInput.addEventListener('input',
+  (e) => inputsValidation(e, submitPhoneInput, phoneRegexp, appointmentValidatedInputs, appointmentSubmitBtn, 'appointment-btn__disabled'));
+
+//appointment email input validation --------------
+
+submitEmailInput.addEventListener('input',
+  (e) => inputsValidation(e, submitEmailInput, emailRegexp, appointmentValidatedInputs, appointmentSubmitBtn, 'appointment-btn__disabled'));
 
 
 //checking the submitted data in the form -----------------
-console.log(appointmentForm);
-
-appointmentForm.addEventListener('submit', e => {
+function checkSubmitData(e, formName) {
   e.preventDefault();
-  const formData = new FormData(appointmentForm);
+  const formData = new FormData(formName);
   const values = Object.fromEntries(formData.entries());
   console.log('>>', values);
-});
+}
+
+//checking the submitted data in the appointment-form -----------------
+appointmentForm.addEventListener('submit', (e) => checkSubmitData(e, appointmentForm));
 
 
 //show successfuly message after appointment submit -----------------
 
-function createMessageUnder(elem, html) {
+function createMessageUnder(elem, html, coordsRatio) {
 
   let message = document.createElement('div');
   message.classList.add('submit-message__success');
@@ -168,48 +153,17 @@ function createMessageUnder(elem, html) {
   let coords = elem.getBoundingClientRect();
   console.log(coords);
   message.style.left = coords.left + 'px';
-  message.style.top = coords.bottom + 'px';
+  message.style.top = coords.bottom * coordsRatio + 'px';
   message.innerHTML = html;
 
   return message;
 }
 
 appointmentSubmitBtn.addEventListener('click', () => {
-  let appointmentUnderMessage = createMessageUnder(appointmentForm, 'Your Appointment Is Successfuly');
+  let appointmentUnderMessage = createMessageUnder(appointmentForm, 'Your Appointment Is Successfuly', 0.8);
   document.body.append(appointmentUnderMessage);
   setTimeout(() => appointmentUnderMessage.remove(), 4000);
 });
-
-
-
-// validation of required inputs by submit-button of form
-
-// appointmentSubmitBtn.addEventListener('click', () => {
-//   const regexpName = /^\w+\s(\w+\s?){1,4}$/gi;
-//   const strName = submitNameInput.value;
-//   const resultName = regexpName.test(strName);
-//   (!resultName) ?
-//     submitNameInput.classList.add("input-invalid")
-//     : submitNameInput.classList.remove("input-invalid");
-
-//   const regexpPhone = /^\+\d{1,4}\(\d{1,5}\)\d{1,10}$/g;
-//   const strPhone = submitPhoneInput.value;
-//   const resultPhone = regexpPhone.test(strPhone);
-
-//   (!resultPhone) ?
-//     submitPhoneInput.classList.add("input-invalid")
-//     : submitPhoneInput.classList.remove("input-invalid");
-
-//   const regexpEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-//   const strEmail = submitEmailInput.value;
-
-//   const resultEmail = regexpEmail.test(strEmail);
-
-//   (!resultEmail) ?
-//     submitEmailInput.classList.add("input-invalid")
-//     : submitEmailInput.classList.remove("input-invalid");
-// });
-
 //==============================================================
 
 
@@ -249,32 +203,47 @@ submitServicesItems.forEach(el => {
 });
 
 //Services-input down-arrow up & down --------------
-// const submitServices = document.querySelector(".submit-services");
 
 submitServices.addEventListener('click', () => {
   submitServices.classList.toggle('services-arrow__down');
-})
+});
 //==============================================================
 
-//subscribe email input validation --------------
+//====================Subscribe email input validation ==============
+
 const subscribeForm = document.forms["subscribe"];
 const subscribeEmailInput = subscribeForm.querySelector(".subscribe-body__email");
-subscribeEmailInput.addEventListener('input', subscribeEmailValidation);
+const subscribeValidatedInputs = subscribeForm.querySelectorAll('[data-input="validated__input"]');
+const subscribeSubmitBtn = subscribeForm.querySelector(".subscribe-body__button");
 
-function subscribeEmailValidation(e) {
+checkValidatedInputs('subscribe-btn__disabled', subscribeSubmitBtn, subscribeValidatedInputs);
 
-  const regexp = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-  const str = e.target.value;
+subscribeEmailInput.addEventListener('input',
+  (e) => inputsValidation(e, subscribeEmailInput, emailRegexp, subscribeValidatedInputs, subscribeSubmitBtn, 'subscribe-btn__disabled'));
 
-  const result = regexp.test(str);
+//checking the submitted data in the subscribe-form -----------------
+subscribeForm.addEventListener('submit', (e) => checkSubmitData(e, subscribeForm));
 
-  (!result) ?
-    subscribeEmailInput.classList.add("input-invalid")
-    : subscribeEmailInput.classList.remove("input-invalid"),
-    subscribeEmailInput.classList.remove("empty"),
-    checkRequiredInputs('appointment-btn__disabled');
-};
+//show successfuly message after subscribe submit -----------------
 
+// function createMessageUnder(elem, html) {
 
+//   let message = document.createElement('div');
+//   message.classList.add('submit-message__success');
+
+//   let coords = elem.getBoundingClientRect();
+//   console.log(coords);
+//   message.style.left = coords.left + 'px';
+//   message.style.top = coords.bottom * 0.9 + 'px';
+//   message.innerHTML = html;
+
+//   return message;
+// }
+
+subscribeSubmitBtn.addEventListener('click', () => {
+  let subscribeUnderMessage = createMessageUnder(subscribeForm, 'You are subscribed to newsletter', 0.8);
+  document.body.append(subscribeUnderMessage);
+  setTimeout(() => subscribeUnderMessage.remove(), 4000);
+});
 
 
