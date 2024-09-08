@@ -44,33 +44,26 @@
 
   // .services__item
 
-  &__item {}
+  &__item {
+    transform: translate(0px, 10%);
+    opacity: 0;
+    transition: all .2s;
+
+    &._watcher-view {
+      transition: all .6s;
+      transform: translateX(0px, 0px);
+      opacity: 1;
+    }
+  }
 }
 
 .item-services {
-  //max-width: toRem(312);
   width: 100%;
-  // flex: 0 1 auto;
   display: flex;
   border-radius: 12px;
   justify-self: center;
 
-  //@include adaptiveValue("height", 404, 230);
-  //@include adaptiveValue("width", 312, 170);
 
-  // &:last-child {
-  //   justify-self: center;
-  // }
-
-  // @media(min-width:485px) and (max-width: 1005px) {
-  //   &:nth-child(even) {
-  //     justify-self: flex-start;
-  //   }
-
-  //   &:nth-child(odd) {
-  //     justify-self: flex-end;
-  //   }
-  // }
 
 
 
@@ -89,11 +82,6 @@
     transition: all .3s ease-out;
 
     &--body {
-      // transform: translate(-50%, -50%);
-      // left: 50%;
-      // top: 50%;
-      // position: relative;
-
       display: flex;
       flex-direction: column;
       align-items: center;
