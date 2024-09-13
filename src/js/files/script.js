@@ -5,20 +5,20 @@ import { flsModules } from "./modules.js";
 
 //======On/Off Services submenu in header-nav=================
 
-const servicesMenuLink = document.querySelectorAll('.services-menu')[0];
-const servicesMenuSublist = document.querySelectorAll('.services-menu__list')[0];
-
-const servicesMenuItems = [servicesMenuLink, servicesMenuSublist];
+//const servicesMenuLink = document.querySelectorAll('.services-menu')[0];
+const servicesMenuList = document.querySelector('.services-menu__list');
+const servicesMenuButton = document.querySelector('.services-menu__button');
+const servicesMenuItems = [servicesMenuButton, servicesMenuList];
 
 const showServicesMenu = (e) => {
-  (e.target == servicesMenuLink) ?
+  (e.target == servicesMenuButton) ?
     (servicesMenuItems.forEach(item => {
       item.classList.toggle('_show-services')
     })) :
     (servicesMenuItems.forEach(item => {
       item.classList.remove('_show-services')
-    }))
-}
+    }));
+};
 
 document.addEventListener("click", showServicesMenu);
 
@@ -226,20 +226,6 @@ subscribeForm.addEventListener('submit', (e) => checkSubmitData(e, subscribeForm
 
 //show successfuly message after subscribe submit -----------------
 
-// function createMessageUnder(elem, html) {
-
-//   let message = document.createElement('div');
-//   message.classList.add('submit-message__success');
-
-//   let coords = elem.getBoundingClientRect();
-//   console.log(coords);
-//   message.style.left = coords.left + 'px';
-//   message.style.top = coords.bottom * 0.9 + 'px';
-//   message.innerHTML = html;
-
-//   return message;
-// }
-
 subscribeSubmitBtn.addEventListener('click', () => {
   let subscribeUnderMessage = createMessageUnder(subscribeForm, 'You are subscribed to newsletter', 0.8);
   document.body.append(subscribeUnderMessage);
@@ -247,3 +233,54 @@ subscribeSubmitBtn.addEventListener('click', () => {
 });
 
 
+//==================== Add to packages-item class "_hovered" when it's hovered  ==============
+
+const packagesItems = document.querySelectorAll(".packages__item");
+const packagesList = document.querySelector(".packages__list");
+
+// packagesList.addEventListener('mouseleave', () => {
+//   packagesItems.forEach(el => {
+//     if (el.classList.contains("_muted")) {
+//       el.classList.remove("_muted");
+//     }
+//   });
+// });
+
+// packagesItems.forEach(el => {
+//   el.addEventListener('mouseenter', (e) => {
+//     e.target.classList.remove('_muted');
+//     e.target.classList.add('_hovered');
+//     packagesItems.forEach(el => {
+//       if (!el.classList.contains("_hovered")) {
+//         el.classList.add('_muted')
+//       };
+//     });
+//   });
+// });
+
+// packagesItems.forEach(el => {
+//   el.addEventListener('mouseleave', (e) => {
+//     e.target.classList.remove('_hovered');
+//   });
+// });
+
+//mute packages-items that are unhovered-------------------- 
+
+packagesList.addEventListener('mouseover', (e) => {
+
+  let currentElement = e.target.closest("article");
+  if (currentElement) {
+    packagesItems.forEach(el => {
+      el !== currentElement ?
+        el.classList.add('_muted') :
+        el.classList.remove('_muted');
+    });
+  };
+});
+
+//unmute packages-items when cursor leave packages-list--------------------
+packagesList.addEventListener('mouseout', (e) => {
+  packagesItems.forEach(el => {
+    el.classList.remove('_muted');
+  })
+});

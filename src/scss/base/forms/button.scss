@@ -10,6 +10,7 @@
 	/* 24/16 */
 	color: $bgMainColor;
 	text-transform: capitalize;
+
 	@include adaptiveValue("padding-top", 15, 8);
 	@include adaptiveValue("padding-bottom", 15, 8);
 	@include adaptiveValue("padding-left", 32, 12);
@@ -30,6 +31,7 @@
 	}
 
 	&--small {
+
 		@include adaptiveValue("padding-top", 15, 8, 0, $containerWidth, 767.98);
 		@include adaptiveValue("padding-bottom", 15, 8, 0, $containerWidth, 767.98);
 		@include adaptiveValue("padding-left", 32, 12, 0, $containerWidth, 767.98);

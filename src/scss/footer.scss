@@ -12,6 +12,7 @@
     display: flex;
     @include adaptiveValue("gap", 112, 50, 0, $containerWidth, 991.98);
     justify-content: space-between;
+
     @include adaptiveValue("padding-top", 120, 20);
     @include adaptiveValue("padding-bottom", 88, 20);
 
@@ -19,6 +20,7 @@
       display: grid;
       grid-template-columns: auto 1fr;
       grid-template-rows: 1fr auto;
+
       @include adaptiveValue("gap", 40, 30);
 
     }
@@ -46,6 +48,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto;
+
       @include adaptiveValue("column-gap", 20, 10);
       @include adaptiveValue("row-gap", 10, 5);
     }
@@ -60,6 +63,7 @@
   // .footer__logo
 
   &__logo {
+
     @include adaptiveValue("margin-bottom", 22, 8);
     cursor: pointer;
 
@@ -87,23 +91,21 @@
 
       @include adaptiveValue("width", 204, 130, 0, $containerWidth, 767.98);
 
-
       @media (max-width:$mobile) {
         width: toRem(147);
-
       }
     }
-
   }
-
 
   // .footer__text
 
   &__text {
+
     @include adaptiveValue("margin-bottom", 32, 8);
 
     p {
       line-height: 150%;
+
       @include adaptiveValue("font-size", 16, 12);
 
       &:not(:last-child) {
@@ -140,6 +142,7 @@
 
   &__copy {
     position: relative;
+
     @include adaptiveValue("padding-top", 32, 18);
     @include adaptiveValue("padding-bottom", 32, 18);
     @include adaptiveValue("font-size", 12, 10);
@@ -223,7 +226,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    //background-color: $bgDarkLight;
     border-radius: toRem(5);
     padding: toRem(14) toRem(4);
 
@@ -236,8 +238,6 @@
       left: -50%;
       width: 200%;
       height: 100%;
-      // border-radius: 50%;
-      // transform: translate(-50%, 0);
       background-color: $bgDarkLight;
       z-index: -1;
     }
@@ -245,18 +245,6 @@
     ._spoller-init & {
       z-index: 5;
     }
-
-    // &::after {
-    //   position: absolute;
-    //   content: "";
-    //   bottom: toRem(-25);
-    //   left: 50%;
-    //   width: toRem(200);
-    //   height: toRem(1);
-    //   border-radius: 50%;
-    //   transform: translate(-50%, 0);
-    //   background-color: $mainColor;
-    // }
   }
 
 
@@ -268,10 +256,6 @@
 
   &__details {
     @media (max-width:$mobileSmall) {
-      // &:not(:last-child) {
-      //   margin-bottom: toRem(15);
-      // }
-
       width: 100%;
       padding-bottom: toRem(15);
       border-bottom: 2px solid $bgDark;
@@ -382,12 +366,15 @@
   // .contact-footer__title
 
   &__title {
-    @include adaptiveValue("font-size", 20, 16);
+
     line-height: 140%;
     /* 28/20 */
     font-weight: 500;
     color: #ffffff;
+
+    @include adaptiveValue("font-size", 20, 16);
     @include adaptiveValue("margin-bottom", 32, 10);
+
     text-transform: capitalize;
 
     @media (max-width:$tablet) {
@@ -416,8 +403,9 @@
     padding-left: toRem(28);
 
     &:not(:last-child) {
+
       @include adaptiveValue("margin-bottom", 20, 14);
-      //margin-bottom: toRem(20);
+
     }
 
     h3 {
@@ -456,11 +444,10 @@
       justify-content: center;
       left: toRem(0);
       top: toRem(0);
-      //font-size: toRem(18);
+
       @include adaptiveValue("height", 24, 18);
       @include adaptiveValue("width", 24, 18);
-      // height: toRem(24);
-      // width: toRem(24);
+
       color: rgba(255, 255, 255, 0.5);
     }
 

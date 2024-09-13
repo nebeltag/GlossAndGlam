@@ -6,12 +6,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     @include adaptiveValue("padding-top", 120, 40);
   }
 
   // .packages__block-header
 
-  &__block-header {}
+  &__block-header {
+
+    @include adaptiveValue("padding-bottom", 80, 16);
+  }
 
   // .packages__list
 
@@ -20,15 +24,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    //row-gap: toRem(28);
+
     @include adaptiveValue("column-gap", 24, 16);
     @include adaptiveValue("row-gap", 28, 22);
-    @include adaptiveValue("padding-top", 80, 16);
 
-    @media (max-width:$mobile) {
-      // flex-wrap: wrap;
-      // justify-content: center;
-    }
   }
 
   // .packages__item
@@ -39,15 +38,23 @@
 }
 
 .item-packages {
+  position: relative;
   flex: 1 1 auto;
   display: flex;
   justify-content: center;
   max-width: toRem(424);
-  //width: 100%;
   background-color: $bgDarkLight;
   border-radius: toRem(10);
   border: toRem(1) solid $goldColor;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+  transition: opacity .2s ease-in;
+  cursor: default;
 
+  &._muted {
+
+    opacity: .6;
+    transition: opacity .2s ease-in;
+  }
 
   // .item-packages__body
 
@@ -56,8 +63,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    //padding-top: toRem(48);    
-    //padding-bottom: toRem(48);
+
     @include adaptiveValue("padding-top", 48, 12);
     @include adaptiveValue("padding-bottom", 48, 22);
   }
@@ -73,7 +79,7 @@
     color: $cardTitle;
     text-align: center;
     text-transform: capitalize;
-    //margin-bottom: toRem(12);
+
     @include adaptiveValue("margin-bottom", 12, 8);
   }
 
@@ -148,12 +154,11 @@
 
 .packages-price {
 
-  //margin-bottom: toRem(32);
   @include adaptiveValue("margin-bottom", 32, 10);
   text-align: center;
 
   &__currency {
-    //font-size: toRem(32);
+
     @include adaptiveValue("font-size", 32, 24);
     color: $cardTitle;
   }
@@ -170,7 +175,7 @@
 
 .packages-sublist {
   flex: 1 1 auto;
-  //margin-bottom: toRem(56);
+
   @include adaptiveValue("margin-bottom", 56, 20);
 
   // .packages-sublist__item
@@ -180,7 +185,7 @@
     line-height: 150%;
     /* 24/16 */
     color: rgba(255, 255, 255, 0.7);
-    //padding-left: toRem(30);
+
     @include adaptiveValue("padding-left", 30, 22);
     @include adaptiveValue("font-size", 16, 12);
 
@@ -189,15 +194,14 @@
       position: absolute;
       top: toRem(2);
       left: 0;
-      // height: toRem(21);      
-      // width: toRem(21);
+
       @include adaptiveValue("height", 21, 14);
       @include adaptiveValue("width", 21, 14);
+      @include adaptiveValue("font-size", 11, 9);
+
       display: flex;
       align-items: center;
       justify-content: center;
-      //font-size: toRem(11);
-      @include adaptiveValue("font-size", 11, 9);
       border-radius: 50%;
       background-color: $goldColor;
       color: $bgDarkLight;
@@ -205,7 +209,7 @@
     }
 
     &:not(:last-child) {
-      //margin-bottom: toRem(16);
+
       @include adaptiveValue("margin-bottom", 16, 8);
     }
   }

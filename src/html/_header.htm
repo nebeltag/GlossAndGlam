@@ -1,5 +1,9 @@
 <header class="header">
+
+	<!-- /.header__container -->
 	<div class="header__container">
+
+		<!-- .header__logo -->
 		<a href="#" class="header__logo">
 			<svg class="header__logo-image" width="204" height="40" viewBox="0 0 204 36" fill="none"
 				xmlns="http://www.w3.org/2000/svg">
@@ -21,13 +25,22 @@
 					fill="#CEA561" />
 			</svg>
 		</a>
+		<!-- /.header__logo -->
+
+		<!-- navigation -->
 		<div class="header__menu menu">
 			<nav class="menu__body">
+
+				<!-- .menu__list -->
 				<ul class="menu__list">
 					<li class="menu__item"><a data-goto=".hero" href="#" class="menu__link">Home</a></li>
 					<li class="menu__item"><a href="javascript://" class="menu__link">About Us</a></li>
-					<li class="menu__item">
-						<a data-goto=".services" href="#" class="menu__link services-menu">Services</a>
+					<li class="menu__item services-item">
+						<div class="services-item__body">
+							<a data-goto=".services" href="#" class="menu__link services-menu">Services</a>
+							<button class="services-menu__button _icon-drop-arrow"></button>
+						</div>
+						<!-- .services-menu__list -->
 						<ul class="services-menu__list">
 							<li class="services-menu__item"><a href="#" class="services-menu__link">Hair Cut</a>
 							</li>
@@ -40,13 +53,19 @@
 							<li class="services-menu__item"><a href="#" class="services-menu__link">Massage</a>
 							</li>
 						</ul>
+						<!-- /.services-menu__list -->
+
 					</li>
 					<li class="menu__item"><a data-goto=".packages" href="#" class="menu__link">Pricing</a></li>
 					<li class="menu__item"><a data-goto=".appointment" href="#" class="menu__link">Appointment</a></li>
 					<li class="menu__item"><a href="#" class="menu__link">Contact</a></li>
 				</ul>
+				<!-- /.menu__list -->
 			</nav>
 		</div>
+		<!-- /navigation -->
+
+		<!-- .header__action -->
 		<div data-da=".menu__body, 767.98" class="header__action action-header">
 			<div class="action-header__body">
 				<a href="#" class="action-header__link _icon-cart"></a>
@@ -60,7 +79,9 @@
 				</form>
 			</div>
 		</div>
-		<!-- <button type="button" class="menu__icon icon-menu"><span></span></button> -->
+		<!-- /.header__action -->
+
+		<!-- burger-menu__button -->
 		<button class="menu__icon icon-menu" aria-controls="primary-navigation" aria-expanded="false">
 			<svg stroke="var(--button-color)" fill="none" class="hamburger" viewBox="-10 -10 120 120">
 				<path class="line" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"
@@ -68,5 +89,9 @@
 				</path>
 			</svg>
 		</button>
+		<!-- /burger-menu__button -->
+
 	</div>
+	<!-- /.header__container -->
+
 </header>

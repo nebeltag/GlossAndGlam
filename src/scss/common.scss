@@ -9,12 +9,14 @@
   justify-content: center;
   align-content: center;
   text-align: center;
+
   @include adaptiveValue("padding-top", 62, 10);
 
   // .block-header__title
 
   &__title {
     font-family: "Cormorant Garamond";
+
     @include adaptiveValue("font-size", 64, 40);
     line-height: 125%;
     /* 80/64 */
@@ -26,6 +28,7 @@
   // .block-header__text
 
   &__text {
+
     @include adaptiveValue("font-size", 16, 12);
     line-height: 150%;
 

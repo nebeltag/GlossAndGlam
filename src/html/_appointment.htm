@@ -90,11 +90,14 @@
 
       <!-- .submit -->
       <fieldset form="appointment" class="form-appointment__submit submit-inputs">
+        <!-- .submit-name -->
         <div class="submit-inputs__item submit-name">
           <input type="text" name="submit-name" placeholder="" title="Field is required" maxlength="50"
             data-input="validated__input" class="empty">
           <label class="submit-name__placeholder">Enter Your Name *</label>
         </div>
+        <!-- /.submit-name -->
+        <!-- .submit-phone -->
         <div class="submit-inputs__item submit-phone">
           <input type="tel" name="submit-phone" placeholder="" title="Field is required" data-input="validated__input"
             class="empty">
@@ -102,15 +105,20 @@
             <span>[+x(x)xxxxxxx]</span>
           </label>
         </div>
+        <!-- /.submit-phone -->
+        <!-- .submit-email -->
         <div class="submit-inputs__item submit-email">
           <input type="email" name="submit-email" placeholder="" title="Field is required" data-input="validated__input"
             class="empty">
           <label class="submit-email__placeholder">Enter Your Email *</label>
         </div>
+        <!-- /.submit-email -->
+        <!-- .submit-services -->
         <div class="submit-inputs__item submit-services _icon-drop-arrow">
           <input type="text" name="selected-service" id="selected-service">
           <input type="button" name="submit-services" class="submit-services__input_btn">
           <label class="submit-services__placeholder">Select Services</label>
+          <!-- .submit-services__list -->
           <ul class="submit-services__list services-list">
             <li class="services-list__item">Hair Cut</li>
             <li class="services-list__item">Shaving</li>
@@ -121,7 +129,9 @@
             <li class="services-list__item">Hair Treatment</li>
             <li class="services-list__item">Wedding Package</li>
           </ul>
+          <!-- /.submit-services__list -->
         </div>
+        <!-- /.submit-services -->
       </fieldset>
       <!-- /.submit -->
       <button type="submit" class="button form-appointment__btn" disabled>

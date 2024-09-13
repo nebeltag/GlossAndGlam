@@ -1,6 +1,8 @@
 .header {
   min-height: toRem(96);
+
   @include adaptiveValue("min-height", 96, 60);
+
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +14,8 @@
   background-color: $bgDark;
 
   &._header-scroll {
-    opacity: .9;
+    opacity: .95;
+
     @include adaptiveValue("min-height", 70, 60);
   }
 
@@ -37,6 +40,8 @@
     }
   }
 
+  //--------------------------Logo--------------------------
+
   // .header__logo
 
   &__logo {
@@ -58,6 +63,7 @@
       }
 
       ._header-scroll & {
+
         @include adaptiveValue("width", 190, 110, 0, $containerWidth, 767.98);
       }
     }
@@ -68,8 +74,6 @@
         transform: scale(1.01);
       }
     }
-
-
   }
 
   // .header__menu
@@ -80,6 +84,8 @@
 
   &__action {}
 }
+
+//--------------------------Navigation--------------------------
 
 .menu {
 
@@ -105,7 +111,6 @@
       padding: toRem(80) toRem(15) toRem(20) toRem(15);
       transition: all .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-
       &::before {
         content: "";
         position: fixed;
@@ -114,7 +119,9 @@
         width: 100%;
         z-index: 2;
         background-color: $bgDark;
+
         @include adaptiveValue("height", 136, 60);
+
         transition: left .3s;
       }
 
@@ -135,8 +142,9 @@
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    @include adaptiveValue("column-gap", 32, 14, 0, $containerWidth, 767.98);
     row-gap: toRem(5);
+
+    @include adaptiveValue("column-gap", 32, 14, 0, $containerWidth, 767.98);
     @include adaptiveValue("font-size", 16, 11);
 
     @media (max-width:$mobile) {
@@ -194,25 +202,63 @@
       font-size: toRem(28);
     }
   }
+}
 
-
+@media (min-width:$mobile) {
+  .services-item {
+    display: flex;
+    align-items: center;
+  }
 }
 
 
+//-------------------------Services menu--------------------------
 .services-menu {
-  &::after {
-    position: relative;
-    @extend %ic;
-    content: "\e902";
-    line-height: 11px;
+
+  &__button {
+    background: linear-gradient(rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
+    box-shadow:
+      0 1px rgba(255, 255, 255, .2) inset,
+      0 2px 3px rgba(10, 12, 22, 0.5),
+      0 0 1px 1px rgba(0, 1, 6, .2);
     margin-left: toRem(4);
-    @include adaptiveValue("font-size", 12, 8);
-    transition: all .4s ease;
+    border-radius: 2px;
 
+    &::before {
+      text-align: center;
+      vertical-align: top;
+      padding: toRem(1);
 
-    @media (max-width:$mobile) {
-      font-size: toRem(18);
-      margin-left: toRem(6);
+      @include adaptiveValue("font-size", 12, 8);
+
+      transition: all .5s ease;
+
+      @media (max-width:$mobile) {
+        font-size: toRem(18);
+        //margin-left: toRem(6);
+      }
+
+      @media (min-width:$mobile) {
+        line-height: toRem(12);
+      }
+    }
+
+    &._show-services {
+      &::before {
+        transform: rotate(-180deg) translate(0px, 1px);
+        transition: all .5s ease;
+        color: $goldColor;
+      }
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: $goldColor;
+      }
+    }
+
+    @media (min-width:$mobile) {
+      max-height: toRem(14);
     }
   }
 
@@ -220,13 +266,17 @@
     position: absolute;
     opacity: 0;
     visibility: hidden;
+    transform: scale(0.7);
     top: 0;
     right: 0;
+
     @include adaptiveValue("min-width", 150, 100, 0, $containerWidth, 767.98);
-    border: 1px solid $goldColor;
-    border-radius: toRem(12);
+
+    border: 1px solid rgb(236, 236, 236, 0.85);
+    border-radius: toRem(10);
     padding: toRem(10) toRem(2);
     background-color: $bgDark;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
     transition: all .1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     @media (max-width:$mobile) {
@@ -254,16 +304,15 @@
     .menu-open & {
       opacity: 1;
       visibility: visible;
+      transform: scale(1);
       height: 90%;
       padding: toRem(10) toRem(2);
     }
 
-
-
     @media(min-width:$mobile) {
       opacity: 1;
       visibility: visible;
-      top: 165%;
+      transform: scale(1) translate(0, 12%);
       z-index: 5;
       transition: all .4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
@@ -350,21 +399,30 @@
   }
 }
 
+// .services-menu._show-services {
 
-.services-menu._show-services {
+//   &::after {
+//     transform: rotate(180deg);
+//     top: toRem(-2);
+//   }
+// }
 
-  &::after {
-    transform: rotate(180deg);
-    top: toRem(-2);
-  }
-}
+// .services-menu._show-services .services-menu__button {
 
 
+//   transform: rotate(180deg);
+//   top: toRem(-2);
+
+// }
+
+//--------------------------Header-action--------------------------
 
 .action-header {
   position: relative;
   justify-self: end;
+
   @include adaptiveValue("column-gap", 24, 12, 0, $containerWidth, 767.98);
+
   row-gap: toRem(3);
 
   @media (max-width:$mobile) {
@@ -379,7 +437,9 @@
     align-items: center;
     width: 100%;
     height: 100%;
+
     @include adaptiveValue("column-gap", 24, 12, 0, $containerWidth, 767.98);
+
     row-gap: toRem(3);
     transition: all .8s;
 
@@ -396,8 +456,10 @@
 
   &__link {
     display: inline-block;
+
     @include adaptiveValue("width", 32, 30, 0, $containerWidth, 767.98);
     @include adaptiveValue("height", 32, 30, 0, $containerWidth, 767.98);
+
     background-color: $goldColor;
     border: toRem(2) solid $goldColor;
     border-radius: 50%;
@@ -428,10 +490,8 @@
         background-color: transparent;
         border: toRem(2) solid $goldColor;
 
-
         &::before {
           color: $goldColor;
-
         }
       }
     }
@@ -442,11 +502,8 @@
 
       &::before {
         color: $mainColor;
-
       }
     }
-
-
   }
 }
 
@@ -466,7 +523,9 @@
     &__search {
       position: relative;
       bottom: toRem(170);
+
       @include adaptiveValue("width", 350, 290);
+
       width: 100%;
 
     }
@@ -485,7 +544,9 @@
   &__form {
     display: flex;
     height: toEm(30);
+
     @include adaptiveValue("font-size", 16, 11);
+
     opacity: 0;
     visibility: hidden;
 
@@ -579,6 +640,7 @@
 
 .hamburger {
   @media (max-width:$mobile) {
+
     @include adaptiveValue("width", 66, 40);
   }
 }
