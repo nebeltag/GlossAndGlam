@@ -41,21 +41,31 @@ document.documentElement.addEventListener("click", showActionSearch);
 
 //======Hamburger button=================
 
-const buttons = document.querySelectorAll(".icon-menu");
+const hamburgerButton = document.querySelector(".icon-menu");
 
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const currentState = button.getAttribute("data-state");
 
-    if (!currentState || currentState === "closed") {
-      button.setAttribute("data-state", "opened");
-      button.setAttribute("aria-expanded", "true");
-    } else {
-      button.setAttribute("data-state", "closed");
-      button.setAttribute("aria-expanded", "false");
-    }
-  });
+hamburgerButton.addEventListener("click", () => {
+  const currentState = hamburgerButton.getAttribute("data-state");
+
+  if (!currentState || currentState == "closed") {
+    hamburgerButton.setAttribute("data-state", "opened");
+    hamburgerButton.setAttribute("aria-expanded", "true");
+  } else {
+    hamburgerButton.setAttribute("data-state", "closed");
+    hamburgerButton.setAttribute("aria-expanded", "false");
+  }
 });
+
+document.addEventListener("click", (e) => {
+
+  let currentElement = e.target.closest(".menu__list");
+
+  if (currentElement) {
+    hamburgerButton.setAttribute("data-state", "closed");
+    hamburgerButton.setAttribute("aria-expanded", "false");
+  }
+});
+
 
 //==============================================================
 

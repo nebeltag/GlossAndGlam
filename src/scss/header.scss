@@ -17,6 +17,10 @@
     opacity: .95;
 
     @include adaptiveValue("min-height", 70, 60);
+
+    .menu-open & {
+      opacity: 1;
+    }
   }
 
   // .header__container
@@ -211,6 +215,12 @@
   }
 }
 
+.services-item__body {
+  &::marker {
+    display: none !important;
+  }
+}
+
 
 //-------------------------Services menu--------------------------
 .services-menu {
@@ -222,31 +232,30 @@
       0 2px 3px rgba(10, 12, 22, 0.5),
       0 0 1px 1px rgba(0, 1, 6, .2);
     margin-left: toRem(4);
+    border: toRem(1) solid rgb(43, 43, 43);
     border-radius: 2px;
 
     &::before {
       text-align: center;
-      vertical-align: top;
       padding: toRem(1);
 
       @include adaptiveValue("font-size", 12, 8);
 
-      transition: all .5s ease;
+      transition: all .3s ease;
 
       @media (max-width:$mobile) {
         font-size: toRem(18);
-        //margin-left: toRem(6);
       }
 
       @media (min-width:$mobile) {
         line-height: toRem(12);
       }
+
     }
 
     &._show-services {
       &::before {
-        transform: rotate(-180deg) translate(0px, 1px);
-        transition: all .5s ease;
+        transform: rotate(-180deg) translate(0px, 3px);
         color: $goldColor;
       }
     }
@@ -254,6 +263,8 @@
     @media (any-hover: hover) {
       &:hover {
         color: $goldColor;
+        border: toRem(1) solid $goldColor;
+        transition: all .6s ease;
       }
     }
 
@@ -266,7 +277,7 @@
     position: absolute;
     opacity: 0;
     visibility: hidden;
-    transform: scale(0.7);
+    transform: scale(0.8);
     top: 0;
     right: 0;
 
@@ -283,30 +294,27 @@
 
       opacity: 0;
       visibility: hidden;
-      position: relative;
       top: 0;
       left: 0;
+      transform: translate(0px, -10%);
       padding: 0;
       border: none;
       font-size: toRem(22);
       background-color: rgb(43, 43, 43, .4);
       transition: all .1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-
-      .menu-open & {
-        height: 0;
-      }
     }
   }
 
   &__list._show-services {
 
     .menu-open & {
+      position: relative;
       opacity: 1;
       visibility: visible;
       transform: scale(1);
-      height: 90%;
+      top: 0;
       padding: toRem(10) toRem(2);
+      transition: all .5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     @media(min-width:$mobile) {
@@ -398,22 +406,6 @@
 
   }
 }
-
-// .services-menu._show-services {
-
-//   &::after {
-//     transform: rotate(180deg);
-//     top: toRem(-2);
-//   }
-// }
-
-// .services-menu._show-services .services-menu__button {
-
-
-//   transform: rotate(180deg);
-//   top: toRem(-2);
-
-// }
 
 //--------------------------Header-action--------------------------
 
@@ -533,11 +525,7 @@
 }
 
 .header-search {
-
-  //outline: toRem(1) solid $goldColor;
   border-radius: 5px;
-
-
 
   // .header-search__form
 
