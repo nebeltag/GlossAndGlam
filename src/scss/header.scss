@@ -208,54 +208,80 @@
   }
 }
 
-@media (min-width:$mobile) {
-  .services-item {
-    display: flex;
-    align-items: center;
-  }
+.services-item__body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.services-item__body {
-  &::marker {
-    display: none !important;
-  }
-}
 
 
 //-------------------------Services menu--------------------------
 .services-menu {
 
   &__button {
+    @include adaptiveValue("font-size", 12, 8, 0, $containerWidth, 767.98);
+    line-height: 100%;
     background: linear-gradient(rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
     box-shadow:
       0 1px rgba(255, 255, 255, .2) inset,
       0 2px 3px rgba(10, 12, 22, 0.5),
       0 0 1px 1px rgba(0, 1, 6, .2);
     margin-left: toRem(4);
+    padding: toRem(2);
     border: toRem(1) solid rgb(43, 43, 43);
-    border-radius: 2px;
+    border-radius: 3px;
+    // animation: servicesButton 5s linear infinite;
 
-    &::before {
-      text-align: center;
-      padding: toRem(1);
-
-      @include adaptiveValue("font-size", 12, 8);
-
-      transition: all .3s ease;
-
-      @media (max-width:$mobile) {
-        font-size: toRem(18);
+    @keyframes servicesButton {
+      0% {
+        background: linear-gradient(rgb(255, 255, 255, .3) 0%, rgb(255, 255, 255, .3) 10%, rgb(87, 88, 94) 10%, rgb(43, 43, 43) 10%) rgb(110, 112, 120);
       }
 
-      @media (min-width:$mobile) {
-        line-height: toRem(12);
+      10% {
+        background: linear-gradient(rgb(87, 88, 94) 10%, rgb(43, 43, 43) 10%, rgb(255, 255, 255, .3) 10%, rgb(255, 255, 255, .3) 20%, rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
       }
 
+      20% {
+        background: linear-gradient(rgb(87, 88, 94) 20%, rgb(43, 43, 43) 20%, rgb(255, 255, 255, .3) 20%, rgb(255, 255, 255, .3) 30%, rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
+      }
+
+      30% {
+        background: linear-gradient(rgb(87, 88, 94) 30%, rgb(43, 43, 43) 30%, rgb(255, 255, 255, .3) 30%, rgb(255, 255, 255, .3) 40%, rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
+      }
+
+      40% {
+        background: linear-gradient(rgb(87, 88, 94) 40%, rgb(43, 43, 43) 40%, #fff 40%, #fff 50%, rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
+      }
+
+      50% {
+        background: linear-gradient(rgb(87, 88, 94) 50%, rgb(43, 43, 43) 50%, #fff 50%, #fff 60%, rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
+      }
+
+      60% {
+        background: linear-gradient(rgb(87, 88, 94) 60%, rgb(43, 43, 43) 60%, #fff 60%, #fff 70%, rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
+      }
+
+      70% {
+        background: linear-gradient(rgb(87, 88, 94) 70%, rgb(43, 43, 43) 70%, #fff 70%, #fff 80%, rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
+      }
+
+      80% {
+        background: linear-gradient(rgb(87, 88, 94) 80%, rgb(43, 43, 43) 80%, #fff 80%, #fff 90%, rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
+      }
+
+      90% {
+        background: linear-gradient(rgb(87, 88, 94) 90%, rgb(43, 43, 43) 90%, #fff 90%, #fff 100%, rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
+      }
+
+      100% {
+        background: linear-gradient(rgb(87, 88, 94) 100%, rgb(43, 43, 43) 100%, #fff 0%, rgb(87, 88, 94), rgb(43, 43, 43)) rgb(110, 112, 120);
+      }
     }
 
     &._show-services {
       &::before {
-        transform: rotate(-180deg) translate(0px, 3px);
+        transform: rotate(-180deg) translate(0px, 0px);
         color: $goldColor;
       }
     }
@@ -268,8 +294,19 @@
       }
     }
 
-    @media (min-width:$mobile) {
-      max-height: toRem(14);
+    @media (max-width:$mobile) {
+      padding: toRem(3);
+      margin-left: toRem(10);
+    }
+
+    &::before {
+      padding: 1px 1px 0px;
+      transition: all .3s ease;
+
+      @media (max-width:$mobile) {
+        font-size: toRem(18);
+        padding: toRem(3);
+      }
     }
   }
 
@@ -280,6 +317,7 @@
     transform: scale(0.8);
     top: 0;
     right: 0;
+    z-index: -1;
 
     @include adaptiveValue("min-width", 150, 100, 0, $containerWidth, 767.98);
 
@@ -288,41 +326,34 @@
     padding: toRem(10) toRem(2);
     background-color: $bgDark;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
-    transition: all .1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all .1s ease;
 
     @media (max-width:$mobile) {
 
-      opacity: 0;
-      visibility: hidden;
-      top: 0;
       left: 0;
-      transform: translate(0px, -10%);
-      padding: 0;
       border: none;
       font-size: toRem(22);
-      background-color: rgb(43, 43, 43, .4);
-      transition: all .1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: scale(0.5);
+      transition: all .1s ease-in;
     }
   }
 
   &__list._show-services {
 
+    opacity: 1;
+    visibility: visible;
+    transition: all .2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
     .menu-open & {
       position: relative;
-      opacity: 1;
-      visibility: visible;
       transform: scale(1);
       top: 0;
       padding: toRem(10) toRem(2);
-      transition: all .5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     @media(min-width:$mobile) {
-      opacity: 1;
-      visibility: visible;
       transform: scale(1) translate(0, 12%);
       z-index: 5;
-      transition: all .4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
   }
 
@@ -405,6 +436,12 @@
     }
 
   }
+}
+
+.services-item__body {
+  // position: relative;
+  // z-index: 15;
+  // background-color: #1B1B1B;
 }
 
 //--------------------------Header-action--------------------------

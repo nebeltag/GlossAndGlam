@@ -42,7 +42,7 @@ document.documentElement.addEventListener("click", showActionSearch);
 //======Hamburger button=================
 
 const hamburgerButton = document.querySelector(".icon-menu");
-
+const menuList = document.querySelector(".menu__list");
 
 hamburgerButton.addEventListener("click", () => {
   const currentState = hamburgerButton.getAttribute("data-state");
@@ -56,16 +56,15 @@ hamburgerButton.addEventListener("click", () => {
   }
 });
 
-document.addEventListener("click", (e) => {
+menuList.addEventListener("click", (e) => {
 
-  let currentElement = e.target.closest(".menu__list");
+  let currentElement = e.target.closest(".menu__link");
 
   if (currentElement) {
     hamburgerButton.setAttribute("data-state", "closed");
     hamburgerButton.setAttribute("aria-expanded", "false");
   }
 });
-
 
 //==============================================================
 
@@ -94,15 +93,18 @@ const nameRegexp = /^\w+\s(\w+\s?){1,4}$/gi;
 const phoneRegexp = /^\+\d{1,4}\(\d{1,5}\)\d{4,10}$/g;
 
 // inputs validation function---------
-function inputsValidation(e, formInput, inputRegexp, validatedInputs, submitButton, disabledClass) {
+function inputsValidation(e, inputRegexp, validatedInputs, submitButton, disabledClass) {
 
-  const str = e.target.value;
-  const result = inputRegexp.test(str);
+  const input = e.target;
+  //const inputRegexp = e.target.dataset.regexp;
+  console.log(inputRegexp)
+  const result = inputRegexp.test(input.value);
 
   (!result) ?
-    formInput.classList.add("input-invalid")
-    : formInput.classList.remove("input-invalid"),
-    formInput.classList.remove("empty");
+    input.classList.add("input-invalid")
+    : input.classList.remove("input-invalid"),
+    input.classList.remove("empty");
+
   checkValidatedInputs(disabledClass, submitButton, validatedInputs);
 };
 
@@ -128,17 +130,17 @@ checkValidatedInputs('appointment-btn__disabled', appointmentSubmitBtn, appointm
 //name input validation --------------
 
 submitNameInput.addEventListener('input',
-  (e) => inputsValidation(e, submitNameInput, nameRegexp, appointmentValidatedInputs, appointmentSubmitBtn, 'appointment-btn__disabled'));
+  (e) => inputsValidation(e, nameRegexp, appointmentValidatedInputs, appointmentSubmitBtn, 'appointment-btn__disabled'));
 
 //phone input validation --------------
 
 submitPhoneInput.addEventListener('input',
-  (e) => inputsValidation(e, submitPhoneInput, phoneRegexp, appointmentValidatedInputs, appointmentSubmitBtn, 'appointment-btn__disabled'));
+  (e) => inputsValidation(e, phoneRegexp, appointmentValidatedInputs, appointmentSubmitBtn, 'appointment-btn__disabled'));
 
 //appointment email input validation --------------
 
 submitEmailInput.addEventListener('input',
-  (e) => inputsValidation(e, submitEmailInput, emailRegexp, appointmentValidatedInputs, appointmentSubmitBtn, 'appointment-btn__disabled'));
+  (e) => inputsValidation(e, emailRegexp, appointmentValidatedInputs, appointmentSubmitBtn, 'appointment-btn__disabled'));
 
 
 //checking the submitted data in the form -----------------
@@ -170,9 +172,14 @@ function createMessageUnder(elem, html, coordsRatio) {
 }
 
 appointmentSubmitBtn.addEventListener('click', () => {
+
+  appointmentSubmitBtn.disabled = true & appointmentSubmitBtn.classList.add('appointment-btn__disabled');
+
   let appointmentUnderMessage = createMessageUnder(appointmentForm, 'Your Appointment Is Successfuly', 0.8);
   document.body.append(appointmentUnderMessage);
-  setTimeout(() => appointmentUnderMessage.remove(), 4000);
+  setTimeout(() => appointmentUnderMessage.remove(), 2000);
+  setTimeout(() => appointmentSubmitBtn.disabled = false &
+    appointmentSubmitBtn.classList.remove('appointment-btn__disabled'), 2000);
 });
 //==============================================================
 
@@ -229,7 +236,7 @@ const subscribeSubmitBtn = subscribeForm.querySelector(".subscribe-body__button"
 checkValidatedInputs('subscribe-btn__disabled', subscribeSubmitBtn, subscribeValidatedInputs);
 
 subscribeEmailInput.addEventListener('input',
-  (e) => inputsValidation(e, subscribeEmailInput, emailRegexp, subscribeValidatedInputs, subscribeSubmitBtn, 'subscribe-btn__disabled'));
+  (e) => inputsValidation(e, emailRegexp, subscribeValidatedInputs, subscribeSubmitBtn, 'subscribe-btn__disabled'));
 
 //checking the submitted data in the subscribe-form -----------------
 subscribeForm.addEventListener('submit', (e) => checkSubmitData(e, subscribeForm));
@@ -237,9 +244,14 @@ subscribeForm.addEventListener('submit', (e) => checkSubmitData(e, subscribeForm
 //show successfuly message after subscribe submit -----------------
 
 subscribeSubmitBtn.addEventListener('click', () => {
+
+  subscribeSubmitBtn.disabled = true & subscribeSubmitBtn.classList.add('subscribe-btn__disabled');
+
   let subscribeUnderMessage = createMessageUnder(subscribeForm, 'You are subscribed to newsletter', 0.8);
   document.body.append(subscribeUnderMessage);
-  setTimeout(() => subscribeUnderMessage.remove(), 4000);
+  setTimeout(() => subscribeUnderMessage.remove(), 2000);
+  setTimeout(() => subscribeSubmitBtn.disabled = false &
+    subscribeSubmitBtn.classList.remove('subscribe-btn__disabled'), 2000);
 });
 
 
@@ -247,32 +259,6 @@ subscribeSubmitBtn.addEventListener('click', () => {
 
 const packagesItems = document.querySelectorAll(".packages__item");
 const packagesList = document.querySelector(".packages__list");
-
-// packagesList.addEventListener('mouseleave', () => {
-//   packagesItems.forEach(el => {
-//     if (el.classList.contains("_muted")) {
-//       el.classList.remove("_muted");
-//     }
-//   });
-// });
-
-// packagesItems.forEach(el => {
-//   el.addEventListener('mouseenter', (e) => {
-//     e.target.classList.remove('_muted');
-//     e.target.classList.add('_hovered');
-//     packagesItems.forEach(el => {
-//       if (!el.classList.contains("_hovered")) {
-//         el.classList.add('_muted')
-//       };
-//     });
-//   });
-// });
-
-// packagesItems.forEach(el => {
-//   el.addEventListener('mouseleave', (e) => {
-//     e.target.classList.remove('_hovered');
-//   });
-// });
 
 //mute packages-items that are unhovered-------------------- 
 

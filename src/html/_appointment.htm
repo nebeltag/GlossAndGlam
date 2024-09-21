@@ -93,14 +93,14 @@
         <!-- .submit-name -->
         <div class="submit-inputs__item submit-name">
           <input type="text" name="submit-name" placeholder="" title="Field is required" maxlength="50"
-            data-input="validated__input" class="empty">
+            data-input="validated__input" data-regexp="/^\w+\s(\w+\s?){1,4}$/gi" class="empty">
           <label class="submit-name__placeholder">Enter Your Name *</label>
         </div>
         <!-- /.submit-name -->
         <!-- .submit-phone -->
         <div class="submit-inputs__item submit-phone">
           <input type="tel" name="submit-phone" placeholder="" title="Field is required" data-input="validated__input"
-            class="empty">
+            data-regexp="/^\+\d{1,4}\(\d{1,5}\)\d{4,10}$/g" class="empty">
           <label class="submit-phone__placeholder">Enter Phone Number *
             <span>[+x(x)xxxxxxx]</span>
           </label>
@@ -109,7 +109,7 @@
         <!-- .submit-email -->
         <div class="submit-inputs__item submit-email">
           <input type="email" name="submit-email" placeholder="" title="Field is required" data-input="validated__input"
-            class="empty">
+            data-regexp="/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/" class="empty">
           <label class="submit-email__placeholder">Enter Your Email *</label>
         </div>
         <!-- /.submit-email -->

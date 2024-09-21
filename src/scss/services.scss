@@ -4,9 +4,7 @@
 
   &__container {
     display: grid;
-    @include adaptiveValue("padding-top", 120, 40);
-    // @include adaptiveValue("column-gap", 24, 14);
-    // @include adaptiveValue("row-gap", 48, 22);
+    @include adaptiveValue("padding-top", 60, 40);
   }
 
   // .services__block-header
@@ -14,7 +12,6 @@
   &__block-header {
     justify-self: center;
     max-width: toRem(620);
-    padding: 0;
   }
 
   // .services__list

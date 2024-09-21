@@ -173,19 +173,19 @@
     width: 100%;
     flex: 1 1 125px;
     position: relative;
-    // top: 1px;
-    // right: 1px;
     font-family: "Raleway";
     font-weight: 600;
+
     @include adaptiveValue("padding-top", 14, 12);
     @include adaptiveValue("padding-bottom", 14, 12);
     @include adaptiveValue("padding-left", 30, 5);
     @include adaptiveValue("padding-right", 30, 5);
     @include adaptiveValue("font-size", 16, 12);
-    //@include adaptiveValue("width", 405, 100);
+
     margin-left: toRem(-22);
     z-index: 5;
     overflow: hidden;
+    transition: all .4s ease;
 
     &::after {
       content: "";
@@ -258,6 +258,7 @@
   position: relative;
   overflow: hidden;
   pointer-events: none;
+  transition: all .4s ease;
 
   &::before {
     content: "";
