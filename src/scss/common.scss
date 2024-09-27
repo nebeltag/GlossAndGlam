@@ -40,3 +40,37 @@
     }
   }
 }
+
+.up {
+  position: fixed;
+  transform: rotate(-180deg);
+  @include adaptiveValue("font-size", 26, 22);
+  color: $goldColor;
+  bottom: toRem(30);
+  right: toRem(25);
+  padding: toRem(15);
+  border-radius: 50%;
+  background-color: $bgDark;
+  z-index: 6;
+  transition: all .5s ease;
+
+  &:before {
+    position: relative;
+    top: toRem(4);
+  }
+
+  ._watcher-view & {
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s ease;
+  }
+
+  @media (max-width:$mobile) {
+    bottom: toRem(10);
+    right: toRem(10);
+  }
+
+  &:active {
+    background-color: $bgDarkLight;
+  }
+}

@@ -18,7 +18,7 @@
     <form action="#" name="subscribe" class="subscribe-form" novalidate>
       <div class="subscribe-form__body subscribe-body">
         <input type="email" name="subscribe-email" placeholder="" class="subscribe-body__email empty"
-          data-input="validated__input">
+          data-regexp="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$">
         <label class="subscribe-body__placeholder">Enter your email</label>
         <button type="submit" class="subscribe-body__button button" disabled><span>Sign Up</span></button>
       </div>

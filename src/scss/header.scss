@@ -51,10 +51,10 @@
   &__logo {
 
     position: relative;
-    z-index: 5;
+    z-index: 8;
 
     @media (max-width:$mobile) {
-      width: 85%;
+      width: 85% !important;
     }
 
     &-image {
@@ -63,7 +63,7 @@
       @include adaptiveValue("width", 204, 110, 0, $containerWidth, 767.98);
 
       @media (max-width:$mobile) {
-        width: 85%;
+        width: 85% !important;
       }
 
       ._header-scroll & {
@@ -105,7 +105,7 @@
       grid-template-rows: 1fr auto;
       gap: toRem(120);
       position: fixed;
-      z-index: 2;
+      z-index: 7;
       width: 100%;
       height: 100%;
       left: -100%;
@@ -658,7 +658,7 @@
   @media (max-width: $mobile) {
     display: block;
     position: relative;
-    z-index: 6;
+    z-index: 8;
 
   }
 }

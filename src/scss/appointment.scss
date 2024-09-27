@@ -1030,25 +1030,25 @@
     opacity: .3;
   }
 
-}
+  &:disabled {
 
-.appointment-btn__disabled {
-  position: relative;
-  overflow: hidden;
-  pointer-events: none;
-  transition: all .4s ease;
+    position: relative;
+    overflow: hidden;
+    pointer-events: none;
+    transition: all .4s ease;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: -27%;
-    left: -5%;
-    width: 110%;
-    height: 160%;
-    border-radius: toRem(12);
-    border: toRem(2) solid rgb(233, 228, 219, 0.4);
-    background-color: rgb(233, 228, 219, 0.4);
-    z-index: 2;
+    &::before {
+      content: "";
+      position: absolute;
+      top: -27%;
+      left: -5%;
+      width: 110%;
+      height: 160%;
+      border-radius: toRem(12);
+      border: toRem(2) solid rgb(233, 228, 219, 0.4);
+      background-color: rgb(233, 228, 219, 0.4);
+      z-index: 2;
+    }
   }
 }
 
@@ -1056,8 +1056,6 @@
   position: fixed;
   @include adaptiveValue("padding", 8, 4);
   @include adaptiveValue("font-size", 16, 10);
-  // border: toRem(1) solid $goldColor;
-  // border-radius: toRem(12);
   color: $goldColor;
   text-transform: capitalize;
   z-index: 20;
