@@ -1,3 +1,4 @@
+import { documentBody } from "/src/js/files/script.js";
 
 const dateInput = document.querySelector(".datepicker__input");
 const yearInput = document.querySelector(".year-input");
@@ -178,16 +179,58 @@ displayDates();
 
 //Custom month-input
 // Click on the button. Open/close select
+//start
+//==============================================================
+const monthListPopup = document.querySelector('.month-popup');
+const datepickerMonthListMobile = document.querySelector(".month-content__list");
+const datepickerMonthPopupContent = document.querySelector(".month-content");
 
-dropDownBtn.addEventListener('click', function () {
+datepickerMonthListMobile.insertAdjacentHTML('afterbegin', dropDownList.innerHTML);
 
-  dropDownList.classList.toggle("dropdown-list__visible");
-  this.classList.toggle("onFocus");
-
+datepickerMonthListMobile.childNodes.forEach(el => {
+  if (el.nodeType === Node.ELEMENT_NODE) {
+    el.classList.add('month-list__item');
+  };
 });
 
-// Selecting a list item. Remember the selected value. Close dropdown
+const mobileMonthListItems = document.querySelectorAll(".month-list__item");
 
+mobileMonthListItems.forEach(function (listItem) {
+  listItem.addEventListener('click', function (e) {
+    e.stopPropagation();
+    dropDownBtn.innerText = this.innerText;
+    month = parseInt(listItem.dataset.value);
+    // dropDownList.classList.remove("dropdown-list__visible");
+    // dropDownBtn.classList.remove("onFocus");
+    monthInput.value = this.dataset.value;
+    monthListPopup.classList.remove('showMonthPopup')
+    console.log("yes")
+    displayDates();
+  });
+});
+
+
+
+//===================================================================
+console.log(documentBody)
+dropDownBtn.addEventListener('click', function () {
+  if (documentBody.classList.contains("_pc")) {
+    dropDownList.classList.toggle("dropdown-list__visible");
+    this.classList.toggle("onFocus");
+  } else {
+    monthListPopup.classList.add("showMonthPopup");
+  }
+});
+
+datepickerMonthPopupContent.addEventListener('click', function (e) {
+  if (e.target.closest('.month-content__close')) {
+    monthListPopup.classList.remove('showMonthPopup')
+  }
+})
+
+
+// Selecting a list item. Remember the selected value. Close dropdown
+//console.log(dropDownListItems)
 dropDownListItems.forEach(function (listItem) {
   listItem.addEventListener('click', function (e) {
     e.stopPropagation();

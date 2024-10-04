@@ -3,6 +3,16 @@ import { isMobile } from "./functions.js";
 // Підключення списку активних модулів
 import { flsModules } from "./modules.js";
 
+//======Add class '_mobile' or '_pc' to body==================
+export const documentBody = document.getElementsByTagName("body")[0];
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
+  test(navigator.userAgent)) {
+  documentBody.classList.add("_mobile");
+} else {
+  documentBody.classList.add("_pc");
+}
+
 //======On/Off Services submenu in header-nav=================
 
 //const servicesMenuLink = document.querySelectorAll('.services-menu')[0];

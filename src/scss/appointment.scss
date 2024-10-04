@@ -171,33 +171,33 @@
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  top: 110%;
+  top: 130%;
   left: 0;
   z-index: 3;
   width: 100%;
   padding: toRem(5) toRem(5);
-  background-color: $bgDarkLight;
-  border-radius: 5px;
-  border: toRem(1) solid $goldColor;
+  background-color: $bgDark;
+  border-radius: toRem(2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
   transition: all .4s ease;
-
-  //scrollbar-width: thin;
-  // scrollbar-color: $goldColor transparent;
 
   &__visible {
     visibility: visible;
-    opacity: 1;
+    opacity: 0.85;
   }
 
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 4px;
   }
 
   &::-webkit-scrollbar-thumb {
     background-color: transparent;
-    border-radius: 10px;
-    border: 1px solid $goldColor;
+    //border-radius: 10px;
+    border: 3px solid $goldColor;
   }
+
+  // scrollbar-width: thin;
+  // scrollbar-color: $goldColor transparent;
 
   // .dropdown-list__item
 
@@ -907,16 +907,17 @@
   top: 110%;
   left: 0;
   padding: toRem(5) toRem(5);
-  background-color: $bgMainColor;
-  border-radius: toRem(12);
-  border: toRem(1) solid $goldColor;
+  background-color: $bgDark;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+  border-radius: toRem(5);
+  //border: toRem(1) solid $goldColor;
   z-index: 3;
   transition: all .4s ease;
 
 
   &__visible {
     visibility: visible;
-    opacity: 1;
+    opacity: 0.95;
   }
 
   // .services-list__item

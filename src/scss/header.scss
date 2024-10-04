@@ -315,7 +315,6 @@
     opacity: 0;
     visibility: hidden;
     transform: scale(0.8);
-    top: 0;
     right: 0;
     z-index: -1;
 
@@ -329,30 +328,28 @@
     transition: all .1s ease;
 
     @media (max-width:$mobile) {
-
       left: 0;
       border: none;
       font-size: toRem(22);
       transform: scale(0.5);
-      transition: all .1s ease-in;
+      transition: all .1s;
     }
   }
 
   &__list._show-services {
-
     opacity: 1;
     visibility: visible;
-    transition: all .2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    top: 120%;
+    transform: scale(1);
+    transition: all .2s;
 
     .menu-open & {
       position: relative;
-      transform: scale(1);
       top: 0;
       padding: toRem(10) toRem(2);
     }
 
     @media(min-width:$mobile) {
-      transform: scale(1) translate(0, 12%);
       z-index: 5;
     }
   }
