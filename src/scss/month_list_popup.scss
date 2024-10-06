@@ -21,7 +21,7 @@
     min-height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    //align-items: center;
     background-color: $bgMainColor;
   }
 
@@ -32,13 +32,21 @@
   // .month-popup__content
 
   .month-content {
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
     position: relative;
     list-style-type: none;
+    padding: toRem(10);
+    border: toRem(2) solid $goldColor;
+    border-radius: toRem(12);
 
     // .month-content__close
 
     &__close {
       position: absolute;
+      top: toRem(10);
+      right: toRem(10);
       width: toRem(20);
       height: toRem(20);
 
@@ -46,7 +54,7 @@
       &::after {
         content: "";
         position: absolute;
-        width: toRem(3);
+        width: toRem(4);
         height: 100%;
         background-color: $goldColor;
         top: 0;
@@ -61,7 +69,6 @@
       &::after {
         transform: translate(-50%, 0px) rotate(-45deg);
       }
-
     }
 
     // .month-content__list
@@ -72,9 +79,20 @@
 
   // .month-list
   .month-list {
+    width: fit-content;
+    font-family: "SFProText";
+    //font-weight: 600;
+    margin: 0 auto;
 
     // .month-list__item
-    &__item {}
+    &__item {
+      font-size: toRem(20);
+      text-align: center;
+
+      &:not(:last-child) {
+        margin-bottom: toRem(20);
+      }
+    }
   }
 
 }

@@ -178,8 +178,6 @@ displayDates();
 //---------------------------------------------------------------------------
 
 //Custom month-input
-// Click on the button. Open/close select
-//start
 //==============================================================
 const monthListPopup = document.querySelector('.month-popup');
 const datepickerMonthListMobile = document.querySelector(".month-content__list");
@@ -193,26 +191,7 @@ datepickerMonthListMobile.childNodes.forEach(el => {
   };
 });
 
-const mobileMonthListItems = document.querySelectorAll(".month-list__item");
-
-mobileMonthListItems.forEach(function (listItem) {
-  listItem.addEventListener('click', function (e) {
-    e.stopPropagation();
-    dropDownBtn.innerText = this.innerText;
-    month = parseInt(listItem.dataset.value);
-    // dropDownList.classList.remove("dropdown-list__visible");
-    // dropDownBtn.classList.remove("onFocus");
-    monthInput.value = this.dataset.value;
-    monthListPopup.classList.remove('showMonthPopup')
-    console.log("yes")
-    displayDates();
-  });
-});
-
-
-
-//===================================================================
-console.log(documentBody)
+//Open month-list in dropdown-list or in popup
 dropDownBtn.addEventListener('click', function () {
   if (documentBody.classList.contains("_pc")) {
     dropDownList.classList.toggle("dropdown-list__visible");
@@ -222,15 +201,29 @@ dropDownBtn.addEventListener('click', function () {
   }
 });
 
+//Close popup with month-list by close-button
 datepickerMonthPopupContent.addEventListener('click', function (e) {
   if (e.target.closest('.month-content__close')) {
     monthListPopup.classList.remove('showMonthPopup')
   }
-})
+});
 
+// Selecting a list item on mobile. Remember the selected value. Close dropdown
+const mobileMonthListItems = document.querySelectorAll(".month-list__item");
 
-// Selecting a list item. Remember the selected value. Close dropdown
-//console.log(dropDownListItems)
+mobileMonthListItems.forEach(function (listItem) {
+  listItem.addEventListener('click', function (e) {
+    e.stopPropagation();
+    dropDownBtn.innerText = this.innerText;
+    month = parseInt(listItem.dataset.value);
+    monthInput.value = this.dataset.value;
+    monthListPopup.classList.remove('showMonthPopup');
+
+    displayDates();
+  });
+});
+
+// Selecting a list item on pc. Remember the selected value. Close dropdown
 dropDownListItems.forEach(function (listItem) {
   listItem.addEventListener('click', function (e) {
     e.stopPropagation();
@@ -287,6 +280,7 @@ dropDownButton.onclick = function () {
 dropDownButton.onblur = function () {
   this.classList.remove('_arrowUp');
 }
+//===================================================================
 
 //===Outline for year-input when hovering over the year switching arrows======
 
