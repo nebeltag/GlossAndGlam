@@ -1,0 +1,255 @@
+//Styles for appointment datepicker month-list popup 
+
+.month-popup {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(21, 21, 21, 0.801);
+  top: 0;
+  left: -100%;
+  z-index: 100;
+  padding: toRem(10);
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: auto;
+  transition: all 0.4s ease;
+
+  &.showModal {
+    opacity: 1;
+    visibility: visible;
+    left: 0;
+    transition: all 0.5s ease;
+  }
+
+  // .month-popup__body
+
+  &__body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: $bgMainColor;
+    padding: toRem(5);
+  }
+
+  // .month-popup__content
+
+  &__content {}
+
+  // .month-popup__content
+
+  .month-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    list-style-type: none;
+    padding: toRem(10);
+    border: toRem(2) solid $goldColor;
+    border-radius: toRem(12);
+    overflow: auto;
+
+    // .month-content__close
+
+    &__close {
+      position: fixed;
+      top: toRem(30);
+      right: toRem(30);
+      width: toRem(30);
+      height: toRem(30);
+      opacity: 0;
+      visibility: hidden;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: toRem(4);
+        height: 100%;
+        background-color: $goldColor;
+        top: 0;
+        left: 50%;
+      }
+
+      &::before {
+        transform: translate(-50%, 0px) rotate(45deg);
+      }
+
+      &::after {
+        transform: translate(-50%, 0px) rotate(-45deg);
+      }
+
+    }
+
+    // .month-content__list
+
+    &__list {}
+  }
+
+  // .month-list
+  .month-list {
+    max-width: toRem(230);
+    width: 100%;
+    font-family: "SFProText";
+    font-weight: 600;
+    margin: 0 auto;
+
+    // .month-list__item
+    &__item {
+      width: 100%;
+      @include adaptiveValue("font-size", 42, 30);
+      padding: toRem(10) toRem(5);
+      text-align: center;
+      letter-spacing: toRem(3);
+      color: $goldColor;
+      border-radius: 30px;
+      transition: all 0.2s ease;
+
+      &:not(:last-child) {
+        margin-bottom: toRem(20);
+      }
+
+      &:active {
+        color: #ffffff;
+        background-color: rgba(235, 235, 245, 0.3);
+        transition: all 0.4s ease;
+      }
+    }
+  }
+
+}
+
+.month-popup.showModal .month-content__close {
+  opacity: 1;
+  visibility: visible;
+  transition: all .9s ease;
+  transition-delay: 0.4s;
+}
+
+//========================================================================
+
+//Styles for appointment  services-list popup ============================
+
+.services-popup {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(21, 21, 21, 0.801);
+  top: 0;
+  left: -100%;
+  z-index: 100;
+  padding: toRem(10);
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: auto;
+  transition: all 0.4s ease;
+
+  &.showModal {
+    opacity: 1;
+    visibility: visible;
+    left: 0;
+    transition: all 0.5s ease;
+  }
+
+  // .services-popup__body
+
+  &__body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: $bgMainColor;
+    padding: toRem(5);
+  }
+
+  // .services-popup__content
+
+  &__content {}
+
+  // .services-popup__content
+
+  .services-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    list-style-type: none;
+    padding: toRem(10);
+    border: toRem(2) solid $goldColor;
+    border-radius: toRem(12);
+    overflow: auto;
+
+    // .services-content__close
+
+    &__close {
+      position: fixed;
+      top: toRem(30);
+      right: toRem(30);
+      width: toRem(30);
+      height: toRem(30);
+      opacity: 0;
+      visibility: hidden;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: toRem(4);
+        height: 100%;
+        background-color: $goldColor;
+        top: 0;
+        left: 50%;
+      }
+
+      &::before {
+        transform: translate(-50%, 0px) rotate(45deg);
+      }
+
+      &::after {
+        transform: translate(-50%, 0px) rotate(-45deg);
+      }
+
+    }
+
+    // .services-content__list
+
+    &__list {}
+  }
+
+  // .services-list
+  .services-popuplist {
+    max-width: toRem(230);
+    width: 100%;
+    font-family: "SFProText";
+    font-weight: 600;
+    margin: 0 auto;
+
+    // .services-list__item
+    &__item {
+      width: 100%;
+      @include adaptiveValue("font-size", 42, 26);
+      padding: toRem(10) toRem(5);
+      text-align: center;
+      color: $goldColor;
+      border-radius: 30px;
+      transition: all 0.2s ease;
+
+      &:not(:last-child) {
+        margin-bottom: toRem(20);
+      }
+
+      &:active {
+        color: #ffffff;
+        background-color: rgba(235, 235, 245, 0.3);
+        transition: all 0.4s ease;
+      }
+    }
+  }
+
+}
+
+.services-popup.showModal .services-content__close {
+  opacity: 1;
+  visibility: visible;
+  transition: all .9s ease;
+  transition-delay: 0.4s;
+}
+
+
+//========================================================================

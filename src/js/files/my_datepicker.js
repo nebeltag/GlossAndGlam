@@ -97,7 +97,7 @@ const handleDateClick = (e) => {
 
 //render the dates in the calendar interface
 const displayDates = () => {
-
+  // console.log("yes")
   //updates year & month wherever the dates are updated
   updateYearMonth();
 
@@ -183,28 +183,86 @@ const monthListPopup = document.querySelector('.month-popup');
 const datepickerMonthListMobile = document.querySelector(".month-content__list");
 const datepickerMonthPopupContent = document.querySelector(".month-content");
 
-datepickerMonthListMobile.insertAdjacentHTML('afterbegin', dropDownList.innerHTML);
-
-datepickerMonthListMobile.childNodes.forEach(el => {
-  if (el.nodeType === Node.ELEMENT_NODE) {
-    el.classList.add('month-list__item');
-  };
-});
-
 //Open month-list in dropdown-list or in popup
 dropDownBtn.addEventListener('click', function () {
   if (documentBody.classList.contains("_pc")) {
     dropDownList.classList.toggle("dropdown-list__visible");
     this.classList.toggle("onFocus");
   } else {
-    monthListPopup.classList.add("showMonthPopup");
+    monthListPopup.classList.add("showModal");
+    //scrollFix();
   }
 });
+
+// datepickerMonthListMobile.insertAdjacentHTML('afterbegin', dropDownList.innerHTML);
+
+// datepickerMonthListMobile.childNodes.forEach(el => {
+//   if (el.nodeType === Node.ELEMENT_NODE) {
+//     el.classList.add('month-list__item');
+//     el.classList.remove('dropdown-list__item');
+//   };
+// });
+
+function listenForClassChanges(targetElement, className) {
+
+  const targetNode = targetElement; // Элемент, за которым мы наблюдаем
+  const classToWatch = className; // Класс, за которым мы следим
+  const config = { attributes: true, attributeOldValue: true }; // Настройки наблюдения
+
+  const callback = function (mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.attributeName === 'class' && mutation.target === targetNode) {
+        const oldValue = mutation.oldValue;
+        const newValue = targetNode.getAttribute('class');
+        console.log(newValue);
+
+        // Когда модальное окно открыто, фиксируем элемент body
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${window.scrollY}px`;
+        console.log(document.body.style.top)
+
+        if (newValue.indexOf(classToWatch) === -1 && oldValue.indexOf(classToWatch) !== -1) {
+          console.log(`Класс "${className}" был удален.`);
+
+          // Когда модальное окно скрыто, остаемся в верхней части позиции прокрутки
+          const top = document.body.style.top;
+          document.body.style.position = '';
+          document.body.style.top = '';
+          window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
+      }
+    }
+  };
+
+  // Создаем новый экземпляр MutationObserver
+  const observer = new MutationObserver(callback);
+
+  // Начинаем наблюдение
+  observer.observe(targetNode, config);
+}
+
+listenForClassChanges(monthListPopup, 'showModal');
+
+
+//Move list-items from main-list to modal-list
+export const moveListItems = function (targetList, sourceList, targetClass, sourceClass) {
+
+  targetList.insertAdjacentHTML('afterbegin', sourceList.innerHTML);
+
+  targetList.childNodes.forEach(el => {
+    if (el.nodeType === Node.ELEMENT_NODE) {
+      el.classList.add(targetClass);
+      el.classList.remove(sourceClass);
+    };
+  });
+};
+
+moveListItems(datepickerMonthListMobile, dropDownList, 'month-list__item', 'dropdown-list__item');
 
 //Close popup with month-list by close-button
 datepickerMonthPopupContent.addEventListener('click', function (e) {
   if (e.target.closest('.month-content__close')) {
-    monthListPopup.classList.remove('showMonthPopup')
+    monthListPopup.classList.remove('showModal')
   }
 });
 
@@ -217,7 +275,7 @@ mobileMonthListItems.forEach(function (listItem) {
     dropDownBtn.innerText = this.innerText;
     month = parseInt(listItem.dataset.value);
     monthInput.value = this.dataset.value;
-    monthListPopup.classList.remove('showMonthPopup');
+    monthListPopup.classList.remove('showModal');
 
     displayDates();
   });

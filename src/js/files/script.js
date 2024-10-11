@@ -3,6 +3,8 @@ import { isMobile } from "./functions.js";
 // Підключення списку активних модулів
 import { flsModules } from "./modules.js";
 
+import { moveListItems } from "../files/my_datepicker.js";
+
 //======Add class '_mobile' or '_pc' to body==================
 export const documentBody = document.getElementsByTagName("body")[0];
 
@@ -95,10 +97,6 @@ const submitServicesInput = document.querySelector('[name="submit-services"]');
 const submitServicesList = document.querySelector(".submit-services__list");
 const submitServices = document.querySelector(".submit-services");
 
-submitServicesInput.addEventListener('click', () => {
-  submitServicesList.classList.toggle('services-list__visible');
-});
-
 submitServicesInput.addEventListener('focus', () => {
   submitServices.classList.add('services-input__active');
 });
@@ -113,6 +111,7 @@ submitServicesInput.addEventListener('blur', () => {
 
 const submitServicesItems = document.querySelectorAll(".services-list__item");
 const selectedServiceInput = document.querySelector('[name="selected-service"]');
+
 submitServicesItems.forEach(el => {
   el.addEventListener('click', function (e) {
     submitServicesInput.value = this.innerText;
@@ -127,6 +126,55 @@ submitServicesItems.forEach(el => {
 submitServices.addEventListener('click', () => {
   submitServices.classList.toggle('services-arrow__down');
 });
+
+//Services popup -------------------------------------
+
+const servicesListPopup = document.querySelector('.services-popup');
+const appointmentServicesListMobile = document.querySelector(".services-content__list");
+const appointmentServicesPopupContent = document.querySelector(".services-content");
+const servicesPopupCloseBtn = document.querySelector(".services-content__close");
+
+// appointmentServicesListMobile.insertAdjacentHTML('afterbegin', submitServicesList.innerHTML);
+
+// appointmentServicesListMobile.childNodes.forEach(el => {
+//   if (el.nodeType === Node.ELEMENT_NODE) {
+//     el.classList.add('services-popuplist__item');
+//     el.classList.remove('services-list__item');
+//   };
+// });
+
+moveListItems(appointmentServicesListMobile, submitServicesList, 'services-popuplist__item', 'services-list__item');
+
+//Open services-list in dropdown-list or in popup
+submitServicesInput.addEventListener('click', function () {
+  if (documentBody.classList.contains("_pc")) {
+    submitServicesList.classList.toggle("services-list__visible");
+    //this.classList.toggle("onFocus");
+  } else {
+    servicesListPopup.classList.add("showModal");
+  }
+});
+
+//Close popup with services-list by close-button
+servicesPopupCloseBtn.addEventListener('click', function (e) {
+
+  servicesListPopup.classList.remove('showModal');
+});
+
+// Selecting a services-list item on mobile. Remember the selected value. Close popup
+
+appointmentServicesListMobile.addEventListener('click', function (e) {
+
+  const target = e.target;
+  if (target.closest(".services-popuplist__item")) {
+    servicesListPopup.classList.remove('showModal');
+    submitServicesInput.value = target.innerText;
+    selectedServiceInput.value = target.innerText;
+  };
+
+  e.stopPropagation();
+});
+
 //==============================================================
 
 
