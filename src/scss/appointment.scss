@@ -435,7 +435,6 @@
     max-width: toRem(40);
     width: 100%;
     font-family: "SFProDisplay";
-    //@include adaptiveValue("font-size", 20, 16);
     font-size: toRem(20);
     line-height: 150%;
     /* 30/20 */
@@ -657,32 +656,13 @@
 
     }
 
-    // &.input-invalid+.submit-name__placeholder {
-    //   color: rgb(193, 12, 12) !important;
-    // }
-
     &::placeholder {
       opacity: 0;
     }
 
-    // &:not(:placeholder-shown)+&__placeholder {
-    //   top: -2%;
-    //   left: 3%;
-    //   font-size: toRem(14);
-    //   background-color: $bgMainColor;
-    // }
-
     &:focus {
       border-color: $goldColor;
     }
-
-    // input:focus+&__placeholder {
-    //   top: -2%;
-    //   left: 3%;
-    //   font-size: toRem(14);
-    //   background-color: $bgMainColor;
-    //   color: $goldColor;
-    // }
 
     &:-webkit-autofill {
       border-color: rgb(255, 255, 255, 0.3);
@@ -702,7 +682,6 @@
     left: 3%;
     @include adaptiveValue("font-size", 14, 10);
     background-color: $bgMainColor;
-    //background-image: linear-gradient(to bottom, transparent 63%, $bgDarkLight 37%);
     color: $goldColor;
   }
 
@@ -725,42 +704,6 @@
   input.input-invalid+.submit-email__placeholder {
     color: rgb(193, 12, 12);
   }
-
-
-  // input::placeholder {
-  //   opacity: 0;
-  // }
-
-  // input:not(:placeholder-shown)+&__placeholder {
-  //   top: -2%;
-  //   left: 3%;
-  //   font-size: toRem(14);
-  //   background-color: $bgMainColor;
-  // }
-
-  // input:focus {
-  //   border-color: $goldColor;
-  // }
-
-  // input:focus+&__placeholder {
-  //   top: -2%;
-  //   left: 3%;
-  //   font-size: toRem(14);
-  //   background-color: $bgMainColor;
-  //   color: $goldColor;
-  // }
-
-  // input:-webkit-autofill {
-  //   border-color: rgb(255, 255, 255, 0.3);
-  //   -webkit-text-fill-color: $goldColor;
-  //   caret-color: $goldColor;
-  //   box-shadow: 0 0 0px 1000px transparent inset;
-  //   transition: background-color 5000s ease-in-out 0s;
-  // }
-
-  // input:-webkit-autofill:focus {
-  //   border-color: $goldColor;
-  // }
 
   // .submit-name__placeholder
 
@@ -893,8 +836,6 @@
 
 #selected-service {
   display: none;
-  // visibility: hidden;
-  // opacity: 0;
 }
 
 .services-list {
@@ -910,7 +851,6 @@
   background-color: $bgDark;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
   border-radius: toRem(5);
-  //border: toRem(1) solid $goldColor;
   z-index: 3;
   transition: all .4s ease;
 

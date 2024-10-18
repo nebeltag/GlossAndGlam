@@ -1,18 +1,12 @@
-// Підключення функціоналу "Чертоги Фрілансера"
-import { isMobile } from "./functions.js";
-// Підключення списку активних модулів
-import { flsModules } from "./modules.js";
 
-import { moveListItems } from "../files/my_datepicker.js";
+import { moveListItems, body, disableScroll, enableScroll } from "../files/my_datepicker.js";
 
 //======Add class '_mobile' or '_pc' to body==================
-export const documentBody = document.getElementsByTagName("body")[0];
-
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
   test(navigator.userAgent)) {
-  documentBody.classList.add("_mobile");
+  body.classList.add("_mobile");
 } else {
-  documentBody.classList.add("_pc");
+  body.classList.add("_pc");
 }
 
 //======On/Off Services submenu in header-nav=================
@@ -147,11 +141,11 @@ moveListItems(appointmentServicesListMobile, submitServicesList, 'services-popup
 
 //Open services-list in dropdown-list or in popup
 submitServicesInput.addEventListener('click', function () {
-  if (documentBody.classList.contains("_pc")) {
+  if (body.classList.contains("_pc")) {
     submitServicesList.classList.toggle("services-list__visible");
-    //this.classList.toggle("onFocus");
   } else {
     servicesListPopup.classList.add("showModal");
+    disableScroll();
   }
 });
 
@@ -159,6 +153,7 @@ submitServicesInput.addEventListener('click', function () {
 servicesPopupCloseBtn.addEventListener('click', function (e) {
 
   servicesListPopup.classList.remove('showModal');
+  enableScroll();
 });
 
 // Selecting a services-list item on mobile. Remember the selected value. Close popup
@@ -170,6 +165,7 @@ appointmentServicesListMobile.addEventListener('click', function (e) {
     servicesListPopup.classList.remove('showModal');
     submitServicesInput.value = target.innerText;
     selectedServiceInput.value = target.innerText;
+    enableScroll();
   };
 
   e.stopPropagation();

@@ -1,4 +1,4 @@
-import { documentBody } from "/src/js/files/script.js";
+//import { documentBody } from "/src/js/files/script.js";
 
 const dateInput = document.querySelector(".datepicker__input");
 const yearInput = document.querySelector(".year-input");
@@ -97,7 +97,7 @@ const handleDateClick = (e) => {
 
 //render the dates in the calendar interface
 const displayDates = () => {
-  // console.log("yes")
+
   //updates year & month wherever the dates are updated
   updateYearMonth();
 
@@ -182,69 +182,21 @@ displayDates();
 const monthListPopup = document.querySelector('.month-popup');
 const datepickerMonthListMobile = document.querySelector(".month-content__list");
 const datepickerMonthPopupContent = document.querySelector(".month-content");
+export const body = document.body;
 
 //Open month-list in dropdown-list or in popup
 dropDownBtn.addEventListener('click', function () {
-  if (documentBody.classList.contains("_pc")) {
+  if (body.classList.contains("_pc")) {
     dropDownList.classList.toggle("dropdown-list__visible");
     this.classList.toggle("onFocus");
   } else {
     monthListPopup.classList.add("showModal");
-    //scrollFix();
+    disableScroll();
   }
 });
 
-// datepickerMonthListMobile.insertAdjacentHTML('afterbegin', dropDownList.innerHTML);
-
-// datepickerMonthListMobile.childNodes.forEach(el => {
-//   if (el.nodeType === Node.ELEMENT_NODE) {
-//     el.classList.add('month-list__item');
-//     el.classList.remove('dropdown-list__item');
-//   };
-// });
-
-function listenForClassChanges(targetElement, className) {
-
-  const targetNode = targetElement; // Элемент, за которым мы наблюдаем
-  const classToWatch = className; // Класс, за которым мы следим
-  const config = { attributes: true, attributeOldValue: true }; // Настройки наблюдения
-
-  const callback = function (mutationsList, observer) {
-    for (const mutation of mutationsList) {
-      if (mutation.attributeName === 'class' && mutation.target === targetNode) {
-        const oldValue = mutation.oldValue;
-        const newValue = targetNode.getAttribute('class');
-        console.log(newValue);
-
-        // Когда модальное окно открыто, фиксируем элемент body
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${window.scrollY}px`;
-        console.log(document.body.style.top)
-
-        if (newValue.indexOf(classToWatch) === -1 && oldValue.indexOf(classToWatch) !== -1) {
-          console.log(`Класс "${className}" был удален.`);
-
-          // Когда модальное окно скрыто, остаемся в верхней части позиции прокрутки
-          const top = document.body.style.top;
-          document.body.style.position = '';
-          document.body.style.top = '';
-          window.scrollTo(0, parseInt(scrollY || '0') * -1);
-        }
-      }
-    }
-  };
-
-  // Создаем новый экземпляр MutationObserver
-  const observer = new MutationObserver(callback);
-
-  // Начинаем наблюдение
-  observer.observe(targetNode, config);
-}
-
-listenForClassChanges(monthListPopup, 'showModal');
-
-
 //Move list-items from main-list to modal-list
+
 export const moveListItems = function (targetList, sourceList, targetClass, sourceClass) {
 
   targetList.insertAdjacentHTML('afterbegin', sourceList.innerHTML);
@@ -257,12 +209,31 @@ export const moveListItems = function (targetList, sourceList, targetClass, sour
   });
 };
 
+//Disable page scroll when popup is open
+export function disableScroll() {
+  let pagePosition = window.scrollY;
+  body.style.position = 'fixed';
+  body.dataset.position = pagePosition;
+  body.style.top = -pagePosition + 'px';
+};
+
+//Enable page scroll when popup is closed
+export function enableScroll() {
+  let pagePosition = parseInt(body.dataset.position, 10);
+  body.style.top = 'auto';
+  body.style.position = 'relative';
+  window.scroll({ top: pagePosition, left: 0 });
+  body.removeAttribute('data-position');
+};
+
 moveListItems(datepickerMonthListMobile, dropDownList, 'month-list__item', 'dropdown-list__item');
 
 //Close popup with month-list by close-button
 datepickerMonthPopupContent.addEventListener('click', function (e) {
   if (e.target.closest('.month-content__close')) {
-    monthListPopup.classList.remove('showModal')
+    monthListPopup.classList.remove('showModal');
+
+    enableScroll();
   }
 });
 
@@ -277,6 +248,7 @@ mobileMonthListItems.forEach(function (listItem) {
     monthInput.value = this.dataset.value;
     monthListPopup.classList.remove('showModal');
 
+    enableScroll();
     displayDates();
   });
 });
