@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "title": "Grooming Package",
+    "price": "499",
+    "services": [
+      "Hair Cut of Your Choice",
+      "Beard Style / Shaving for Men",
+      "Facial Treayment",
+      "Hair Treatment / Keratin Treatment Suited for You"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Grooming Package",
+    "price": "699",
+    "services": [
+      "Hair Cut of Your Choice",
+      "Beard Style / Shaving for Men",
+      "Facial Treayment",
+      "Hair Treatment / Keratin Treatment Suited for You"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Grooming Package",
+    "price": "799",
+    "services": [
+      "Hair Cut of Your Choice",
+      "Beard Style / Shaving for Men",
+      "Facial Treayment for Wedding",
+      "Hair Treatment / Keratin Treatment Suited for Wedding"
+    ]
+  }
+]

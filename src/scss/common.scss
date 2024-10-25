@@ -73,3 +73,32 @@
     color: $bgMainColor;
   }
 }
+
+.error {
+  @include adaptiveValue("font-size", 42, 14);
+  @include adaptiveValue("padding", 20, 6);
+  line-height: 150%;
+  padding: toRem(20);
+  margin: 0 auto;
+  font-weight: 600;
+  border: toRem(1) solid;
+
+  p {
+    background: linear-gradient(90deg, $mainColor, $goldColor, $cardTitle);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+    animation: error 5s linear infinite;
+  }
+
+  @keyframes error {
+    0% {
+      background-position: -500%;
+    }
+
+    100% {
+      background-position: 500%;
+    }
+  }
+}

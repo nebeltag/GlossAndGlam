@@ -1,6 +1,7 @@
 
 import { moveListItems, body, disableScroll, enableScroll } from "../files/my_datepicker.js";
 
+
 //======Add class '_mobile' or '_pc' to body==================
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
   test(navigator.userAgent)) {
@@ -176,26 +177,26 @@ appointmentServicesListMobile.addEventListener('click', function (e) {
 
 //==================== Add to packages-item class "_hovered" when it's hovered  ==============
 
-const packagesItems = document.querySelectorAll(".packages__item");
+const packagesItems = document.getElementsByClassName("packages__item");
 const packagesList = document.querySelector(".packages__list");
 
-//mute packages-items that are unhovered-------------------- 
+//mute packages-items they are unhovered-------------------- 
 
 packagesList.addEventListener('mouseover', (e) => {
 
   let currentElement = e.target.closest("article");
   if (currentElement) {
-    packagesItems.forEach(el => {
+    for (const el of packagesItems) {
       el !== currentElement ?
         el.classList.add('_muted') :
         el.classList.remove('_muted');
-    });
+    };
   };
 });
 
 //unmute packages-items when cursor leave packages-list--------------------
 packagesList.addEventListener('mouseout', (e) => {
-  packagesItems.forEach(el => {
+  for (const el of packagesItems) {
     el.classList.remove('_muted');
-  })
+  };
 });

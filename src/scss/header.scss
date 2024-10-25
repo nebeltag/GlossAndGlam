@@ -477,19 +477,24 @@
   // .action-header__link
 
   &__link {
+    position: relative;
     display: inline-block;
 
     @include adaptiveValue("width", 32, 30, 0, $containerWidth, 767.98);
     @include adaptiveValue("height", 32, 30, 0, $containerWidth, 767.98);
+    @include adaptiveValue("font-size", 16, 14, 0, $containerWidth, 767.98);
 
     background-color: $goldColor;
     border: toRem(2) solid $goldColor;
     border-radius: 50%;
     transition: all .6s, transform 0s;
+    line-height: toRem(16);
 
     @media (max-width:$mobile) {
       width: 40px;
       height: 40px;
+      font-size: toRem(20);
+      line-height: toRem(20);
     }
 
     &::before {
@@ -498,13 +503,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       color: $bgMainColor;
-      @include adaptiveValue("font-size", 16, 11);
       font-weight: 600;
       transition: all .5s, transform 0s;
-
-      @media (max-width:$mobile) {
-        font-size: toRem(20);
-      }
     }
 
     @media (any-hover: hover) {
@@ -526,6 +526,25 @@
         color: $mainColor;
       }
     }
+  }
+}
+
+// .basket-link
+
+.basket-link {
+  span {
+    position: absolute;
+    width: 1.5em;
+    top: -35%;
+    right: -35%;
+    padding: toRem(3);
+    border-radius: 50%;
+    background-color: $bgDarkLight;
+    font-size: 0.75em;
+    text-align: center;
+    color: $mainColor;
+    line-height: 100%;
+
   }
 }
 
