@@ -22,56 +22,70 @@ let month = selectedDate.getMonth();
 
 
 //handle next month nav
-nextBtn.addEventListener("click", () => {
-  if (month === 11) year++;
-  month = (month + 1) % 12;
-  displayDates();
-});
+if (nextBtn) {
+  nextBtn.addEventListener("click", () => {
+    if (month === 11) year++;
+    month = (month + 1) % 12;
+    displayDates();
+  });
+};
 
 //handle prev month nav
-prevBtn.addEventListener("click", () => {
-  if (month === 0) year--;
-  month = (month - 1 + 12) % 12;
-  displayDates();
-});
+if (prevBtn) {
+  prevBtn.addEventListener("click", () => {
+    if (month === 0) year--;
+    month = (month - 1 + 12) % 12;
+    displayDates();
+  });
+};
 
 //handle month input change event
-monthInput.addEventListener("change", () => {
-  month = monthInput.value;
-  displayDates();
-});
+if (monthInput) {
+  monthInput.addEventListener("change", () => {
+    month = monthInput.value;
+    displayDates();
+  });
+};
 
 //handle year input change event
-yearInput.addEventListener("change", () => {
-  year = yearInput.value;
-  displayDates();
-});
-
-yearUp.addEventListener("click", function () {
-  yearInput.value++;
-  year = yearInput.value;
-  displayDates();
-});
-
-yearDown.addEventListener("click", function () {
-  if (yearInput.value > currentYear) {
-    yearInput.value--;
+if (yearInput) {
+  yearInput.addEventListener("change", () => {
     year = yearInput.value;
     displayDates();
-  };
-});
+  });
+};
 
-const updateYearMonth = () => {
-  monthInput.value = month;
-  yearInput.value = year;
+if (yearUp) {
+  yearUp.addEventListener("click", function () {
+    yearInput.value++;
+    year = yearInput.value;
+    displayDates();
+  });
+};
 
-  dropDownListItems.forEach((item) => {
-
-    if (month == item.dataset.value) {
-      dropDownBtn.innerText = item.textContent;
-      monthInput.value = item.dataset.value;
+if (yearDown) {
+  yearDown.addEventListener("click", function () {
+    if (yearInput.value > currentYear) {
+      yearInput.value--;
+      year = yearInput.value;
+      displayDates();
     };
   });
+};
+
+const updateYearMonth = () => {
+  if (monthInput && yearInput) {
+    monthInput.value = month;
+    yearInput.value = year;
+
+    dropDownListItems.forEach((item) => {
+
+      if (month == item.dataset.value) {
+        dropDownBtn.innerText = item.textContent;
+        monthInput.value = item.dataset.value;
+      };
+    });
+  };
 };
 
 const handleDateClick = (e) => {
@@ -102,42 +116,47 @@ const displayDates = () => {
   updateYearMonth();
 
   //clear the dates
-  dates.innerHTML = "";
-
+  if (dates) {
+    dates.innerHTML = "";
+  };
   //*display the last week previous month
 
   //get the last date of previous month
   const lastOfPrevMonth = new Date(year, month, 0);
 
   if (lastOfPrevMonth.getDay() < 6) {
-    for (let i = 0; i <= lastOfPrevMonth.getDay(); i++) {
-      const text = lastOfPrevMonth.getDate() - lastOfPrevMonth.getDay() + i;
-      const button = createButton(text, true, true);
-      dates.appendChild(button);
-    }
+    if (dates) {
+      for (let i = 0; i <= lastOfPrevMonth.getDay(); i++) {
+        const text = lastOfPrevMonth.getDate() - lastOfPrevMonth.getDay() + i;
+        const button = createButton(text, true, true);
+
+        dates.appendChild(button);
+      };
+    };
   };
 
   //*display the current month
 
   //get the last day of the month
   const lastOfMOnth = new Date(year, month + 1, 0);
+  if (dates) {
+    for (let i = 1; i <= lastOfMOnth.getDate(); i++) {
+      const todayDate = new Date();
+      const button = (todayDate < new Date(year, month, i)) ?
+        createButton(i, false) :
+        createButton(i, true);
 
-  for (let i = 1; i <= lastOfMOnth.getDate(); i++) {
-    const todayDate = new Date();
-    const button = (todayDate < new Date(year, month, i)) ?
-      createButton(i, false) :
-      createButton(i, true);
+      button.addEventListener("click", handleDateClick);
 
-    button.addEventListener("click", handleDateClick);
-
-    dates.appendChild(button);
-  }
+      dates.appendChild(button);
+    };
+  };
 
   //*display the first week of next month
 
   const firstOfNextMonth = new Date(year, month + 1, 1);
 
-  if (firstOfNextMonth.getDay() > 0) {
+  if (firstOfNextMonth.getDay() > 0 && dates) {
     for (let i = firstOfNextMonth.getDay(); i < 7; i++) {
       const text = firstOfNextMonth.getDate() - firstOfNextMonth.getDay() + i;
       const button = createButton(text, true, true);
@@ -185,28 +204,31 @@ const datepickerMonthPopupContent = document.querySelector(".month-content");
 export const body = document.body;
 
 //Open month-list in dropdown-list or in popup
-dropDownBtn.addEventListener('click', function () {
-  if (body.classList.contains("_pc")) {
-    dropDownList.classList.toggle("dropdown-list__visible");
-    this.classList.toggle("onFocus");
-  } else {
-    monthListPopup.classList.add("showModal");
-    disableScroll();
-  }
-});
+if (dropDownBtn) {
+  dropDownBtn.addEventListener('click', function () {
+    if (body.classList.contains("_pc")) {
+      dropDownList.classList.toggle("dropdown-list__visible");
+      this.classList.toggle("onFocus");
+    } else {
+      monthListPopup.classList.add("showModal");
+      disableScroll();
+    };
+  });
+};
 
 //Move list-items from main-list to modal-list
 
 export const moveListItems = function (targetList, sourceList, targetClass, sourceClass) {
+  if (targetList) {
+    targetList.insertAdjacentHTML('afterbegin', sourceList.innerHTML);
 
-  targetList.insertAdjacentHTML('afterbegin', sourceList.innerHTML);
-
-  targetList.childNodes.forEach(el => {
-    if (el.nodeType === Node.ELEMENT_NODE) {
-      el.classList.add(targetClass);
-      el.classList.remove(sourceClass);
-    };
-  });
+    targetList.childNodes.forEach(el => {
+      if (el.nodeType === Node.ELEMENT_NODE) {
+        el.classList.add(targetClass);
+        el.classList.remove(sourceClass);
+      };
+    });
+  };
 };
 
 //Disable page scroll when popup is open
@@ -229,13 +251,15 @@ export function enableScroll() {
 moveListItems(datepickerMonthListMobile, dropDownList, 'month-list__item', 'dropdown-list__item');
 
 //Close popup with month-list by close-button
-datepickerMonthPopupContent.addEventListener('click', function (e) {
-  if (e.target.closest('.month-content__close')) {
-    monthListPopup.classList.remove('showModal');
+if (datepickerMonthPopupContent) {
+  datepickerMonthPopupContent.addEventListener('click', function (e) {
+    if (e.target.closest('.month-content__close')) {
+      monthListPopup.classList.remove('showModal');
 
-    enableScroll();
-  }
-});
+      enableScroll();
+    };
+  });
+};
 
 // Selecting a list item on mobile. Remember the selected value. Close dropdown
 const mobileMonthListItems = document.querySelectorAll(".month-list__item");
@@ -291,25 +315,33 @@ document.addEventListener('keydown', function (e) {
 const calendarMonthInput = document.querySelector(".month-input");
 const calendarMonthInputWrp = document.querySelector(".month-input__wrapper");
 
-calendarMonthInput.onclick = function () {
-  calendarMonthInputWrp.classList.toggle('_arrowUp');
-}
+if (calendarMonthInput) {
+  calendarMonthInput.onclick = function () {
+    calendarMonthInputWrp.classList.toggle('_arrowUp');
+  };
+};
 
-calendarMonthInput.onblur = function () {
-  calendarMonthInputWrp.classList.remove('_arrowUp');
-}
+if (calendarMonthInput) {
+  calendarMonthInput.onblur = function () {
+    calendarMonthInputWrp.classList.remove('_arrowUp');
+  };
+};
 
 //===Rotate arrow when clicking on dropdown-button in calendar======
 
 const dropDownButton = document.querySelector('.dropdown-button');
 
-dropDownButton.onclick = function () {
-  this.classList.toggle('_arrowUp');
-}
+if (dropDownButton) {
+  dropDownButton.onclick = function () {
+    this.classList.toggle('_arrowUp');
+  };
+};
 
-dropDownButton.onblur = function () {
-  this.classList.remove('_arrowUp');
-}
+if (dropDownButton) {
+  dropDownButton.onblur = function () {
+    this.classList.remove('_arrowUp');
+  };
+};
 //===================================================================
 
 //===Outline for year-input when hovering over the year switching arrows======

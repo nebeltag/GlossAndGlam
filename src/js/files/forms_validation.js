@@ -35,25 +35,26 @@ function inputsValidation(currentInput, currentForm) {
 //blocking the SubmitBtn if there are invalid inputs ---------------
 
 function checkValidatedInputs(currentForm) {
+  if (currentForm) {
+    const submitButton = currentForm.querySelector('button[type="submit"]');
+    const validatedInputs = currentForm.querySelectorAll('[data-regexp]');
+    console.log(validatedInputs)
+    const validatedInputsLength = validatedInputs.length;
+    console.log(validatedInputsLength);
+    let validInputsNumber = 0;
+    validatedInputs.forEach(el => {
+      (el.classList.contains('input-invalid') || el.classList.contains('empty')) ?
+        null :
+        validInputsNumber++;
+    });
+    console.log(validInputsNumber);
 
-  const submitButton = currentForm.querySelector('button[type="submit"]');
-  const validatedInputs = currentForm.querySelectorAll('[data-regexp]');
-  console.log(validatedInputs)
-  const validatedInputsLength = validatedInputs.length;
-  console.log(validatedInputsLength);
-  let validInputsNumber = 0;
-  validatedInputs.forEach(el => {
-    (el.classList.contains('input-invalid') || el.classList.contains('empty')) ?
-      null :
-      validInputsNumber++;
-  });
-  console.log(validInputsNumber);
-
-  validatedInputsLength === validInputsNumber
-    ?
-    submitButton.disabled = false
-    :
-    submitButton.disabled = true;
+    validatedInputsLength === validInputsNumber
+      ?
+      submitButton.disabled = false
+      :
+      submitButton.disabled = true;
+  };
 };
 
 //checking the submitted data in the form -----------------
@@ -85,19 +86,21 @@ function createMessageUnder(elem, html, coordsRatio) {
 
 function showMessageUnder(form, message, coords) {
 
-  form.addEventListener('click', (e) => {
+  if (form) {
+    form.addEventListener('click', (e) => {
 
-    let currentElement = e.target;
-    const submitButton = e.currentTarget.querySelector('button[type="submit"');
+      let currentElement = e.target;
+      const submitButton = e.currentTarget.querySelector('button[type="submit"');
 
-    if (currentElement.closest('button[type="submit"')) {
-      let appointmentUnderMessage = createMessageUnder(form, message, coords);
-      document.body.append(appointmentUnderMessage);
-      setTimeout(() => appointmentUnderMessage.remove(), 2000);
-      setTimeout(() => submitButton.disabled = true, 100);
-      setTimeout(() => submitButton.disabled = false, 2000);
-    };
-  });
+      if (currentElement.closest('button[type="submit"')) {
+        let appointmentUnderMessage = createMessageUnder(form, message, coords);
+        document.body.append(appointmentUnderMessage);
+        setTimeout(() => appointmentUnderMessage.remove(), 2000);
+        setTimeout(() => submitButton.disabled = true, 100);
+        setTimeout(() => submitButton.disabled = false, 2000);
+      };
+    });
+  };
 }
 
 
@@ -108,18 +111,22 @@ checkValidatedInputs(appointmentForm);
 
 
 // inputs validation ---------
-appointmentForm.addEventListener('input', (e) => {
+if (appointmentForm) {
+  appointmentForm.addEventListener('input', (e) => {
 
-  let currentElement = e.target;
+    let currentElement = e.target;
 
-  if (currentElement.hasAttribute('data-regexp')) {
-    inputsValidation(currentElement, appointmentForm);
-  };
-});
+    if (currentElement.hasAttribute('data-regexp')) {
+      inputsValidation(currentElement, appointmentForm);
+    };
+  });
+};
 
 
 //checking the submitted data in a form -----------------
-appointmentForm.addEventListener('submit', (e) => checkSubmitData(e, appointmentForm));
+if (appointmentForm) {
+  appointmentForm.addEventListener('submit', (e) => checkSubmitData(e, appointmentForm));
+};
 
 //show successfuly message after appoitment submit -----------------
 showMessageUnder(appointmentForm, 'Your Appointment Is Successfuly', 0.83);
@@ -134,18 +141,21 @@ const subscribeForm = document.forms["subscribe"];
 checkValidatedInputs(subscribeForm);
 
 // inputs validation ---------
-subscribeForm.addEventListener('input', (e) => {
+if (subscribeForm) {
+  subscribeForm.addEventListener('input', (e) => {
 
-  let currentElement = e.target;
+    let currentElement = e.target;
 
-  if (currentElement.hasAttribute('data-regexp')) {
-    inputsValidation(currentElement, subscribeForm);
-  };
-});
+    if (currentElement.hasAttribute('data-regexp')) {
+      inputsValidation(currentElement, subscribeForm);
+    };
+  });
+};
 
 //checking the submitted data in the subscribe-form -----------------
-subscribeForm.addEventListener('submit', (e) => checkSubmitData(e, subscribeForm));
-
+if (subscribeForm) {
+  subscribeForm.addEventListener('submit', (e) => checkSubmitData(e, subscribeForm));
+};
 
 //show successfuly message after subscribe submit -----------------
 

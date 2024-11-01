@@ -71,19 +71,18 @@
 
   &__link {
     @include adaptiveValue("margin-bottom", 56, 20);
-    transition: transform .2s;
+    //transition: transform .3s;
 
-    @media (any-hover: hover) {
-      &:hover {
-        transform: scale(1.01);
-      }
-    }
+    // @media (any-hover: hover) {
+    //   &:hover .item-packages__title {
+    //     transform: scale(1.05);
+    //   }
+    // }
   }
 
   // .item-packages__title
 
   &__title {
-    //font-size: toRem(32);
     @include adaptiveValue("font-size", 32, 24);
     line-height: 150%;
     /* 48/32 */
@@ -91,6 +90,7 @@
     color: $cardTitle;
     text-align: center;
     text-transform: capitalize;
+    transition: all .3s;
 
     @include adaptiveValue("margin-bottom", 12, 8);
   }

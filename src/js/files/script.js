@@ -51,27 +51,31 @@ document.documentElement.addEventListener("click", showActionSearch);
 const hamburgerButton = document.querySelector(".icon-menu");
 const menuList = document.querySelector(".menu__list");
 
-hamburgerButton.addEventListener("click", () => {
-  const currentState = hamburgerButton.getAttribute("data-state");
+if (hamburgerButton) {
+  hamburgerButton.addEventListener("click", () => {
+    const currentState = hamburgerButton.getAttribute("data-state");
 
-  if (!currentState || currentState == "closed") {
-    hamburgerButton.setAttribute("data-state", "opened");
-    hamburgerButton.setAttribute("aria-expanded", "true");
-  } else {
-    hamburgerButton.setAttribute("data-state", "closed");
-    hamburgerButton.setAttribute("aria-expanded", "false");
-  }
-});
+    if (!currentState || currentState == "closed") {
+      hamburgerButton.setAttribute("data-state", "opened");
+      hamburgerButton.setAttribute("aria-expanded", "true");
+    } else {
+      hamburgerButton.setAttribute("data-state", "closed");
+      hamburgerButton.setAttribute("aria-expanded", "false");
+    };
+  });
+};
 
-menuList.addEventListener("click", (e) => {
+if (menuList) {
+  menuList.addEventListener("click", (e) => {
 
-  let currentElement = e.target.closest(".menu__link");
+    let currentElement = e.target.closest(".menu__link");
 
-  if (currentElement) {
-    hamburgerButton.setAttribute("data-state", "closed");
-    hamburgerButton.setAttribute("aria-expanded", "false");
-  }
-});
+    if (currentElement) {
+      hamburgerButton.setAttribute("data-state", "closed");
+      hamburgerButton.setAttribute("aria-expanded", "false");
+    };
+  });
+};
 
 //==============================================================
 
@@ -79,8 +83,9 @@ menuList.addEventListener("click", (e) => {
 const currentYearSpan = document.getElementById("copy");
 const currentYear = new Date().getFullYear();
 
-currentYearSpan.innerText = currentYear;
-
+if (currentYearSpan) {
+  currentYearSpan.innerText = currentYear;
+};
 //==============================================================
 
 
@@ -92,15 +97,17 @@ const submitServicesInput = document.querySelector('[name="submit-services"]');
 const submitServicesList = document.querySelector(".submit-services__list");
 const submitServices = document.querySelector(".submit-services");
 
-submitServicesInput.addEventListener('focus', () => {
-  submitServices.classList.add('services-input__active');
-});
+if (submitServicesInput) {
+  submitServicesInput.addEventListener('focus', () => {
+    submitServices.classList.add('services-input__active');
+  });
 
-submitServicesInput.addEventListener('blur', () => {
-  submitServicesList.classList.remove('services-list__visible');
-  submitServices.classList.remove('services-arrow__down');
-  submitServices.classList.remove('services-input__active');
-});
+  submitServicesInput.addEventListener('blur', () => {
+    submitServicesList.classList.remove('services-list__visible');
+    submitServices.classList.remove('services-arrow__down');
+    submitServices.classList.remove('services-input__active');
+  });
+};
 
 //Add value of services-list-item to input-value --------------
 
@@ -118,10 +125,11 @@ submitServicesItems.forEach(el => {
 
 //Services-input down-arrow up & down --------------
 
-submitServices.addEventListener('click', () => {
-  submitServices.classList.toggle('services-arrow__down');
-});
-
+if (submitServices) {
+  submitServices.addEventListener('click', () => {
+    submitServices.classList.toggle('services-arrow__down');
+  });
+};
 //Services popup -------------------------------------
 
 const servicesListPopup = document.querySelector('.services-popup');
@@ -141,36 +149,42 @@ const servicesPopupCloseBtn = document.querySelector(".services-content__close")
 moveListItems(appointmentServicesListMobile, submitServicesList, 'services-popuplist__item', 'services-list__item');
 
 //Open services-list in dropdown-list or in popup
-submitServicesInput.addEventListener('click', function () {
-  if (body.classList.contains("_pc")) {
-    submitServicesList.classList.toggle("services-list__visible");
-  } else {
-    servicesListPopup.classList.add("showModal");
-    disableScroll();
-  }
-});
+if (submitServicesInput) {
+  submitServicesInput.addEventListener('click', function () {
+    if (body.classList.contains("_pc")) {
+      submitServicesList.classList.toggle("services-list__visible");
+    } else {
+      servicesListPopup.classList.add("showModal");
+      disableScroll();
+    };
+  });
+};
 
 //Close popup with services-list by close-button
-servicesPopupCloseBtn.addEventListener('click', function (e) {
+if (servicesPopupCloseBtn) {
+  servicesPopupCloseBtn.addEventListener('click', function (e) {
 
-  servicesListPopup.classList.remove('showModal');
-  enableScroll();
-});
+    servicesListPopup.classList.remove('showModal');
+    enableScroll();
+  });
+};
 
 // Selecting a services-list item on mobile. Remember the selected value. Close popup
 
-appointmentServicesListMobile.addEventListener('click', function (e) {
+if (appointmentServicesListMobile) {
+  appointmentServicesListMobile.addEventListener('click', function (e) {
 
-  const target = e.target;
-  if (target.closest(".services-popuplist__item")) {
-    servicesListPopup.classList.remove('showModal');
-    submitServicesInput.value = target.innerText;
-    selectedServiceInput.value = target.innerText;
-    enableScroll();
-  };
+    const target = e.target;
+    if (target.closest(".services-popuplist__item")) {
+      servicesListPopup.classList.remove('showModal');
+      submitServicesInput.value = target.innerText;
+      selectedServiceInput.value = target.innerText;
+      enableScroll();
+    };
 
-  e.stopPropagation();
-});
+    e.stopPropagation();
+  });
+};
 
 //==============================================================
 
@@ -182,21 +196,26 @@ const packagesList = document.querySelector(".packages__list");
 
 //mute packages-items they are unhovered-------------------- 
 
-packagesList.addEventListener('mouseover', (e) => {
+if (packagesList) {
+  packagesList.addEventListener('mouseover', (e) => {
 
-  let currentElement = e.target.closest("article");
-  if (currentElement) {
-    for (const el of packagesItems) {
-      el !== currentElement ?
-        el.classList.add('_muted') :
-        el.classList.remove('_muted');
+    let currentElement = e.target.closest("article");
+    if (currentElement) {
+      for (const el of packagesItems) {
+        el !== currentElement ?
+          el.classList.add('_muted') :
+          el.classList.remove('_muted');
+      };
     };
-  };
-});
+  });
+};
 
 //unmute packages-items when cursor leave packages-list--------------------
-packagesList.addEventListener('mouseout', (e) => {
-  for (const el of packagesItems) {
-    el.classList.remove('_muted');
-  };
-});
+
+if (packagesList) {
+  packagesList.addEventListener('mouseout', (e) => {
+    for (const el of packagesItems) {
+      el.classList.remove('_muted');
+    };
+  });
+};

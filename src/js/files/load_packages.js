@@ -6,7 +6,9 @@ import {
 import {
   showErrorMessage,
   getBasketLocalStorage,
-  setBasketLocalStorage
+  setBasketLocalStorage,
+  basketCount,
+  checkingRelevanceValueBasket
 } from "./utils.js";
 
 const packagesCards = document.querySelector('.packages__list');
@@ -44,6 +46,15 @@ function renderPackagesList(data) {
     return
   };
   createCard(data);
+
+  const basket = getBasketLocalStorage();
+
+  if (basketCount) {
+    basketCount.textContent = basket.length;
+  };
+
+  checkingActiveButtons(basket);
+  checkingRelevanceValueBasket(data);
 };
 
 //Create card 
@@ -53,7 +64,7 @@ function createCard(data) {
 
     const cardItem =
       `
-      <article data-product_id = ${id} class="packages__item item-packages">
+      <article data-product-id = ${id} class="packages__item item-packages">
         <div class="item-packages__body">
           <a href="/card.html?id=${id}" class="item-packages__link">
             <div class="item-packages__title">${title} ${id}</div>
@@ -67,33 +78,56 @@ function createCard(data) {
         </div>        
       </article>    
       `
-    packagesCards.insertAdjacentHTML('beforeend', cardItem);
+    if (packagesCards) {
+      packagesCards.insertAdjacentHTML('beforeend', cardItem);
+    };
 
     services.forEach((service) => {
       const servicesItem =
         `<li class="packages-sublist__item _icon-check-mark">${service}</li>`;
 
-      document.querySelectorAll('.packages-sublist')[ind].insertAdjacentHTML('beforeend', servicesItem);
+      const packagesSublist = document.querySelectorAll('.packages-sublist')[ind];
+      if (packagesSublist) {
+        packagesSublist.insertAdjacentHTML('beforeend', servicesItem);
+      };
     });
   });
 };
 
 //=========== Get packages to basket ===================
 
-packagesCards.addEventListener('click', handleCardClick);
+if (packagesCards) {
+  packagesCards.addEventListener('click', handleCardClick);
+};
 
 function handleCardClick(e) {
   const targetButton = e.target.closest('.card__add');
   if (!targetButton) return;
 
   const card = targetButton.closest('.item-packages');
-  const id = card.dataset.product_id;
+  const id = card.dataset.productId;
   const basket = getBasketLocalStorage();
 
   if (basket.includes(id)) return;
 
   basket.push(id);
   setBasketLocalStorage(basket);
+  checkingActiveButtons(basket);
 };
 
-//34:00
+
+function checkingActiveButtons(basket) {
+  const buttons = document.querySelectorAll('.card__add');
+
+  buttons.forEach(el => {
+    const card = el.closest('.item-packages');
+    const id = card.dataset.productId;
+    const isInBasket = basket.includes(id);
+
+    el.disabled = isInBasket;
+    el.classList.toggle('active', isInBasket);
+    el.textContent = isInBasket ? 'Plan selected' : 'Choose plan';
+  });
+};
+
+//45:00
