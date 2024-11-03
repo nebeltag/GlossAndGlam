@@ -1,12 +1,5 @@
 export const indexPage = document.getElementsByClassName('indexPage')[0];
-let cardPage;
-// if (document.getElementsByClassName('indexPage')[0]) {
-//   indexPage = document;
-// }
-
-// if (document.getElementsByClassName('cardPage')[0]) {
-//   cardPage = document;
-// }
+export const cardPage = document.getElementsByClassName('cardPage')[0];
 
 // console.log(indexPage);
 // console.log(cardPage);
@@ -26,7 +19,6 @@ export function showErrorMessage(message) {
 //======== Get id from Local storage =============
 
 export const basketCount = document.querySelector('.basket__count');
-console.log(basketCount);
 
 export function getBasketLocalStorage() {
   const cartDataJSON = localStorage.getItem('basket');
@@ -37,7 +29,7 @@ export function getBasketLocalStorage() {
 
 export function setBasketLocalStorage(basket) {
   localStorage.setItem('basket', JSON.stringify(basket));
-  indexPage ? basketCount.textContent = basket.length : false;
+  indexPage && basketCount.textContent == basket.length;
 };
 
 //=============== Сhecking the relevance of data in Local storage ==========
