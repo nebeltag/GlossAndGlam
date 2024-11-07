@@ -1,4 +1,4 @@
-//import { documentBody } from "/src/js/files/script.js";
+import { indexPage } from "./constants.js";
 
 const dateInput = document.querySelector(".datepicker__input");
 const yearInput = document.querySelector(".year-input");
@@ -22,71 +22,65 @@ let month = selectedDate.getMonth();
 
 
 //handle next month nav
-if (nextBtn) {
-  nextBtn.addEventListener("click", () => {
-    if (month === 11) year++;
-    month = (month + 1) % 12;
-    displayDates();
-  });
-};
+indexPage && nextBtn.addEventListener("click", () => {
+  if (month === 11) year++;
+  month = (month + 1) % 12;
+  displayDates();
+});
+
 
 //handle prev month nav
-if (prevBtn) {
-  prevBtn.addEventListener("click", () => {
-    if (month === 0) year--;
-    month = (month - 1 + 12) % 12;
-    displayDates();
-  });
-};
+indexPage && prevBtn.addEventListener("click", () => {
+  if (month === 0) year--;
+  month = (month - 1 + 12) % 12;
+  displayDates();
+});
+
 
 //handle month input change event
-if (monthInput) {
-  monthInput.addEventListener("change", () => {
-    month = monthInput.value;
-    displayDates();
-  });
-};
+indexPage && monthInput.addEventListener("change", () => {
+  month = monthInput.value;
+  displayDates();
+});
+
 
 //handle year input change event
-if (yearInput) {
-  yearInput.addEventListener("change", () => {
+indexPage && yearInput.addEventListener("change", () => {
+  year = yearInput.value;
+  displayDates();
+});
+
+
+indexPage && yearUp.addEventListener("click", function () {
+  yearInput.value++;
+  year = yearInput.value;
+  displayDates();
+});
+
+
+indexPage && yearDown.addEventListener("click", function () {
+  if (yearInput.value > currentYear) {
+    yearInput.value--;
     year = yearInput.value;
     displayDates();
-  });
-};
+  };
+});
 
-if (yearUp) {
-  yearUp.addEventListener("click", function () {
-    yearInput.value++;
-    year = yearInput.value;
-    displayDates();
-  });
-};
 
-if (yearDown) {
-  yearDown.addEventListener("click", function () {
-    if (yearInput.value > currentYear) {
-      yearInput.value--;
-      year = yearInput.value;
-      displayDates();
+const updateYearMonth = () => {
+
+  monthInput.value = month;
+  yearInput.value = year;
+
+  dropDownListItems.forEach((item) => {
+
+    if (month == item.dataset.value) {
+      dropDownBtn.innerText = item.textContent;
+      monthInput.value = item.dataset.value;
     };
   });
 };
 
-const updateYearMonth = () => {
-  if (monthInput && yearInput) {
-    monthInput.value = month;
-    yearInput.value = year;
-
-    dropDownListItems.forEach((item) => {
-
-      if (month == item.dataset.value) {
-        dropDownBtn.innerText = item.textContent;
-        monthInput.value = item.dataset.value;
-      };
-    });
-  };
-};
 
 const handleDateClick = (e) => {
   const button = e.target;
@@ -113,32 +107,32 @@ const handleDateClick = (e) => {
 const displayDates = () => {
 
   //updates year & month wherever the dates are updated
-  updateYearMonth();
+  indexPage && updateYearMonth();
 
-  //clear the dates
-  if (dates) {
-    dates.innerHTML = "";
-  };
+  //clear the dates  
+  dates.innerHTML = "";
+
   //*display the last week previous month
 
   //get the last date of previous month
   const lastOfPrevMonth = new Date(year, month, 0);
 
   if (lastOfPrevMonth.getDay() < 6) {
-    if (dates) {
-      for (let i = 0; i <= lastOfPrevMonth.getDay(); i++) {
-        const text = lastOfPrevMonth.getDate() - lastOfPrevMonth.getDay() + i;
-        const button = createButton(text, true, true);
 
-        dates.appendChild(button);
-      };
+    for (let i = 0; i <= lastOfPrevMonth.getDay(); i++) {
+      const text = lastOfPrevMonth.getDate() - lastOfPrevMonth.getDay() + i;
+      const button = createButton(text, true, true);
+
+      dates.appendChild(button);
     };
   };
+
 
   //*display the current month
 
   //get the last day of the month
   const lastOfMOnth = new Date(year, month + 1, 0);
+
   if (dates) {
     for (let i = 1; i <= lastOfMOnth.getDate(); i++) {
       const todayDate = new Date();
@@ -192,7 +186,7 @@ const createButton = (text, isDisabled = false, isHidden = false) => {
   return button;
 }
 
-displayDates();
+indexPage && displayDates();
 
 //---------------------------------------------------------------------------
 
@@ -204,32 +198,31 @@ const datepickerMonthPopupContent = document.querySelector(".month-content");
 export const body = document.body;
 
 //Open month-list in dropdown-list or in popup
-if (dropDownBtn) {
-  dropDownBtn.addEventListener('click', function () {
-    if (body.classList.contains("_pc")) {
-      dropDownList.classList.toggle("dropdown-list__visible");
-      this.classList.toggle("onFocus");
-    } else {
-      monthListPopup.classList.add("showModal");
-      disableScroll();
-    };
-  });
-};
+
+indexPage && dropDownBtn.addEventListener('click', function () {
+  if (body.classList.contains("_pc")) {
+    dropDownList.classList.toggle("dropdown-list__visible");
+    this.classList.toggle("onFocus");
+  } else {
+    monthListPopup.classList.add("showModal");
+    disableScroll();
+  };
+});
+
 
 //Move list-items from main-list to modal-list
 
 export const moveListItems = function (targetList, sourceList, targetClass, sourceClass) {
-  if (targetList) {
-    targetList.insertAdjacentHTML('afterbegin', sourceList.innerHTML);
+  indexPage && targetList.insertAdjacentHTML('afterbegin', sourceList.innerHTML);
 
-    targetList.childNodes.forEach(el => {
-      if (el.nodeType === Node.ELEMENT_NODE) {
-        el.classList.add(targetClass);
-        el.classList.remove(sourceClass);
-      };
-    });
-  };
+  targetList.childNodes.forEach(el => {
+    if (el.nodeType === Node.ELEMENT_NODE) {
+      el.classList.add(targetClass);
+      el.classList.remove(sourceClass);
+    };
+  });
 };
+
 
 //Disable page scroll when popup is open
 export function disableScroll() {
@@ -251,20 +244,19 @@ export function enableScroll() {
 moveListItems(datepickerMonthListMobile, dropDownList, 'month-list__item', 'dropdown-list__item');
 
 //Close popup with month-list by close-button
-if (datepickerMonthPopupContent) {
-  datepickerMonthPopupContent.addEventListener('click', function (e) {
-    if (e.target.closest('.month-content__close')) {
-      monthListPopup.classList.remove('showModal');
+indexPage && datepickerMonthPopupContent.addEventListener('click', function (e) {
+  if (e.target.closest('.month-content__close')) {
+    monthListPopup.classList.remove('showModal');
 
-      enableScroll();
-    };
-  });
-};
+    enableScroll();
+  };
+});
+
 
 // Selecting a list item on mobile. Remember the selected value. Close dropdown
 const mobileMonthListItems = document.querySelectorAll(".month-list__item");
 
-mobileMonthListItems.forEach(function (listItem) {
+indexPage && mobileMonthListItems.forEach(function (listItem) {
   listItem.addEventListener('click', function (e) {
     e.stopPropagation();
     dropDownBtn.innerText = this.innerText;
@@ -278,7 +270,7 @@ mobileMonthListItems.forEach(function (listItem) {
 });
 
 // Selecting a list item on pc. Remember the selected value. Close dropdown
-dropDownListItems.forEach(function (listItem) {
+indexPage && dropDownListItems.forEach(function (listItem) {
   listItem.addEventListener('click', function (e) {
     e.stopPropagation();
     dropDownBtn.innerText = this.innerText;

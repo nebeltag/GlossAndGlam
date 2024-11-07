@@ -1,8 +1,4 @@
-export const indexPage = document.getElementsByClassName('indexPage')[0];
-export const cardPage = document.getElementsByClassName('cardPage')[0];
-
-// console.log(indexPage);
-// console.log(cardPage);
+import { indexPage } from "./constants.js";
 
 //======= Error output =================
 
@@ -29,7 +25,7 @@ export function getBasketLocalStorage() {
 
 export function setBasketLocalStorage(basket) {
   localStorage.setItem('basket', JSON.stringify(basket));
-  indexPage && basketCount.textContent == basket.length;
+  indexPage ? basketCount.textContent = basket.length : null;
 };
 
 //=============== Сhecking the relevance of data in Local storage ==========

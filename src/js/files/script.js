@@ -1,5 +1,6 @@
 
 import { moveListItems, body, disableScroll, enableScroll } from "../files/my_datepicker.js";
+import { indexPage } from "./constants.js";
 
 
 //======Add class '_mobile' or '_pc' to body==================
@@ -97,17 +98,17 @@ const submitServicesInput = document.querySelector('[name="submit-services"]');
 const submitServicesList = document.querySelector(".submit-services__list");
 const submitServices = document.querySelector(".submit-services");
 
-if (submitServicesInput) {
-  submitServicesInput.addEventListener('focus', () => {
-    submitServices.classList.add('services-input__active');
-  });
 
-  submitServicesInput.addEventListener('blur', () => {
-    submitServicesList.classList.remove('services-list__visible');
-    submitServices.classList.remove('services-arrow__down');
-    submitServices.classList.remove('services-input__active');
-  });
-};
+indexPage && submitServicesInput.addEventListener('focus', () => {
+  submitServices.classList.add('services-input__active');
+});
+
+indexPage && submitServicesInput.addEventListener('blur', () => {
+  submitServicesList.classList.remove('services-list__visible');
+  submitServices.classList.remove('services-arrow__down');
+  submitServices.classList.remove('services-input__active');
+});
+
 
 //Add value of services-list-item to input-value --------------
 
@@ -125,11 +126,11 @@ submitServicesItems.forEach(el => {
 
 //Services-input down-arrow up & down --------------
 
-if (submitServices) {
-  submitServices.addEventListener('click', () => {
-    submitServices.classList.toggle('services-arrow__down');
-  });
-};
+
+indexPage && submitServices.addEventListener('click', () => {
+  submitServices.classList.toggle('services-arrow__down');
+});
+
 //Services popup -------------------------------------
 
 const servicesListPopup = document.querySelector('.services-popup');
@@ -149,42 +150,40 @@ const servicesPopupCloseBtn = document.querySelector(".services-content__close")
 moveListItems(appointmentServicesListMobile, submitServicesList, 'services-popuplist__item', 'services-list__item');
 
 //Open services-list in dropdown-list or in popup
-if (submitServicesInput) {
-  submitServicesInput.addEventListener('click', function () {
-    if (body.classList.contains("_pc")) {
-      submitServicesList.classList.toggle("services-list__visible");
-    } else {
-      servicesListPopup.classList.add("showModal");
-      disableScroll();
-    };
-  });
-};
+
+indexPage && submitServicesInput.addEventListener('click', function () {
+  if (body.classList.contains("_pc")) {
+    submitServicesList.classList.toggle("services-list__visible");
+  } else {
+    servicesListPopup.classList.add("showModal");
+    disableScroll();
+  };
+});
+
 
 //Close popup with services-list by close-button
-if (servicesPopupCloseBtn) {
-  servicesPopupCloseBtn.addEventListener('click', function (e) {
 
-    servicesListPopup.classList.remove('showModal');
-    enableScroll();
-  });
-};
+indexPage && servicesPopupCloseBtn.addEventListener('click', function (e) {
+  servicesListPopup.classList.remove('showModal');
+  enableScroll();
+});
+
 
 // Selecting a services-list item on mobile. Remember the selected value. Close popup
 
-if (appointmentServicesListMobile) {
-  appointmentServicesListMobile.addEventListener('click', function (e) {
+indexPage && appointmentServicesListMobile.addEventListener('click', function (e) {
 
-    const target = e.target;
-    if (target.closest(".services-popuplist__item")) {
-      servicesListPopup.classList.remove('showModal');
-      submitServicesInput.value = target.innerText;
-      selectedServiceInput.value = target.innerText;
-      enableScroll();
-    };
+  const target = e.target;
+  if (target.closest(".services-popuplist__item")) {
+    servicesListPopup.classList.remove('showModal');
+    submitServicesInput.value = target.innerText;
+    selectedServiceInput.value = target.innerText;
+    enableScroll();
+  };
 
-    e.stopPropagation();
-  });
-};
+  e.stopPropagation();
+});
+
 
 //==============================================================
 
@@ -196,26 +195,23 @@ const packagesList = document.querySelector(".packages__list");
 
 //mute packages-items they are unhovered-------------------- 
 
-if (packagesList) {
-  packagesList.addEventListener('mouseover', (e) => {
+indexPage && packagesList.addEventListener('mouseover', (e) => {
 
-    let currentElement = e.target.closest("article");
-    if (currentElement) {
-      for (const el of packagesItems) {
-        el !== currentElement ?
-          el.classList.add('_muted') :
-          el.classList.remove('_muted');
-      };
+  let currentElement = e.target.closest("article");
+  if (currentElement) {
+    for (const el of packagesItems) {
+      el !== currentElement ?
+        el.classList.add('_muted') :
+        el.classList.remove('_muted');
     };
-  });
-};
+  };
+});
+
 
 //unmute packages-items when cursor leave packages-list--------------------
 
-if (packagesList) {
-  packagesList.addEventListener('mouseout', (e) => {
-    for (const el of packagesItems) {
-      el.classList.remove('_muted');
-    };
-  });
-};
+indexPage && packagesList.addEventListener('mouseout', (e) => {
+  for (const el of packagesItems) {
+    el.classList.remove('_muted');
+  };
+});

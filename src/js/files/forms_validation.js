@@ -1,4 +1,4 @@
-import { indexPage } from "./utils.js";
+import { indexPage } from "./constants.js";
 
 //============Form validation======================
 const appointmentForm = document.forms["appointment"];
