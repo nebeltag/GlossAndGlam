@@ -11,8 +11,9 @@ import {
   checkingRelevanceValueBasket
 } from "./utils.js";
 
-const packagesCards = document.querySelector('.packages__list');
 
+const packagesCards = document.querySelector('.packages__list');
+const cardBody = document.getElementById('card-body');
 let productsData = [];
 
 getProducts();
@@ -30,7 +31,7 @@ async function getProducts() {
     }
 
   } catch (err) {
-    showErrorMessage(ERROR_SERVER);
+    packagesCards && showErrorMessage(ERROR_SERVER, '', packagesCards);
     console.log(err);
     return
   }
@@ -96,9 +97,9 @@ function createCard(data) {
 
 //=========== Get packages to basket ===================
 
-if (packagesCards) {
-  packagesCards.addEventListener('click', handleCardClick);
-};
+packagesCards && packagesCards.addEventListener('click', handleCardClick);
+
+cardBody && cardBody.addEventListener('click', handleCardClick);
 
 function handleCardClick(e) {
   const targetButton = e.target.closest('.card__add');
@@ -116,7 +117,7 @@ function handleCardClick(e) {
 };
 
 
-function checkingActiveButtons(basket) {
+export function checkingActiveButtons(basket) {
   const buttons = document.querySelectorAll('.card__add');
 
   buttons.forEach(el => {
@@ -130,4 +131,3 @@ function checkingActiveButtons(basket) {
   });
 };
 
-//45:00

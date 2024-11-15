@@ -75,13 +75,16 @@
 }
 
 .error {
-  @include adaptiveValue("font-size", 42, 14);
-  @include adaptiveValue("padding", 20, 6);
+  max-width: toRem(800);
+  width: 100%;
+  @include adaptiveValue("font-size", 42, 16);
+  @include adaptiveValue("padding", 20, 10);
   line-height: 150%;
-  padding: toRem(20);
+  text-align: center;
   margin: 0 auto;
   font-weight: 600;
   border: toRem(1) solid;
+  border-radius: toRem(5);
 
   p {
     background: linear-gradient(90deg, $mainColor, $goldColor, $cardTitle);
@@ -89,7 +92,36 @@
     background-size: 80%;
     background-clip: text;
     -webkit-text-fill-color: rgba(255, 255, 255, 0);
-    animation: error 5s linear infinite;
+    animation: error 4s linear infinite;
+    margin-bottom: toRem(5);
+  }
+
+  a {
+    @include adaptiveValue("font-size", 30, 16);
+    text-decoration: underline;
+    text-underline-offset: toRem(10);
+    cursor: pointer;
+    color: $cardTitle;
+    @include adaptiveValue("padding", 5, 2);
+    transition: transform .3s linear;
+    animation: redirectLink 3s linear;
+
+    @media (any-hover: hover) {
+      &:hover {
+        opacity: .8;
+      }
+    }
+
+
+    &:active {
+      transform: scale(1.05);
+    }
+  }
+
+  .packages__list & {
+    a {
+      display: none;
+    }
   }
 
   @keyframes error {
@@ -99,6 +131,20 @@
 
     100% {
       background-position: 500%;
+    }
+  }
+
+  @keyframes redirectLink {
+    0% {
+      opacity: 0;
+    }
+
+    75% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
     }
   }
 }

@@ -1,0 +1,48 @@
+.card-body {
+  display: grid;
+  place-items: center;
+  padding: toRem(15) toRem(0);
+}
+
+.packages-card__item,
+.packages-card__body {
+  max-width: toRem(600);
+  width: 100%;
+}
+
+.packages-card__body {
+  @include adaptiveValue("padding-top", 36, 12);
+  @include adaptiveValue("padding-bottom", 36, 16);
+}
+
+.packages-card__item {
+  @include adaptiveValue("padding-right", 30, 10);
+  @include adaptiveValue("padding-left", 30, 10);
+}
+
+.packages-card__sublist {
+  margin-bottom: toRem(20);
+}
+
+.packages-card__subscription {
+  @include adaptiveValue("font-size", 16, 14);
+  line-height: 150%;
+  margin-bottom: toRem(30);
+
+  p {
+    &:not(:last-child) {
+      margin-bottom: toRem(10);
+    }
+  }
+}
+
+.packages-card__footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__add,
+.card__exit {
+  display: block;
+}

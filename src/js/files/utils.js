@@ -2,13 +2,13 @@ import { indexPage } from "./constants.js";
 
 //======= Error output =================
 
-export function showErrorMessage(message) {
-  const packagesList = document.querySelector('.packages__list');
+export function showErrorMessage(message, linkHash, linkText, target) {
   const msg =
     `<div class="error">
-      <p>${message}</p>      
+      <p>${message}</p>
+      <a href="/#${linkHash}">${linkText}</a>      
     </div>`;
-  packagesList.insertAdjacentHTML('afterbegin', msg);
+  target.insertAdjacentHTML('afterbegin', msg);
   console.log(message);
 }
 

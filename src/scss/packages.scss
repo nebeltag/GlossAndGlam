@@ -70,19 +70,16 @@
   // .item-packages__link
 
   &__link {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
     @include adaptiveValue("margin-bottom", 56, 20);
-    //transition: transform .3s;
-
-    // @media (any-hover: hover) {
-    //   &:hover .item-packages__title {
-    //     transform: scale(1.05);
-    //   }
-    // }
   }
 
   // .item-packages__title
 
   &__title {
+    width: 100%;
     @include adaptiveValue("font-size", 32, 24);
     line-height: 150%;
     /* 48/32 */
@@ -160,11 +157,10 @@
   height: 600%;
   width: 300%;
   background-color: $bgDarkLight;
-  //transition: all 1.5s;
 }
 
 .packages-price {
-
+  width: 100%;
   @include adaptiveValue("margin-bottom", 32, 10);
   text-align: center;
 
@@ -185,6 +181,7 @@
 }
 
 .packages-sublist {
+  width: 100%;
   flex: 1 1 auto;
 
   // .packages-sublist__item

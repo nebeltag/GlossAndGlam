@@ -215,7 +215,7 @@ indexPage && dropDownBtn.addEventListener('click', function () {
 export const moveListItems = function (targetList, sourceList, targetClass, sourceClass) {
   indexPage && targetList.insertAdjacentHTML('afterbegin', sourceList.innerHTML);
 
-  targetList.childNodes.forEach(el => {
+  indexPage && targetList.childNodes.forEach(el => {
     if (el.nodeType === Node.ELEMENT_NODE) {
       el.classList.add(targetClass);
       el.classList.remove(sourceClass);
@@ -285,7 +285,7 @@ indexPage && dropDownListItems.forEach(function (listItem) {
 
 // Click outside the dropdown. Close dropdown
 
-document.addEventListener('click', function (e) {
+indexPage && document.addEventListener('click', function (e) {
   if (e.target !== dropDownBtn) {
     dropDownBtn.classList.remove("onFocus");
     dropDownList.classList.remove("dropdown-list__visible");

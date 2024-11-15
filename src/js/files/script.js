@@ -28,7 +28,7 @@ const showServicesMenu = (e) => {
     }));
 };
 
-document.addEventListener("click", showServicesMenu);
+indexPage && document.addEventListener("click", showServicesMenu);
 
 //==============================================================
 
@@ -45,7 +45,7 @@ const showActionSearch = (e) => {
       : actionSearchForm.classList.remove('_show-action-search-form')
 }
 
-document.documentElement.addEventListener("click", showActionSearch);
+indexPage && document.documentElement.addEventListener("click", showActionSearch);
 
 //======Hamburger button=================
 
