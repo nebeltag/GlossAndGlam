@@ -61,5 +61,15 @@
 		}
 	}
 
+	&--back {
+		padding: 0;
+
+		a {
+			@include adaptiveValue("padding-top", 15, 8);
+			@include adaptiveValue("padding-bottom", 15, 8);
+			@include adaptiveValue("padding-left", 32, 12);
+			@include adaptiveValue("padding-right", 32, 12);
+		}
+	}
 
 }

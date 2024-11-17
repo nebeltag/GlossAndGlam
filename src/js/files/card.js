@@ -95,7 +95,8 @@ function renderInfoProduct(product) {
             </div>  
             <div class="packages-card__footer">
               <button type="button" class=" button item-packages__button card__add">Choose Plan</button>
-              <button type="button" class=" button item-packages__button card__exit"><a href="/#packages">Back to packages</a></button>
+              <button type="button" class=" button item-packages__button button--back card__exit">
+              <a href="/#packages">Back to packages</a></button>
             </div>       
             
           </div>        
