@@ -24,7 +24,7 @@
   margin-bottom: toRem(20);
 }
 
-.packages-card__subscription {
+.packages-card__description {
   @include adaptiveValue("font-size", 16, 14);
   line-height: 150%;
   margin-bottom: toRem(30);
@@ -40,6 +40,36 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+
+  button {
+    @include adaptiveValue("font-size", 20, 18);
+    line-height: 150%;
+    font-weight: 600;
+
+    &:not(:has(a)) {
+      padding-top: toRem(16);
+      padding-bottom: toRem(16);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: toRem(20);
+    }
+  }
+
+
+  @media (min-width:$mobileSmall) {
+    flex-direction: row;
+
+    button {
+      width: auto;
+
+      &:not(:last-child) {
+        margin-right: toRem(20);
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 
 .card__add,

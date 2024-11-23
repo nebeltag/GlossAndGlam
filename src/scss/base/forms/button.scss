@@ -61,14 +61,46 @@
 		}
 	}
 
+	&--transparent {
+		display: inline-block;
+		color: $cardTitle;
+		background-color: transparent;
+		border: toRem(1) solid $goldColor;
+		color: $cardTitle;
+		@include adaptiveValue("font-size", 20, 18);
+		line-height: 150%;
+		font-weight: 600;
+
+		@media (any-hover: hover) {
+			&:hover {
+				color: $bgDark;
+				background-color: $goldColor;
+			}
+		}
+
+		@media (max-width:$mobile) {
+			display: block;
+			width: 100%;
+		}
+
+		&:active {
+			background-color: transparent;
+			color: $cardTitle;
+		}
+	}
+
 	&--back {
 		padding: 0;
 
 		a {
-			@include adaptiveValue("padding-top", 15, 8);
-			@include adaptiveValue("padding-bottom", 15, 8);
+			padding-top: toRem(16);
+			padding-bottom: toRem(16);
 			@include adaptiveValue("padding-left", 32, 12);
 			@include adaptiveValue("padding-right", 32, 12);
+
+			@media (max-width:$mobileSmall) {
+				width: 100%;
+			}
 		}
 	}
 

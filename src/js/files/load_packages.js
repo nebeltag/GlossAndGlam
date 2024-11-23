@@ -68,14 +68,16 @@ function createCard(data) {
       <article data-product-id = ${id} class="packages__item item-packages">
         <div class="item-packages__body">
           <a href="/card.html?id=${id}" class="item-packages__link">
-            <div class="item-packages__title">${title} ${id}</div>
+            <div class="item-packages__title">
+              <h3>${title}</h3>
+            </div>
             <div class="item-packages__price packages-price">
-              <span class="packages-price__currency">$</span>
+              <span class="packages-price__currency">&#36</span>
               <span class="packages-price__value">${price}</span>
             </div>
             <ul class="item-packages__list packages-sublist"></ul>
           </a>        
-          <button type="button" class=" button item-packages__button card__add">Choose Plan</button>
+          <button type="button" class=" button button--transparent item-packages__button card__add">Choose Plan</button>
         </div>        
       </article>    
       `
@@ -106,6 +108,8 @@ function handleCardClick(e) {
   if (!targetButton) return;
 
   const card = targetButton.closest('.item-packages');
+  if (!card) return;
+
   const id = card.dataset.productId;
   const basket = getBasketLocalStorage();
 
@@ -116,12 +120,14 @@ function handleCardClick(e) {
   checkingActiveButtons(basket);
 };
 
-
+//------------ Disable buttons in packages, that allready in cart  ---------
 export function checkingActiveButtons(basket) {
   const buttons = document.querySelectorAll('.card__add');
 
   buttons.forEach(el => {
     const card = el.closest('.item-packages');
+    if (!card) return;
+
     const id = card.dataset.productId;
     const isInBasket = basket.includes(id);
 

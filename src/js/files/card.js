@@ -76,6 +76,8 @@ function loadProductsDetails(data) {
   checkingActiveButtons(basket);
 };
 
+
+//------------ Render products on card page ---------
 function renderInfoProduct(product) {
   const { id, title, price, services, description } = product;
 
@@ -84,18 +86,20 @@ function renderInfoProduct(product) {
       <article data-product-id = ${id} class="packages__item item-packages packages-card__item" id="card">
           <div class="item-packages__body packages-card__body">
             
-            <div class="item-packages__title packages-card__title">${title} ${id}</div>
+            <div class="item-packages__title packages-card__title">
+              <h1>${title}</h1>
+            </div>
             <div class="item-packages__price packages-price packages-card__price">
               <span class="packages-price__currency">$</span>
               <span class="packages-price__value">${price}</span>
             </div>
             <ul class="item-packages__list packages-sublist packages-card__sublist"></ul>
-            <div class="packages-card__subscription">
+            <div class="packages-card__description">
               <p>${description}</P>
             </div>  
             <div class="packages-card__footer">
-              <button type="button" class=" button item-packages__button card__add">Choose Plan</button>
-              <button type="button" class=" button item-packages__button button--back card__exit">
+              <button type="button" class=" button button--transparent item-packages__button card__add">Choose Plan</button>
+              <button type="button" class=" button button--transparent item-packages__button button--back card__exit">
               <a href="/#packages">Back to packages</a></button>
             </div>       
             

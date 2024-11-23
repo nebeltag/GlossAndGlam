@@ -73,7 +73,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    @include adaptiveValue("margin-bottom", 56, 20);
+    @include adaptiveValue("margin-bottom", 56, 30);
   }
 
   // .item-packages__title
@@ -103,12 +103,19 @@
   // .item-packages__button
 
   &__button {
-    display: inline-block;
-    color: $cardTitle;
-    background-color: transparent;
-    border: toRem(1) solid $goldColor;
-    color: $cardTitle;
-    @include adaptiveValue("font-size", 16, 14);
+    // display: inline-block;
+    // color: $cardTitle;
+    // background-color: transparent;
+    // border: toRem(1) solid $goldColor;
+    // color: $cardTitle;
+    // @include adaptiveValue("font-size", 20, 18);
+    // line-height: 150%;
+    // font-weight: 600;
+
+    &:not(:has(a)) {
+      padding-top: toRem(16);
+      padding-bottom: toRem(16);
+    }
 
     position: relative;
     z-index: 2;
@@ -133,22 +140,22 @@
       transition: all .4s;
     }
 
-    @media (any-hover: hover) {
-      &:hover {
-        color: $bgDark;
-        background-color: $goldColor;
-      }
-    }
+    // @media (any-hover: hover) {
+    //   &:hover {
+    //     color: $bgDark;
+    //     background-color: $goldColor;
+    //   }
+    // }
 
-    @media (max-width:$mobile) {
-      display: block;
-      width: 100%;
-    }
+    // @media (max-width:$mobile) {
+    //   display: block;
+    //   width: 100%;
+    // }
 
-    &:active {
-      background-color: transparent;
-      color: $cardTitle;
-    }
+    // &:active {
+    //   background-color: transparent;
+    //   color: $cardTitle;
+    // }
 
   }
 }
@@ -161,7 +168,7 @@
 
 .packages-price {
   width: 100%;
-  @include adaptiveValue("margin-bottom", 32, 10);
+  @include adaptiveValue("margin-bottom", 32, 16);
   text-align: center;
 
   &__currency {
@@ -182,7 +189,6 @@
 
 .packages-sublist {
   width: 100%;
-  //flex: 1 1 auto;
 
   // .packages-sublist__item
 
@@ -190,16 +196,19 @@
     position: relative;
     line-height: 150%;
     /* 24/16 */
+    // display: flex;
+    // align-items: center;
     color: rgba(255, 255, 255, 0.7);
 
     @include adaptiveValue("padding-left", 30, 22);
-    @include adaptiveValue("font-size", 16, 12);
+    @include adaptiveValue("font-size", 18, 14);
 
 
     &::before {
       position: absolute;
-      top: toRem(2);
+      top: toRem(2.5);
       left: 0;
+      padding-top: toRem(1);
 
       @include adaptiveValue("height", 21, 14);
       @include adaptiveValue("width", 21, 14);
@@ -212,6 +221,10 @@
       line-height: normal;
       background-color: $goldColor;
       color: $bgDarkLight;
+
+      @media (max-width:$mobile) {
+        top: toRem(3);
+      }
 
     }
 
