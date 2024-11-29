@@ -14,7 +14,8 @@
   background-color: $bgDark;
 
   &._header-scroll {
-    opacity: .95;
+    //opacity: .95;
+    background-color: rgba(27, 27, 27, 0.95);
 
     @include adaptiveValue("min-height", 70, 60);
 
@@ -88,6 +89,16 @@
 
   &__action {}
 }
+
+// @layer header,
+// basket;
+
+// @layer header {
+//   header._header-scroll {
+//     opacity: 0.95;
+//   }
+// }
+
 
 //--------------------------Navigation--------------------------
 
@@ -511,8 +522,18 @@
         background-color: transparent;
         border: toRem(2) solid $goldColor;
 
+        .services-menu__list & {
+          opacity: 0;
+          visibility: hidden;
+
+        }
+
         &::before {
           color: $goldColor;
+        }
+
+        &.basket-link {
+          backdrop-filter: sepia(1);
         }
       }
     }

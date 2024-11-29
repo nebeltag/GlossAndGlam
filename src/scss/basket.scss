@@ -1,7 +1,7 @@
 .basket {
   position: absolute;
-  top: 120%;
-  right: 0;
+  top: 100%;
+  right: 10%;
   border: toRem(1) solid $goldColor;
   border-radius: toRem(5);
   background-color: $bgDark;
@@ -9,22 +9,37 @@
   z-index: 1000;
   cursor: default;
 
+  @media (max-width:$mobile) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 // .basket-body
 
 .basket-body {
-  backdrop-filter: blur(40px);
+  backdrop-filter: sepia(1);
   width: max-content;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
-  //row-gap: toRem(10);
   padding: toRem(10);
+
+  @media (min-width:$mobile) {
+    max-width: toRem(500);
+  }
+
+  @media (max-width:$mobile) {
+    width: 100%;
+    height: 100%;
+  }
+
 }
 
 .basket-header {
-  //width: 100%;
 
   // .basket-header__title
 
@@ -36,6 +51,10 @@
     line-height: 100%;
     padding: toRem(5);
     color: $cardTitle;
+
+    @media (max-width:$mobile) {
+      font-size: toRem(46);
+    }
   }
 }
 
@@ -46,7 +65,11 @@
 
   // .basket-main__list
 
-  &__list {}
+  &__list {
+    @media (max-width:$mobile) {
+      margin-top: toRem(26);
+    }
+  }
 }
 
 // .basket-list
@@ -58,10 +81,17 @@
   &__item {
     display: grid;
     grid-template-columns: 1fr 1fr auto auto;
+    column-gap: toRem(18);
     padding: toRem(8) toRem(5);
 
     &:not(:last-child) {
       margin-bottom: toRem(10);
+    }
+
+    @media (max-width:$mobile) {
+      &:not(:last-child) {
+        margin-bottom: toRem(14);
+      }
     }
   }
 }
@@ -69,31 +99,27 @@
 .basket-item {
   line-height: 150%;
   font-weight: 600;
+
   // .basket-item__title
 
   &__title {
     font-size: toRem(18);
     color: $goldColor;
+
+    @media (max-width:$mobile) {
+      font-size: toRem(24);
+    }
   }
 
   // .basket-item__handler
 
   &__handler {
+    width: 100%;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     margin: toRem(0) toRem(5);
     color: darken($cardTitle, 7%);
-
-    button {
-      max-width: toRem(30);
-      width: 100%;
-      cursor: pointer;
-
-      &:hover {
-        scale: 1.1;
-        //color: red;
-      }
-    }
   }
 
   // .basket-item__sum
@@ -101,68 +127,130 @@
   &__sum {
     color: lighten($goldColor, 15%);
     text-align: end;
-    margin-right: toRem(16);
+    margin-right: toRem(6);
+
+    @media (max-width:$mobile) {
+      font-size: toRem(24);
+      margin-right: toRem(20);
+    }
   }
 
   &__delete {
-    align-self: center;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    line-height: 100%;
-    height: toRem(20);
-    width: toRem(20);
+    height: toRem(18);
+    width: toRem(18);
     border-radius: 50%;
+    margin-top: toRem(3);
 
-    &::before,
-    &::after {
-      position: absolute;
-      content: "";
-      height: toRem(2);
-      width: 100%;
-      top: 45%;
-      left: 0;
-      background-color: $mainColor;
-      z-index: 40000;
-      transition: background-color .2s, scale .2s;
-    }
-
-    &::before {
-      transform: rotate(45deg);
-    }
-
-    &::after {
-      transform: rotate(-45deg);
-    }
-
-    &:hover {
+    span {
 
       &::before,
       &::after {
-        scale: 1.2;
-        background-color: rgba(185, 48, 48, 0.664);
-        transition: background-color .2s, scale .2s;
-      }
-    }
-
-    &:active {
-      background-color: rgba(185, 48, 48, 0.664);
-      scale: 1.3;
-      transition: background-color .2s, scale .2s;
-
-      &::before,
-      &::after {
-        scale: .7;
+        position: absolute;
+        content: "";
+        height: toRem(2);
+        width: 100%;
+        top: 45%;
+        left: 0;
         background-color: $mainColor;
         transition: background-color .2s, scale .2s;
       }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
     }
 
 
+    &:hover {
+      span {
+
+        &::before,
+        &::after {
+          background-color: rgba(185, 48, 48, 0.664);
+          transition: background-color .2s, scale .2s;
+        }
+      }
+
+    }
+
+    &:active {
+      background-color: rgba(185, 48, 48, 0.781);
+      scale: 1.2;
+      transition: background-color .2s, scale .2s;
+
+      span {
+
+        &::before,
+        &::after {
+          scale: .5;
+          background-color: $mainColor;
+          transition: background-color .2s, scale .2s;
+        }
+      }
+    }
+
+    @media (max-width:$mobile) {
+      height: toRem(24);
+      width: toRem(24);
+      margin-top: 0;
+
+      span {
+
+        &::before,
+        &::after {
+          height: toRem(4);
+          background-color: rgba(185, 48, 48, 0.781);
+        }
+      }
+    }
   }
 }
 
 .item-handler {
+
+  button {
+    position: relative;
+    max-width: toRem(50);
+    width: 100%;
+    max-height: toRem(23);
+    border-radius: 15px 15px 15px 15px;
+    cursor: pointer;
+    z-index: 1;
+    overflow: hidden;
+
+    &::after {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      opacity: 0.12;
+      clip-path: circle(0 at center);
+      transition: 0.1s linear;
+
+    }
+
+    &:hover {
+      color: lighten($goldColor, 15%);
+    }
+
+    &:active {
+      background-color: lighten($bgMainColor, 17%);
+
+
+      &::after {
+        clip-path: circle(100% at center);
+        transition: 0.2s ease-out;
+      }
+    }
+  }
 
   // .item-handler__decrement
 
@@ -175,7 +263,12 @@
     font-weight: 600;
     line-height: 125%;
     text-align: center;
-    margin: toRem(0) toRem(18);
+    margin: toRem(0) toRem(8);
+
+    @media (max-width:$mobile) {
+      font-size: toRem(20);
+      margin: toRem(0) toRem(22);
+    }
   }
 
   // .item-handler__increment
@@ -188,11 +281,22 @@
 .item-handler__increment._icon-drop-arrow::before,
 .item-handler__decrement._icon-drop-arrow::before {
   vertical-align: middle;
+  padding-bottom: toRem(1);
+
+  @media (max-width:$mobile) {
+    font-size: toRem(24);
+  }
+}
+
+@media (max-width:$mobile) {
+  .item-handler__increment._icon-drop-arrow::before {
+    padding-bottom: toRem(4);
+  }
 }
 
 
 .basket-footer {
-  //width: 100%;
+
   // .basket-footer__action
 
   &__action {
@@ -206,6 +310,7 @@
 .basket-total {
   display: flex;
   justify-content: space-between;
+  gap: toRem(30);
   margin-bottom: toRem(22);
   font-family: "Cormotant Garamond";
   font-size: toRem(18);
@@ -221,6 +326,10 @@
     span {
       margin-left: toRem(8);
       color: lighten($goldColor, 10%);
+    }
+
+    @media (max-width:$mobile) {
+      font-size: toRem(24);
     }
   }
 
@@ -248,4 +357,9 @@
   @include adaptiveValue("padding-bottom", 10, 8);
   @include adaptiveValue("padding-left", 22, 12);
   @include adaptiveValue("padding-right", 22, 12);
+
+  @media (max-width:$mobile) {
+    width: max-content;
+    font-size: toRem(20);
+  }
 }

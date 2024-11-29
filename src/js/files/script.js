@@ -13,13 +13,13 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 
 //======On/Off Services submenu in header-nav=================
 
-//const servicesMenuLink = document.querySelectorAll('.services-menu')[0];
 const servicesMenuList = document.querySelector('.services-menu__list');
 const servicesMenuButton = document.querySelector('.services-menu__button');
 const servicesMenuItems = [servicesMenuButton, servicesMenuList];
+const basketButton = document.querySelector('.basket-link');
 
 const showServicesMenu = (e) => {
-  (e.target == servicesMenuButton) ?
+  (e.target.closest('.services-menu__button')) ?
     (servicesMenuItems.forEach(item => {
       item.classList.toggle('_show-services')
     })) :
