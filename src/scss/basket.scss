@@ -41,6 +41,9 @@
 
 .basket-header {
 
+  display: flex;
+  justify-content: space-between;
+
   // .basket-header__title
 
   &__title {
@@ -54,6 +57,77 @@
 
     @media (max-width:$mobile) {
       font-size: toRem(46);
+    }
+  }
+
+  span {
+    position: relative;
+    width: toRem(26);
+    height: toRem(26);
+    transform-origin: center;
+    transition: 0.2s linear;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+      width: toRem(26);
+      height: toRem(3);
+      top: 52%;
+      left: 0;
+      transform-origin: center;
+      background-color: #fff;
+      transition: 0.2s linear;
+    }
+
+    &::before {
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translateY(-50%) rotate(-45deg);
+    }
+
+
+    @media (any-hover: hover) {
+      &:hover {
+        transform: rotate(-90deg);
+
+        &::before,
+        &::after {
+          background-color: $goldColor;
+        }
+      }
+    }
+
+    &:active {
+      // transform: scale(0.8);
+      // transform: rotate(-90deg);
+
+      &::before,
+      &::after {
+        opacity: 0.6;
+      }
+
+      &::before {
+        transform: translateY(-50%) rotate(45deg) scale(0.8);
+      }
+
+      &::after {
+        transform: translateY(-50%) rotate(-45deg) scale(0.8);
+      }
+    }
+
+    @media (max-width:$mobile) {
+      width: toRem(32);
+      height: toRem(32);
+
+      &::before,
+      &::after {
+        width: toRem(32);
+        height: toRem(4);
+      }
     }
   }
 }
@@ -207,6 +281,16 @@
           background-color: rgba(185, 48, 48, 0.781);
         }
       }
+
+      &:active {
+        span {
+
+          &::before,
+          &::after {
+            top: 40%;
+          }
+        }
+      }
     }
   }
 }
@@ -305,8 +389,6 @@
   }
 }
 
-
-
 .basket-total {
   display: flex;
   justify-content: space-between;
@@ -314,7 +396,6 @@
   margin-bottom: toRem(22);
   font-family: "Cormotant Garamond";
   font-size: toRem(18);
-  font-weight: 600;
   line-height: 125%;
 
   &__quantity,
