@@ -213,7 +213,11 @@ indexPage && dropDownBtn.addEventListener('click', function () {
 //Move list-items from main-list to modal-list
 
 export const moveListItems = function (targetList, sourceList, targetClass, sourceClass) {
-  indexPage && targetList.insertAdjacentHTML('afterbegin', sourceList.innerHTML);
+
+  indexPage && sourceList.forEach(el => {
+    let movedNode = el.cloneNode(true);
+    targetList.appendChild(movedNode)
+  });
 
   indexPage && targetList.childNodes.forEach(el => {
     if (el.nodeType === Node.ELEMENT_NODE) {
@@ -241,7 +245,7 @@ export function enableScroll() {
   body.removeAttribute('data-position');
 };
 
-moveListItems(datepickerMonthListMobile, dropDownList, 'month-list__item', 'dropdown-list__item');
+moveListItems(datepickerMonthListMobile, dropDownListItems, 'month-list__item', 'dropdown-list__item');
 
 //Close popup with month-list by close-button
 indexPage && datepickerMonthPopupContent.addEventListener('click', function (e) {

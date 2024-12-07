@@ -97,7 +97,7 @@ if (currentYearSpan) {
 const submitServicesInput = document.querySelector('[name="submit-services"]');
 const submitServicesList = document.querySelector(".submit-services__list");
 const submitServices = document.querySelector(".submit-services");
-
+console.log(submitServices)
 
 indexPage && submitServicesInput.addEventListener('focus', () => {
   submitServices.classList.add('services-input__active');
@@ -147,7 +147,7 @@ const servicesPopupCloseBtn = document.querySelector(".services-content__close")
 //   };
 // });
 
-moveListItems(appointmentServicesListMobile, submitServicesList, 'services-popuplist__item', 'services-list__item');
+moveListItems(appointmentServicesListMobile, submitServicesItems, 'services-popuplist__item', 'services-list__item');
 
 //Open services-list in dropdown-list or in popup
 

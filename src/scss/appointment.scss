@@ -167,7 +167,7 @@
 
 .dropdown-list {
   max-height: toRem(260);
-  overflow-y: scroll;
+  overflow: auto;
   visibility: hidden;
   opacity: 0;
   position: absolute;
@@ -183,18 +183,24 @@
 
   &__visible {
     visibility: visible;
-    opacity: 0.85;
+    opacity: 0.97;
   }
 
-  &::-webkit-scrollbar {
-    width: 4px;
+  ul {
+    max-height: toRem(250);
   }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    //border-radius: 10px;
-    border: 3px solid $goldColor;
-  }
+
+
+  // &::-webkit-scrollbar {
+  //   width: 4px;
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //   background-color: transparent;
+  //border-radius: 10px;
+  //   border: 3px solid $goldColor;
+  // }
 
   // scrollbar-width: thin;
   // scrollbar-color: $goldColor transparent;
