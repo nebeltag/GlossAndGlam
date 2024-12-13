@@ -138,15 +138,6 @@ const appointmentServicesListMobile = document.querySelector(".services-content_
 const appointmentServicesPopupContent = document.querySelector(".services-content");
 const servicesPopupCloseBtn = document.querySelector(".services-content__close");
 
-// appointmentServicesListMobile.insertAdjacentHTML('afterbegin', submitServicesList.innerHTML);
-
-// appointmentServicesListMobile.childNodes.forEach(el => {
-//   if (el.nodeType === Node.ELEMENT_NODE) {
-//     el.classList.add('services-popuplist__item');
-//     el.classList.remove('services-list__item');
-//   };
-// });
-
 moveListItems(appointmentServicesListMobile, submitServicesItems, 'services-popuplist__item', 'services-list__item');
 
 //Open services-list in dropdown-list or in popup

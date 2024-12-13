@@ -1,5 +1,6 @@
 .basket {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
   position: absolute;
   top: 100%;
   right: 10%;
@@ -9,6 +10,13 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
   z-index: 1000;
   cursor: default;
+  transition: all 0.3s ease-in-out;
+
+  &._show-cart {
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
 
   @media (min-width:$mobile) {
     max-width: toRem(550);
@@ -17,10 +25,14 @@
 
   @media (max-width:$mobile) {
     position: fixed;
-    top: 0;
+    top: -50%;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+
+    &._show-cart {
+      top: 0;
+    }
   }
 }
 
@@ -152,34 +164,33 @@
 }
 
 .basket-main {
-  margin-bottom: toRem(26);
   border-bottom: toRem(1) solid $goldColor;
   border-top: toRem(1) solid $goldColor;
-
-
-  @media (min-width:$mobile) {
-    max-height: toRem(250);
-  }
 
   // .basket-main__list
 
   &__list {
-    margin: toRem(10) 0;
+    height: 100%;
+    padding: toRem(10) 0;
 
     @media (max-width:$mobile) {
-      margin-top: toRem(26);
+
+      flex: 1 1 auto;
+
     }
   }
 }
 
 // .basket-list
 .basket-list {
+  max-height: toRem(250);
+  min-height: 100%;
 
   // .basket-list__item
 
   &__item {
     display: grid;
-    grid-template-columns: 1fr 1fr auto auto;
+    grid-template-columns: 1fr auto auto auto;
     column-gap: toRem(18);
     padding: toRem(8) toRem(5);
 
@@ -188,9 +199,21 @@
     }
 
     @media (max-width:$mobile) {
+      gap: toRem(15);
+      grid-template-columns: 1fr auto auto;
+      grid-template-rows: repeat(2, auto);
+      background: rgba(105, 98, 98, 0.26);
+      border-radius: toRem(0) toRem(15) toRem(0) toRem(15);
+
+
       &:not(:last-child) {
         margin-bottom: toRem(14);
       }
+    }
+
+    @media (max-width:$mobileSmall) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, auto);
     }
   }
 }
@@ -204,11 +227,16 @@
   &__title {
 
     font-size: toRem(18);
-    @include adaptiveValue("font-size", 24, 14, 1, 767.98, 320);
+    @include adaptiveValue("font-size", 24, 20, 1, 767.98, 479.98);
     color: $goldColor;
 
     @media (max-width:$mobile) {
-      //font-size: toRem(24);
+      order: 1;
+    }
+
+    @media (max-width:$mobileSmall) {
+      grid-column: 1 / 3;
+      font-size: toRem(20);
     }
   }
 
@@ -216,11 +244,11 @@
 
   &__handler {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin: toRem(0) toRem(5);
-    color: darken($cardTitle, 7%);
+
+    @media (max-width:$mobile) {
+      order: 2;
+      padding-right: toRem(10);
+    }
   }
 
   // .basket-item__sum
@@ -229,10 +257,21 @@
     color: lighten($goldColor, 15%);
     text-align: end;
     margin-right: toRem(6);
+    @include adaptiveValue("font-size", 24, 20, 1, 767.98, 479.98);
 
     @media (max-width:$mobile) {
-      font-size: toRem(24);
-      margin-right: toRem(20);
+      order: 4;
+      padding-top: toRem(10);
+      padding-right: toRem(20);
+      margin: 0;
+      width: fit-content;
+      text-align: start;
+      border-top: 1px solid #c9a15f;
+    }
+
+    @media (max-width:$mobileSmall) {
+      grid-column: 1 / 3;
+      font-size: toRem(20);
     }
   }
 
@@ -242,6 +281,7 @@
     width: toRem(18);
     border-radius: 50%;
     margin-top: toRem(3);
+    z-index: 30;
 
     span {
 
@@ -251,7 +291,7 @@
         content: "";
         height: toRem(2);
         width: 100%;
-        top: 45%;
+        top: 40%;
         left: 0;
         background-color: $mainColor;
         transition: background-color .2s, scale .2s;
@@ -291,14 +331,18 @@
           scale: .5;
           background-color: $mainColor;
           transition: background-color .2s, scale .2s;
+          top: 45%;
         }
       }
     }
 
     @media (max-width:$mobile) {
-      height: toRem(24);
-      width: toRem(24);
+      height: toRem(30);
+      width: toRem(30);
       margin-top: 0;
+      order: 3;
+      justify-self: end;
+      top: toRem(5);
 
       span {
 
@@ -314,21 +358,35 @@
 
           &::before,
           &::after {
-            top: 40%;
+            top: 42%;
           }
         }
       }
+    }
+
+    @media (max-width:$mobileSmall) {
+      //order: 4;
     }
   }
 }
 
 .item-handler {
 
+  &__wrp {
+    display: flex;
+    justify-content: center;
+    //align-items: flex-start;
+    color: darken($cardTitle, 7%);
+  }
+
+  @media (max-width:$mobileSmall) {
+    justify-content: space-evenly;
+  }
+
   button {
     position: relative;
-    max-width: toRem(50);
-    width: 100%;
-    max-height: toRem(23);
+    width: toRem(50);
+    //max-height: toRem(23);
     border-radius: 15px 15px 15px 15px;
     cursor: pointer;
     z-index: 1;
@@ -361,6 +419,10 @@
         transition: 0.2s ease-out;
       }
     }
+
+    @media (max-width:$mobileSmall) {
+      width: toRem(80);
+    }
   }
 
   // .item-handler__decrement
@@ -377,8 +439,13 @@
     margin: toRem(0) toRem(8);
 
     @media (max-width:$mobile) {
-      font-size: toRem(20);
-      margin: toRem(0) toRem(22);
+      font-size: toRem(24);
+      margin: toRem(0) toRem(14);
+    }
+
+    @media (max-width:$mobileSmall) {
+      line-height: 150%;
+      font-size: toRem(24);
     }
   }
 
@@ -393,21 +460,17 @@
 .item-handler__decrement._icon-drop-arrow::before {
   vertical-align: middle;
   padding-bottom: toRem(1);
+  font-size: toRem(18);
 
   @media (max-width:$mobile) {
     font-size: toRem(24);
-  }
-}
-
-@media (max-width:$mobile) {
-  .item-handler__increment._icon-drop-arrow::before {
-    // padding-bottom: toRem(4);
+    padding-bottom: 0;
   }
 }
 
 
 .basket-footer {
-
+  padding-top: toRem(26);
   // .basket-footer__action
 
   &__action {
@@ -432,13 +495,19 @@
     letter-spacing: toRem(1);
 
     span {
+      display: inline-block;
       margin-left: toRem(8);
       color: lighten($goldColor, 10%);
     }
 
     @media (max-width:$mobile) {
-      font-size: toRem(24);
+      @include adaptiveValue("font-size", 24, 22, 1, 767.98);
     }
+  }
+
+  @media (max-width:$mobileSmall) {
+    //font-size: toRem(20);
+    flex-direction: column;
   }
 
   // .basket-total__quantity

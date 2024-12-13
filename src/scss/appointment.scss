@@ -848,9 +848,9 @@
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  max-height: toRem(120);
+  // max-height: toRem(120);
   width: 100%;
-  overflow-y: scroll;
+  //overflow-y: scroll;
   top: 110%;
   left: 0;
   padding: toRem(5) toRem(5);
@@ -860,10 +860,13 @@
   z-index: 3;
   transition: all .4s ease;
 
+  ul {
+    max-height: toRem(120);
+  }
 
   &__visible {
     visibility: visible;
-    opacity: 0.95;
+    opacity: 0.98;
   }
 
   // .services-list__item
@@ -904,15 +907,15 @@
     }
   }
 
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
+  // &::-webkit-scrollbar {
+  //   width: 8px;
+  // }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    border-radius: 10px;
-    border: 1px solid $goldColor;
-  }
+  // &::-webkit-scrollbar-thumb {
+  //   background-color: transparent;
+  //   border-radius: 10px;
+  //   border: 1px solid $goldColor;
+  // }
 }
 
 .form-appointment__btn {

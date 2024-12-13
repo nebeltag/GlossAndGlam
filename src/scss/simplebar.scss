@@ -1,16 +1,28 @@
 //custom scroll (simplebar)----------------------
 .simplebar-content-wrapper {
   padding-right: toRem(15);
+
+  @media (max-width:$mobile) {
+    padding: 0;
+  }
 }
 
 .simplebar-track.simplebar-vertical {
   width: toRem(9) !important;
+
+  @media (max-width:$mobile) {
+    display: none;
+  }
 }
 
 .simplebar-scrollbar::before {
   background-color: lighten($goldColor, 10%) !important;
   border-radius: 0 !important;
   opacity: 1 !important;
+
+  @media (max-width:$mobile) {
+    display: none;
+  }
 }
 
 //----------------------------------------------

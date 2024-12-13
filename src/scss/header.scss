@@ -541,14 +541,13 @@
 
     &:active {
 
-      &:not(:first-child) {
-        transform: scale(.95);
+      transform: scale(.95);
 
-        &::before {
-          color: $mainColor;
-          border: toRem(2) solid $mainColor;
-        }
-      }
+      // &::before {
+      //   color: $mainColor;
+      //   border: toRem(2) solid $mainColor;
+      // }
+
     }
   }
 }
