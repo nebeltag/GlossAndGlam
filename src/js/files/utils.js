@@ -3,11 +3,13 @@ import { indexPage } from "./constants.js";
 //======= Error output =================
 
 export function showErrorMessage(message, linkHash, linkText, target) {
+  target.textContent == "";
   const msg =
     `<div class="error">
       <p>${message}</p>
       <a href="/#${linkHash}">${linkText}</a>      
     </div>`;
+
   target.insertAdjacentHTML('afterbegin', msg);
   console.log(message);
 }

@@ -123,6 +123,10 @@
     overflow: hidden;
     user-select: none;
 
+    &.inactive {
+      pointer-events: none;
+      cursor: default;
+    }
 
     &::after {
       content: '';
@@ -134,7 +138,7 @@
       position: absolute;
       transition: inherit;
       z-index: -1;
-      background: $goldColor;
+      //background: $goldColor;
       border: none;
       border-radius: 50%;
       transition: all .4s;

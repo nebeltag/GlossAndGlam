@@ -11,6 +11,8 @@ import {
   checkingRelevanceValueBasket
 } from "./utils.js";
 
+import { getBasketProducts } from "./basket.js";
+
 
 const packagesCards = document.querySelector('.packages__list');
 const cardBody = document.getElementById('card-body');
@@ -115,9 +117,14 @@ function handleCardClick(e) {
 
   if (basket.includes(id)) return;
 
-  basket.push(id);
+  //basket.push(id); -------старый формат localStorage!!
+  basket.push({ "id": id, quantity: 1 });
+
   setBasketLocalStorage(basket);
-  checkingActiveButtons(basket);
+  console.log(getBasketLocalStorage()); //---мониторинг LC
+  getBasketProducts();
+  console.log(getBasketLocalStorage()); //---мониторинг LC
+  setTimeout(() => { checkingActiveButtons(basket) }, 500);
 };
 
 //------------ Disable buttons in packages, that allready in cart  ---------
@@ -132,7 +139,7 @@ export function checkingActiveButtons(basket) {
     const isInBasket = basket.includes(id);
 
     el.disabled = isInBasket;
-    el.classList.toggle('active', isInBasket);
+    el.classList.toggle('inactive', isInBasket);
     el.textContent = isInBasket ? 'Plan selected' : 'Choose plan';
   });
 };

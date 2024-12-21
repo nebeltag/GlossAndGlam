@@ -119,5 +119,5 @@ function renderInfoProduct(product) {
 };
 
 
-//51:00
+
 
