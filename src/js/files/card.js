@@ -30,8 +30,6 @@ async function getProducts() {
       productsData = await res.json();
     }
 
-    console.log(productsData);
-
     loadProductsDetails(productsData);
 
   } catch (err) {
@@ -55,9 +53,8 @@ function loadProductsDetails(data) {
   }
 
   checkingRelevanceValueBasket(data);
-
   const productId = Number(getParameterFromUrl('id'));
-  console.log(productId);
+
 
   if (!productId) {
     cardBody && showErrorMessage(PRODUCT_INFORMATION_NOT_FOUND, ...cardErrorArgs);
@@ -83,7 +80,8 @@ function renderInfoProduct(product) {
 
   const productItem =
     `
-      <article data-product-id = ${id} class="packages__item item-packages packages-card__item" id="card">
+      <article data-product-id = ${id} data-single-price="${price}" 
+      class="packages__item item-packages packages-card__item" id="card">
           <div class="item-packages__body packages-card__body">
             
             <div class="item-packages__title packages-card__title">

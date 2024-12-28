@@ -3,14 +3,22 @@ import {
   showErrorMessage,
   setBasketLocalStorage,
   getBasketLocalStorage,
-  checkingRelevanceValueBasket
+  checkingRelevanceValueBasket,
+  getBasketProductsId,
+  basketCount
 } from "./utils.js";
 
-import { checkingActiveButtons } from "./load_packages.js";
+import {
+  checkingActiveButtons,
+  setTotalProductsPrice,
+  setTotalProductsValue,
+  basketTotalValue,
+  basketTotalPrice
+} from "./load_packages.js";
 
 
 const openBasketBtn = document.querySelector(".basket-link");
-const basket = document.querySelector(".basket");
+export const basket = document.querySelector(".basket");
 const closeBasketBtn = document.querySelector(".basket-header__closeBtn");
 
 const basketSimplebarList = document.querySelector(".basket-list");
@@ -23,6 +31,8 @@ let productsData = [];
 indexPage && openBasketBtn.addEventListener("click", function () {
   basket.classList.toggle("_show-cart");
   getBasketProducts();
+  setTotalProductsValue();
+  setTotalProductsPrice();
 });
 
 indexPage && closeBasketBtn.addEventListener("click", function () {
@@ -36,7 +46,7 @@ function closeBasketByError() {
 }
 //----------------------------------------------------
 
-// getProducts();
+getBasketProducts();
 
 //-------- Get basket products --------------------
 export async function getBasketProducts() {
@@ -69,26 +79,29 @@ function loadProductBasket(data) {
     return;
   };
 
-  //checkingRelevanceValueBasket(data); -------отключено для переделки localStorage
+  checkingRelevanceValueBasket(data);
 
   const basket = getBasketLocalStorage();
-  console.log(basket);
   if (!basket || !basket.length) {
     showErrorMessage(NO_ITEMS_CART, "packages", "Back to packages list", basketProductsList);
     closeBasketByError();
     return;
   };
 
-  const findProducts = data.filter(item => item = basket.includes(String(item.id)));
+  const basketProductsId = getBasketProductsId(basket);
+  const findProducts = data.filter(item => item = basketProductsId.includes(String(item.id)));
 
-  //-------отключено для переделки localStorage
-  // if (!findProducts.length) {
-  //   showErrorMessage(NO_ITEMS_CART, "packages", "Back to packages list", basketProductsList);
-  //   closeBasketByError();
-  //   return;
-  // };
-  // renderProductsBasket(findProducts);
-  //-------отключено для переделки localStorage
+
+  //const findProducts = data.filter(item => item = basket.includes(String(item.id)));
+  //console.log(findProducts);
+
+  if (!findProducts.length) {
+    showErrorMessage(NO_ITEMS_CART, "packages", "Back to packages list", basketProductsList);
+    closeBasketByError();
+    return;
+  };
+  renderProductsBasket(findProducts, basket);
+
 };
 
 //---------- Remove product from basket -----------------------
@@ -102,10 +115,19 @@ function delBasketProduct(event) {
   const cardId = card.dataset.productId;
   const basket = getBasketLocalStorage();
 
-  const newBasket = basket.filter(item => item !== cardId);
+  const newBasket = basket.filter(item => item.id !== cardId);
+
   setBasketLocalStorage(newBasket);
 
   getBasketProducts();
+
+  setTotalProductsPrice();
+  setTotalProductsValue();
+  if (newBasket.length == 0) {
+    basketTotalValue.innerText = "";
+    basketTotalPrice.innerText = "";
+  };
+
   setTimeout(() => { checkingActiveButtons(newBasket) }, 500);
 };
 
@@ -119,31 +141,91 @@ function clearBasket(event) {
   localStorage.removeItem('basket');
   const newBasket = getBasketLocalStorage();
 
+  if (newBasket.length == 0) {
+    basketTotalValue.innerText = "";
+    basketTotalPrice.innerText = "";
+  };
+
   getBasketProducts();
+
+  indexPage ? basketCount.textContent = newBasket.length : null;
   setTimeout(() => { checkingActiveButtons(newBasket) }, 500);
 }
 
 
 //------------- Basket rendering ------------------------
-function renderProductsBasket(arr) {
+function renderProductsBasket(arr, basket) {
   arr.forEach(product => {
     const { id, title, price } = product;
+    const productInBasket = basket.find(item => item.id == id);
 
     const productItem =
       `
-      <li class="basket-list__item basket-item" data-product-id="${id}">
+      <li class="basket-list__item basket-item" data-product-id="${id}" data-single-price="${price}">
             <div class="basket-item__title">${title}</div>
             <div class="basket-item__handler item-handler">
               <div class="item-handler__wrp">
                 <button type="button" class="item-handler__decrement _icon-drop-arrow"></button>
-                <div class="item-handler__counter">1</div>
+                <div class="item-handler__counter">${productInBasket.quantity}</div>
                 <button type="button" class="item-handler__increment _icon-drop-arrow"></button>
               </div>
             </div>
-            <div class="basket-item__sum"><span>&#36 ${price}</span></div>
+            <div class="basket-item__sum" ><span>&#36 ${price * productInBasket.quantity}</span></div>
             <button type="button" class="basket-item__delete"><span></span></button>
           </li>
       `;
     basketProductsList.insertAdjacentHTML("beforeend", productItem);
   });
 };
+
+//------------- Change the value of product ------------------
+
+indexPage && basket.addEventListener("click", increaseProductValue);
+indexPage && basket.addEventListener("click", decreaseProductValue);
+
+function increaseProductValue(event) {
+  const targetButton = event.target.closest(".item-handler__increment");
+  if (!targetButton) return;
+
+  const basketProduct = targetButton.closest(".basket-item");
+  if (!basketProduct) return;
+
+  const id = basketProduct.dataset.productId;
+
+  const basket = getBasketLocalStorage();
+  const newBasket = basket.map(basketItem => {
+    if (basketItem.id == id) basketItem.quantity++;
+    return basketItem;
+  });
+
+  setBasketLocalStorage(newBasket);
+  setTotalProductsPrice();
+  setTotalProductsValue();
+  getBasketProducts();
+};
+
+function decreaseProductValue(event) {
+  const targetButton = event.target.closest(".item-handler__decrement");
+  if (!targetButton) return;
+
+  const basketProduct = targetButton.closest(".basket-item");
+  if (!basketProduct) return;
+
+  const id = basketProduct.dataset.productId;
+
+  const basket = getBasketLocalStorage();
+  const newBasket = basket.map(basketItem => {
+    if (basketItem.id == id & basketItem.quantity > 1) basketItem.quantity--;
+    return basketItem;
+  });
+
+  setBasketLocalStorage(newBasket);
+  setTotalProductsPrice();
+  setTotalProductsValue();
+  getBasketProducts();
+};
+
+//----------------------------------------------------------
+
+
+

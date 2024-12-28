@@ -23,7 +23,7 @@ export function getBasketLocalStorage() {
   return cartDataJSON ? JSON.parse(cartDataJSON) : [];
 }
 
-//======== Add producn id to Local storage =============
+//======== Add product id to Local storage =============
 
 export function setBasketLocalStorage(basket) {
   localStorage.setItem('basket', JSON.stringify(basket));
@@ -35,12 +35,17 @@ export function setBasketLocalStorage(basket) {
 export function checkingRelevanceValueBasket(productsData) {
   const basket = getBasketLocalStorage();
 
-  basket.forEach((basketId, index) => {
-    const existsInProducts = productsData.some(item => item.id === Number(basketId));
+  basket.forEach((basketProduct, index) => {
+    const existsInProducts = productsData.some(item => item.id === Number(basketProduct.id));
     if (!existsInProducts) {
       basket.splice(index, 1);
     };
   });
-
   setBasketLocalStorage(basket);
 }
+
+//================== Get products id, there are in basket ==============
+
+export function getBasketProductsId(basket) {
+  return basket.map(basketProducts => basketProducts.id);
+};

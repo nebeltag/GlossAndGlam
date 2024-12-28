@@ -47,12 +47,14 @@
   border-radius: toRem(10);
   border: toRem(1) solid $goldColor;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
-  transition: opacity .2s ease-in;
+  transition: opacity .15s ease-in, flex-grow .15s ease-in;
 
   &._muted {
 
     opacity: .6;
-    transition: opacity .2s ease-in;
+    transition: opacity .15s ease-in;
+    flex-grow: 0;
+
   }
 
   // .item-packages__body
@@ -92,25 +94,9 @@
     @include adaptiveValue("margin-bottom", 12, 8);
   }
 
-  // .item-packages__price
-
-  &__price {}
-
-  // .item-packages__list
-
-  &__list {}
-
   // .item-packages__button
 
   &__button {
-    // display: inline-block;
-    // color: $cardTitle;
-    // background-color: transparent;
-    // border: toRem(1) solid $goldColor;
-    // color: $cardTitle;
-    // @include adaptiveValue("font-size", 20, 18);
-    // line-height: 150%;
-    // font-weight: 600;
 
     &:not(:has(a)) {
       padding-top: toRem(16);
@@ -143,24 +129,6 @@
       border-radius: 50%;
       transition: all .4s;
     }
-
-    // @media (any-hover: hover) {
-    //   &:hover {
-    //     color: $bgDark;
-    //     background-color: $goldColor;
-    //   }
-    // }
-
-    // @media (max-width:$mobile) {
-    //   display: block;
-    //   width: 100%;
-    // }
-
-    // &:active {
-    //   background-color: transparent;
-    //   color: $cardTitle;
-    // }
-
   }
 }
 
@@ -199,9 +167,6 @@
   &__item {
     position: relative;
     line-height: 150%;
-    /* 24/16 */
-    // display: flex;
-    // align-items: center;
     color: rgba(255, 255, 255, 0.7);
 
     @include adaptiveValue("padding-left", 30, 22);
