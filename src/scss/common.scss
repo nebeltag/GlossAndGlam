@@ -77,13 +77,12 @@
 .error {
   max-width: toRem(800);
   width: 100%;
-  @include adaptiveValue("font-size", 42, 16);
+  @include adaptiveValue("font-size", 42, 26);
   @include adaptiveValue("padding", 20, 10);
   line-height: 150%;
   text-align: center;
   margin: 0 auto;
   font-weight: 600;
-  //border: toRem(1) solid;
   border-radius: toRem(5);
 
   p {
@@ -97,7 +96,7 @@
   }
 
   a {
-    @include adaptiveValue("font-size", 30, 16);
+    @include adaptiveValue("font-size", 30, 20);
     text-decoration: underline;
     text-underline-offset: toRem(10);
     cursor: pointer;

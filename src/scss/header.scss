@@ -90,16 +90,6 @@
   &__action {}
 }
 
-// @layer header,
-// basket;
-
-// @layer header {
-//   header._header-scroll {
-//     opacity: 0.95;
-//   }
-// }
-
-
 //--------------------------Navigation--------------------------
 
 .menu {
@@ -482,9 +472,6 @@
     }
   }
 
-
-
-
   // .action-header__link
 
   &__link {
@@ -540,14 +527,7 @@
     }
 
     &:active {
-
       transform: scale(.95);
-
-      // &::before {
-      //   color: $mainColor;
-      //   border: toRem(2) solid $mainColor;
-      // }
-
     }
   }
 }

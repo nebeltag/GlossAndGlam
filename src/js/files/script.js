@@ -182,20 +182,20 @@ indexPage && appointmentServicesListMobile.addEventListener('click', function (e
 //==================== Add to packages-item class "_hovered" when it's hovered  ==============
 
 const packagesItems = document.getElementsByClassName("packages__item");
-const packagesList = document.querySelector(".packages__list");
+const packagesList = document.getElementById("packages-list");
 
 //mute packages-items they are unhovered-------------------- 
 
 indexPage && packagesList.addEventListener('mouseover', (e) => {
-
   let currentElement = e.target.closest("article");
-  if (currentElement) {
-    for (const el of packagesItems) {
-      el !== currentElement ?
-        el.classList.add('_muted') :
-        el.classList.remove('_muted');
-    };
+  if (!currentElement) return;
+
+  for (const el of packagesItems) {
+    el !== currentElement ?
+      el.classList.add('_muted') :
+      el.classList.remove('_muted');
   };
+
 });
 
 

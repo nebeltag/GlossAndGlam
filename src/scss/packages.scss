@@ -43,17 +43,36 @@
   display: flex;
   justify-content: center;
   max-width: toRem(424);
+  min-width: toRem(360);
   background-color: $bgDarkLight;
   border-radius: toRem(10);
   border: toRem(1) solid $goldColor;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
-  transition: opacity .15s ease-in, flex-grow .15s ease-in;
+  transition: opacity .15s ease-in, transform .1s linear;
+
+  @media (any-hover: hover) {
+    &:hover {
+      max-width: toRem(440);
+      width: 100%;
+    }
+  }
+
+  @media(min-width: 768px) and (max-width: 1260px) {
+    min-width: toRem(340);
+
+    &:hover {
+      max-width: toRem(370);
+    }
+
+    &._muted {
+      max-width: toRem(320);
+      min-width: toRem(200);
+    }
+  }
 
   &._muted {
-
     opacity: .6;
-    transition: opacity .15s ease-in;
-    flex-grow: 0;
+    transition: opacity .2s ease;
 
   }
 
@@ -124,7 +143,6 @@
       position: absolute;
       transition: inherit;
       z-index: -1;
-      //background: $goldColor;
       border: none;
       border-radius: 50%;
       transition: all .4s;

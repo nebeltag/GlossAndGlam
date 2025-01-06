@@ -1,25 +1,34 @@
 <div class="basket">
+  <!-- .basket-body -->
   <div class="basket-body">
+    <!-- .basket-header -->
     <div class="basket-header">
       <div class="basket-header__title">
         <h2>Your Cart</h2>
       </div>
       <span class="basket-header__closeBtn"></span>
     </div>
+    <!-- /.basket-header -->
+    <!-- .basket-main -->
     <div class="basket-main">
       <div class="basket-main__list">
         <ul data-simplebar class="basket-list"></ul>
       </div>
     </div>
+    <!-- .basket-main -->
+    <!-- .basket-footer -->
     <div class="basket-footer">
+      <!-- .basket-total -->
       <div class="basket-total">
         <div class="basket-total__quantity">
           Packages: <span></span>
         </div>
         <div class="basket-total__price">
-          Total price: &#36&nbsp;<span></span>
+          Total price: $&nbsp;<span></span>
         </div>
       </div>
+      <!-- /.basket-total -->
+      <!-- .basket-footer__action -->
       <div class="basket-footer__action">
         <form action="#" method="POST" class="basket-order" name="order">
           <button type="submit" class="button button--transparent basket-button" onclick="event.preventDefault()">
@@ -27,6 +36,9 @@
         </form>
         <button type="button" class="button button--transparent basket-button clear-basket">Clear Cart</button>
       </div>
+      <!-- .basket-footer__action -->
     </div>
+    <!-- .basket-footer -->
   </div>
+  <!-- /.basket-body -->
 </div>

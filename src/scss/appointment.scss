@@ -135,7 +135,6 @@
   &.onFocus {
     color: $mainColor;
     border: toRem(1) solid $goldColor;
-    transform: translateY(1px);
 
     &::after {
       color: $mainColor;
@@ -189,23 +188,6 @@
   ul {
     max-height: toRem(250);
   }
-
-
-
-  // &::-webkit-scrollbar {
-  //   width: 4px;
-  // }
-
-  // &::-webkit-scrollbar-thumb {
-  //   background-color: transparent;
-  //border-radius: 10px;
-  //   border: 3px solid $goldColor;
-  // }
-
-  // scrollbar-width: thin;
-  // scrollbar-color: $goldColor transparent;
-
-  // .dropdown-list__item
 
   &__item {
     font-size: toRem(14);
@@ -288,7 +270,6 @@
   &__minus::before,
   &__plus::before {
     position: absolute;
-    //width: 100%;
     top: 35%;
     display: flex;
     align-items: center;
@@ -466,7 +447,6 @@
     }
 
     &:disabled {
-      //visibility: hidden;
       color: rgb(235, 235, 245, .3);
       pointer-events: none;
       user-select: none;
@@ -906,16 +886,6 @@
 
     }
   }
-
-  // &::-webkit-scrollbar {
-  //   width: 8px;
-  // }
-
-  // &::-webkit-scrollbar-thumb {
-  //   background-color: transparent;
-  //   border-radius: 10px;
-  //   border: 1px solid $goldColor;
-  // }
 }
 
 .form-appointment__btn {
