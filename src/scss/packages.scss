@@ -43,30 +43,37 @@
   display: flex;
   justify-content: center;
   max-width: toRem(424);
-  min-width: toRem(360);
+  min-width: 20%;
   background-color: $bgDarkLight;
   border-radius: toRem(10);
   border: toRem(1) solid $goldColor;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
   transition: opacity .15s ease-in, transform .1s linear;
 
-  @media (any-hover: hover) {
-    &:hover {
-      max-width: toRem(440);
-      width: 100%;
+  &:not(.packages-card__item) {
+    @media (any-hover: hover) {
+      &:hover {
+        max-width: 35.5%;
+        width: 100%;
+      }
+
+      &._muted {
+        max-width: 30%;
+        min-width: 30%;
+      }
     }
-  }
 
-  @media(min-width: 768px) and (max-width: 1260px) {
-    min-width: toRem(340);
+    @media(min-width: 768px) and (max-width: 1028px) {
+      min-width: 30%;
 
-    &:hover {
-      max-width: toRem(370);
-    }
+      &:hover {
+        max-width: 55%;
+      }
 
-    &._muted {
-      max-width: toRem(320);
-      min-width: toRem(200);
+      &._muted {
+        max-width: 40%;
+        min-width: 40%;
+      }
     }
   }
 

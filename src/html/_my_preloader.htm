@@ -1,1 +1,38 @@
-<div class="circle"></div>
+<div class="preloader">
+  <div class="preloader__body">
+    <div class="preloader__circle"></div>
+    <!-- <div class="preloader__percents">
+      <span>0</span> %
+    </div> -->
+  </div>
+</div>
+
+<script>
+
+  const myPreloader = document.querySelector(".preloader");
+  const indexPage = document.getElementsByClassName('indexPage')[0];
+  const percents = myPreloader.querySelector(".preloader__percents span");
+
+  indexPage.classList.add("page-load");
+
+  window.onload = function () {
+    myPreloader.classList.add("_preloaderOff");
+    indexPage.classList.remove("page-load");
+  }
+
+  // document.addEventListener('DOMContentLoaded', () => {
+  //   const pageContent = document.querySelectorAll('img');
+  //   let i = 0;
+  //   console.log(pageContent);
+  //   Array.from(pageContent).forEach((el, index) => {
+  //     if (el.isConnected) {
+  //       i++;
+  //       percents.innerHTML = ((i * 100) / percents.length);
+
+  //       if (i === pageContent.length) {
+  //         percents.innerHTML = 100;
+  //       }
+  //     }
+  //   })
+  // })
+</script>

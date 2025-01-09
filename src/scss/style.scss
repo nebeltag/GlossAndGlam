@@ -180,6 +180,8 @@ body {
 @import "common";
 
 // Підключення стилів окремих блоків
+@import "my_preloader";
+@import "snow";
 @import "header";
 @import "footer";
 @import "hero";
@@ -191,7 +193,5 @@ body {
 @import "card";
 @import "basket";
 @import "simplebar";
-@import "snow";
-@import "my_preloader";
 // Підключення стилів окремих сторінок
 //@import "home";
