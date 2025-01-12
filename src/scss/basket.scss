@@ -460,7 +460,7 @@
 .item-handler__increment._icon-drop-arrow::before,
 .item-handler__decrement._icon-drop-arrow::before {
   vertical-align: middle;
-  //padding-bottom: toRem(1);
+  padding-bottom: toRem(3);
   font-size: toRem(18);
 
   @media (max-width:$mobile) {

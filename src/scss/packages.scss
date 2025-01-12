@@ -53,13 +53,13 @@
   &:not(.packages-card__item) {
     @media (any-hover: hover) {
       &:hover {
-        max-width: 35.5%;
+        max-width: 36.3%;
         width: 100%;
       }
 
       &._muted {
-        max-width: 30%;
-        min-width: 30%;
+        max-width: 31%;
+        min-width: 29%;
       }
     }
 

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Grooming Package 1",
+    "price": "499",
+    "services": [
+      "Hair Cut of Your Choice",
+      "Beard Style / Shaving for Men",
+      "Facial Treatment",
+      "Hair Treatment / Keratin Treatment Suited for You"
+    ],
+    "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo amet molestias sint suscipit aperiam laudantium possimus quos, ad deserunt molestiae sit. Alias deserunt distinctio inventore tempore voluptatibus aspernatur delectus, illum maxime, libero reiciendis nulla! Facilis ad, consequuntur unde tempore sed, sunt hic, impedit cumque nemo accusamus odit totam eligendi numquam."
+  },
+  {
+    "id": 2,
+    "title": "Grooming Package 2",
+    "price": "699",
+    "services": [
+      "Hair Cut of Your Choice",
+      "Beard Style / Shaving for Men",
+      "Facial Treatment",
+      "Hair Treatment / Keratin Treatment Suited for You"
+    ],
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero veniam, pariatur magni quos eveniet vel quo perspiciatis aperiam saepe, magnam eligendi temporibus voluptatem. Doloremque possimus illo eos, ea tempora delectus earum non molestiae impedit provident architecto iusto praesentium, recusandae aspernatur aperiam neque, magnam suscipit rem magni facilis labore tempore inventore! Eveniet sint debitis quasi libero, doloribus quae vitae iusto reprehenderit!"
+  },
+  {
+    "id": 3,
+    "title": "Grooming Package 3",
+    "price": "799",
+    "services": [
+      "Hair Cut of Your Choice",
+      "Beard Style / Shaving for Men",
+      "Facial Treatment for Wedding",
+      "Hair Treatment / Keratin Treatment Suited for Wedding"
+    ],
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus velit commodi harum eveniet similique ipsam soluta nisi dolore, perspiciatis distinctio corporis dignissimos fuga aliquid, consequatur eaque, minus tenetur sunt? Doloribus ipsam repellat illum laborum officiis adipisci corporis asperiores eum nulla! Eum et, minus facilis vero, iure doloribus quisquam vel, assumenda amet reiciendis consequuntur maxime earum ratione facere quas aliquam nisi? Sequi, quo. Iste optio iure et earum inventore non consectetur minus quod! Asperiores officia recusandae debitis, necessitatibus soluta optio earum."
+  }
+]

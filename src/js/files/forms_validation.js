@@ -17,12 +17,12 @@ function inputsValidation(currentInput, currentForm) {
   let regexpString = input.dataset.regexp;
   let regexpFlags = input.dataset.regexpFlags;
   let inputRegexp;
-  console.log(regexpFlags)
+  //console.log(regexpFlags)
 
   regexpFlags ?
     inputRegexp = new RegExp(`${regexpString}`, `${regexpFlags}`) :
     inputRegexp = new RegExp(`${regexpString}`);
-  console.log(inputRegexp)
+  //console.log(inputRegexp)
 
   const result = inputRegexp.test(input.value);
 
@@ -39,16 +39,14 @@ function inputsValidation(currentInput, currentForm) {
 function checkValidatedInputs(currentForm) {
   const submitButton = currentForm.querySelector('button[type="submit"]');
   const validatedInputs = currentForm.querySelectorAll('[data-regexp]');
-  console.log(validatedInputs)
   const validatedInputsLength = validatedInputs.length;
-  console.log(validatedInputsLength);
+
   let validInputsNumber = 0;
   validatedInputs.forEach(el => {
     (el.classList.contains('input-invalid') || el.classList.contains('empty')) ?
       null :
       validInputsNumber++;
   });
-  console.log(validInputsNumber);
 
   validatedInputsLength === validInputsNumber
     ?
@@ -75,7 +73,7 @@ function createMessageUnder(elem, html, coordsRatio) {
   message.classList.add('submit-message__success');
 
   let coords = elem.getBoundingClientRect();
-  console.log(coords);
+
   message.style.left = coords.left + 'px';
   message.style.top = coords.bottom * coordsRatio + 'px';
   message.innerHTML = html;

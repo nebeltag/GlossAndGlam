@@ -36,7 +36,7 @@ async function getProducts() {
     }
 
   } catch (err) {
-    packagesCards && showErrorMessage(ERROR_SERVER, '', packagesCards);
+    packagesCards && showErrorMessage(ERROR_SERVER, '', '', packagesCards);
     console.log(err);
     return
   }

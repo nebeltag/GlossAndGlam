@@ -9,3 +9,4 @@ Raleway Semibold
 -Spartan SemiBold, Regular
 
 https://codepen.io/izmaelmag/pen/XNJKZx
+https://onlinepngtools.com/convert-text-to-png

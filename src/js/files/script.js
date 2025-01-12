@@ -97,7 +97,6 @@ if (currentYearSpan) {
 const submitServicesInput = document.querySelector('[name="submit-services"]');
 const submitServicesList = document.querySelector(".submit-services__list");
 const submitServices = document.querySelector(".submit-services");
-console.log(submitServices)
 
 indexPage && submitServicesInput.addEventListener('focus', () => {
   submitServices.classList.add('services-input__active');

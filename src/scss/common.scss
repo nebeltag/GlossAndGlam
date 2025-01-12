@@ -77,7 +77,7 @@
 .error {
   max-width: toRem(800);
   width: 100%;
-  @include adaptiveValue("font-size", 42, 26);
+  @include adaptiveValue("font-size", 42, 24);
   @include adaptiveValue("padding", 20, 10);
   line-height: 150%;
   text-align: center;

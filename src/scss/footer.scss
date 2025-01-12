@@ -41,7 +41,7 @@
   // .footer__content
 
   &__content {
-    @include adaptiveValue("width", 340, 150);
+    @include adaptiveValue("width", 340, 250, 0, $containerWidth, 767.98);
 
     @media (max-width:$mobile) {
       width: 100%;
