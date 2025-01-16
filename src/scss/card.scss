@@ -47,9 +47,8 @@
     line-height: 150%;
     font-weight: 600;
 
-    &:not(:has(a)) {
-      padding-top: toRem(16);
-      padding-bottom: toRem(16);
+    &:has(a) {
+      padding: 0;
     }
 
     &:not(:last-child) {
