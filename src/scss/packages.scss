@@ -43,7 +43,7 @@
   display: flex;
   justify-content: center;
   max-width: toRem(424);
-  min-width: 20%;
+  min-width: 25%;
   background-color: $bgDarkLight;
   border-radius: toRem(10);
   border: toRem(1) solid $goldColor;
@@ -53,13 +53,27 @@
   &:not(.packages-card__item) {
     @media (any-hover: hover) {
       &:hover {
-        max-width: 36.3%;
+        max-width: 36.9%;
         width: 100%;
+        // margin-left: -5px;
       }
 
       &._muted {
-        max-width: 31%;
-        min-width: 29%;
+        max-width: 29.4%;
+        min-width: 29.4%;
+      }
+    }
+
+    @media(min-width: 1028px) and (max-width: 1063px) {
+      min-width: 30%;
+
+      &:hover {
+        max-width: 35%;
+      }
+
+      &._muted {
+        max-width: 30%;
+        min-width: 30%;
       }
     }
 
