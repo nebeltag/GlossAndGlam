@@ -16,12 +16,11 @@
   grid-template-columns: 15% 14% 38% 3% 26%;
   grid-template-rows: 50% 50%;
   column-gap: 1%;
-  // row-gap: 1%;
   overflow: hidden;
 
   @media (max-width:$mobile) {
     grid-template-columns: 30% 38% 30%;
-    grid-template-rows: 5% 70% 25%;
+    grid-template-rows: 1fr;
   }
 }
 
@@ -95,6 +94,7 @@
     rotate: 26deg;
     height: 100%;
     max-height: toRem(304);
+    padding: toRem(22);
   }
 }
 
@@ -108,15 +108,15 @@
   max-height: toRem(168);
   aspect-ratio: 90 / 168;
   translate: 0 32%;
-  @include adaptiveValue("padding-left", 205, 40);
-  @include adaptiveValue("padding-right", 205, 40);
+  @include adaptiveValue("padding-left", 205, 111, 1, 1920, 767.98);
+  @include adaptiveValue("padding-right", 205, 111, 1, 1920, 767.98);
 
   @media (max-width:$mobile) {
     grid-column: 3;
     grid-row: 2;
     align-self: center;
     justify-self: center;
-    padding: 0;
+    padding: toRem(10);
     translate: 0 0;
     rotate: -15deg;
     max-height: toRem(250);
@@ -124,19 +124,19 @@
   }
 }
 
-@-moz-document url-prefix() {
+// @-moz-document url-prefix() {
 
-  .bg__image3 {
-    @include adaptiveValue("padding-left", 62, 14, 1, 767.98);
-    @include adaptiveValue("padding-right", 62, 14, 1, 767.98);
+//   .bg__image3 {
+//     @include adaptiveValue("padding-left", 62, 14, 1, 767.98);
+//     @include adaptiveValue("padding-right", 62, 14, 1, 767.98);
 
-  }
+//   }
 
-  .bg__image2 {
-    @include adaptiveValue("padding-left", 40, 27, 1, 767.98);
-    @include adaptiveValue("padding-right", 40, 27, 1, 767.98);
-  }
-}
+//   .bg__image2 {
+//     @include adaptiveValue("padding-left", 40, 27, 1, 767.98);
+//     @include adaptiveValue("padding-right", 40, 27, 1, 767.98);
+//   }
+// }
 
 .bg__image4 {
   grid-column: 5;

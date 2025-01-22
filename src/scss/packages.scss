@@ -42,53 +42,27 @@
   flex: 1 1 auto;
   display: flex;
   justify-content: center;
-  max-width: toRem(424);
-  min-width: 25%;
+  max-width: 50%;
+  min-width: 30%;
   background-color: $bgDarkLight;
   border-radius: toRem(10);
   border: toRem(1) solid $goldColor;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
-  transition: opacity .15s ease-in, transform .1s linear;
+  //transition: opacity .15s ease-in, transform .1s linear;
+  transition: all .3s ease;
 
-  &:not(.packages-card__item) {
-    @media (any-hover: hover) {
+  @media (any-hover: hover) {
+    &:not(.packages-card__item) {
       &:hover {
-        max-width: 36.9%;
-        width: 100%;
-        // margin-left: -5px;
-      }
-
-      &._muted {
-        max-width: 29.4%;
-        min-width: 29.4%;
-      }
-    }
-
-    @media(min-width: 1028px) and (max-width: 1063px) {
-      min-width: 30%;
-
-      &:hover {
-        max-width: 35%;
-      }
-
-      &._muted {
-        max-width: 30%;
-        min-width: 30%;
-      }
-    }
-
-    @media(min-width: 768px) and (max-width: 1028px) {
-      min-width: 30%;
-
-      &:hover {
+        flex-grow: 4;
         max-width: 55%;
-      }
-
-      &._muted {
-        max-width: 40%;
-        min-width: 40%;
+        transition: all 0.7s ease;
       }
     }
+  }
+
+  @media(max-width:toRem(671)) {
+    max-width: toRem(400);
   }
 
   &._muted {
@@ -122,7 +96,7 @@
 
   &__title {
     width: 100%;
-    @include adaptiveValue("font-size", 32, 24);
+    @include adaptiveValue("font-size", 30, 24);
     line-height: 150%;
     /* 48/32 */
     font-weight: 500;
