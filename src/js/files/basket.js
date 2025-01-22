@@ -24,6 +24,7 @@ const closeBasketBtn = document.querySelector(".basket-header__closeBtn");
 const basketSimplebarList = document.querySelector(".basket-list");
 const basketProductsList = indexPage && basketSimplebarList.querySelector(".simplebar-content");
 
+
 let productsData = [];
 
 //----------- Open & close basket --------------------
@@ -40,7 +41,8 @@ indexPage && closeBasketBtn.addEventListener("click", function () {
 });
 
 function closeBasketByError() {
-  basket.querySelector(".error").addEventListener("click", function () {
+  basket.querySelector(".error").addEventListener("click", function (e) {
+    e.preventDefault();
     basket.classList.remove("_show-cart")
   });
 }
@@ -62,6 +64,8 @@ export async function getBasketProducts() {
     indexPage && loadProductBasket(productsData);
 
   } catch (err) {
+    // const serverError = basketSimplebarList.querySelector(".error");
+    // console.log(serverError);
     indexPage && showErrorMessage(ERROR_SERVER, "hero", "Back to homepage", basketProductsList);
     indexPage && closeBasketByError();
     console.log(err);

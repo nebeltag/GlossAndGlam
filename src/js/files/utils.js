@@ -3,6 +3,10 @@ import { indexPage } from "./constants.js";
 //======= Error output =================
 
 export function showErrorMessage(message, linkHash, linkText, target) {
+
+  const serverError = target.querySelector(".error");
+  if (serverError) return;
+
   target.textContent == "";
   const msg =
     `<div class="error">
