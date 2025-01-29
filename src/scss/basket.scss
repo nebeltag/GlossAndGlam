@@ -529,11 +529,12 @@
 // .basket-button
 
 .basket-button {
-  @include adaptiveValue("font-size", 16, 11);
+  // @include adaptiveValue("font-size", 16, 16, 0, $containerWidth, 767.98);
   @include adaptiveValue("padding-top", 10, 8);
   @include adaptiveValue("padding-bottom", 10, 8);
   @include adaptiveValue("padding-left", 22, 12);
   @include adaptiveValue("padding-right", 22, 12);
+  font-weight: 400;
 
   @media (max-width:$mobile) {
     width: max-content;

@@ -62,7 +62,7 @@ function loadProductsDetails(data) {
   };
 
   const findProduct = data.find(card => card.id === productId);
-  console.log(findProduct);
+
   if (!findProduct) {
     cardBody && showErrorMessage(PRODUCT_INFORMATION_NOT_FOUND, ...cardErrorArgs);
     return;

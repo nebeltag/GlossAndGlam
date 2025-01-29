@@ -24,6 +24,18 @@
   background: white;
   border-radius: 50%;
 
+  @media (max-width:$mobile) {
+    &:nth-child(n+100) {
+      display: none;
+    }
+  }
+
+  @media (max-width:$mobileSmall) {
+    &:nth-child(n+50) {
+      display: none;
+    }
+  }
+
   @for $i from 1 through $total {
     $random-x: random(1000000) * 0.0001vw;
     $random-offset: random_range(-100000, 100000) * 0.0001vw;
@@ -31,9 +43,10 @@
     $random-x-end-yoyo: ($random-x + calc($random-offset / 2));
     $random-yoyo-time: calc(random_range(30000, 80000) / 100000);
     $random-yoyo-y: $random-yoyo-time * 100vh;
-    $random-scale: random(10000) * 0.0001;
+    $random-scale: random(7000) * 0.0001;
     $fall-duration: random_range(10, 30) * 1s;
     $fall-delay: random(30) * -1s;
+
 
     &:nth-child(#{$i}) {
       opacity: random(10000) * 0.0001;

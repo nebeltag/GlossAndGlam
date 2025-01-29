@@ -49,7 +49,7 @@ indexPage && document.documentElement.addEventListener("click", showActionSearch
 
 //======Hamburger button=================
 
-const hamburgerButton = document.querySelector(".icon-menu");
+export const hamburgerButton = document.querySelector(".icon-menu");
 const menuList = document.querySelector(".menu__list");
 
 if (hamburgerButton) {

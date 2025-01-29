@@ -11,13 +11,16 @@
 
   const myPreloader = document.querySelector(".preloader");
   const indexPage = document.getElementsByClassName('indexPage')[0];
+  const cardPage = document.getElementsByClassName('cardPage')[0];
   const percents = myPreloader.querySelector(".preloader__percents span");
 
-  indexPage.classList.add("page-load");
+  indexPage && indexPage.classList.add("page-loading");
+  cardPage && cardPage.classList.add("page-loading");
 
   window.onload = function () {
     myPreloader.classList.add("_preloaderOff");
-    indexPage.classList.remove("page-load");
+    indexPage && indexPage.classList.remove("page-loading");
+    cardPage && cardPage.classList.remove("page-loading");
   }
 
   // document.addEventListener('DOMContentLoaded', () => {

@@ -32,16 +32,17 @@
 
 	&--small {
 
-		@include adaptiveValue("padding-top", 15, 8, 0, $containerWidth, 767.98);
-		@include adaptiveValue("padding-bottom", 15, 8, 0, $containerWidth, 767.98);
-		@include adaptiveValue("padding-left", 32, 12, 0, $containerWidth, 767.98);
-		@include adaptiveValue("padding-right", 32, 12, 0, $containerWidth, 767.98);
+		@include adaptiveValue("padding-top", 15, 8, 0, 1920, 767.98);
+		@include adaptiveValue("padding-bottom", 15, 8, 0, 1920, 767.98);
+		@include adaptiveValue("padding-left", 32, 12, 0, 1920, 767.98);
+		@include adaptiveValue("padding-right", 32, 12, 0, 1920, 767.98);
 		border: toRem(2) solid $goldColor;
 		transition: all .5s, transform 0s;
 
 		@media (max-width:$mobile) {
 			padding: toRem(15) toRem(32);
 			font-size: toRem(20);
+			font-weight: 400;
 		}
 
 		@media (any-hover: hover) {

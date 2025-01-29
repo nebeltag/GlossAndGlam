@@ -1,4 +1,9 @@
-import { ERROR_SERVER, NO_ITEMS_CART, indexPage } from "./constants.js";
+import {
+  ERROR_SERVER,
+  NO_ITEMS_CART,
+  indexPage
+}
+  from "./constants.js";
 import {
   showErrorMessage,
   setBasketLocalStorage,
@@ -16,6 +21,8 @@ import {
   basketTotalPrice
 } from "./load_packages.js";
 
+import { hamburgerButton } from "./script.js";
+
 
 const openBasketBtn = document.querySelector(".basket-link");
 export const basket = document.querySelector(".basket");
@@ -28,6 +35,7 @@ const basketProductsList = indexPage && basketSimplebarList.querySelector(".simp
 let productsData = [];
 
 //----------- Open & close basket --------------------
+const htmlElement = document.documentElement;
 
 indexPage && openBasketBtn.addEventListener("click", function () {
   basket.classList.toggle("_show-cart");
@@ -41,9 +49,14 @@ indexPage && closeBasketBtn.addEventListener("click", function () {
 });
 
 function closeBasketByError() {
-  basket.querySelector(".error").addEventListener("click", function (e) {
+  basket.querySelector(".error a").addEventListener("click", function (e) {
     e.preventDefault();
-    basket.classList.remove("_show-cart")
+    basket.classList.remove("_show-cart");
+
+    if (!htmlElement.closest(".menu__open")) {
+      hamburgerButton.setAttribute("data-state", "closed");
+      hamburgerButton.setAttribute("aria-expanded", "false");
+    }
   });
 }
 //----------------------------------------------------

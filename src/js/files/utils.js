@@ -11,7 +11,7 @@ export function showErrorMessage(message, linkHash, linkText, target) {
   const msg =
     `<div class="error">
       <p>${message}</p>
-      <a href="/#${linkHash}">${linkText}</a>      
+      <a data-goto="#${linkHash}" href="/#${linkHash}">${linkText}</a>      
     </div>`;
 
   target.insertAdjacentHTML('afterbegin', msg);
